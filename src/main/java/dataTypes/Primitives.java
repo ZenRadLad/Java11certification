@@ -2,10 +2,22 @@ package dataTypes;
 
 public class Primitives {
 
+	static byte b;
+    static char c;
+    static short s;
+    static int i;
+    static long l;
+    static float f;
+    static double d;
+    static String str;
+    static Object obj;
+    
 	public static void main(String[] args) {
 		// https://docs.oracle.com/javase/tutorial/java%nutsandbolts/datatypes.html
 		primitives();
+		defaultValues();
 		wrappers();
+		casting();
 	}
 
 	// Primitives
@@ -69,12 +81,22 @@ public class Primitives {
 		System.out.printf("char single : %s, code : %s, unicode : %s%n", myCh, code, hexUnicode);
 
 		boolean bool = null != null; // true || false
-		System.out.printf("boolean : is null != null = %s%n%n", bool);
-		System.out.print("-----------------------------------------------------");
-	    System.out.println("");
-	    System.out.println("");
+		System.out.printf("boolean : is null != null = %s", bool);
+		newLines();
 	}
 
+	private static void defaultValues() {
+		System.out.println("default value of byte : " + b);
+        System.out.println("default value of char : " + c);
+        System.out.println("default value of short : " + s);
+        System.out.println("default value of int : " + i);
+        System.out.println("default value of long : " + l);
+        System.out.println("default value of float : " + f);
+        System.out.println("default value of double : " + d);
+        System.out.println("default value of String : " + str);
+        System.out.println("default value of Object : " + obj);
+        newLines();
+	}
 	
 	// Wrapper Classes
 	public static void wrappers() {
@@ -120,9 +142,67 @@ public class Primitives {
 		Integer unboxInteger = Integer.valueOf(2);
 		int unboxedInt = unboxInteger;
 		System.out.printf("Unboxing Integer unboxInteger = Integer.valueOf(2) to int unboxedInt = unboxInteger : %s%n", unboxedInt);
+		newLines();
 	}
 	
 	// Casting
+	public static void casting() {
+		
+		//Widening Casting (automatically) - converting a smaller type to a larger type size
+				//byte -> short -> char -> int -> long -> float -> double
+		
+		//Narrowing Casting (manually) - converting a larger type to a smaller size type
+			   //double -> float -> long -> int -> char -> short -> byte
+		
+		//Implicit/Auto
+		int i = 81;
+		double myD = i;
+		System.out.printf("Implicit Casting double from i=81 : %f%n", myD);
+		
+		//Explicit/Manual
+		double myDo = 81.99;
+		int i2 = (int) myDo;
+		System.out.printf("Explicit Casting int from double=81.99 : %d%n", i2);
+		
+		//Other Explicit/Manual casting examples
+		int i1 = 18;
+		char c = (char) i1;
+		byte b = (byte) i1;
+		System.out.printf("Explicit Casting int 10 to char : %s%n", c);
+		System.out.printf("Explicit Casting int 10 to byte : %s%n", b);
+
+		double d = 7.99;
+		float f = (float) d;
+		System.out.printf("Explicit Casting 7.99 double to (float) 7.99 : %f%n", f);
+		
+		int maxInt = Integer.MAX_VALUE;
+		float myFloat = maxInt;
+		System.out.printf("Implicit widdening of int Integer.MAX_VALUE to float : %f%n", myFloat);
+		
+		//maxInt = myFmyFloat; float narrowing to int donesn't compile
+		
+		long maxLong = Long.MAX_VALUE;
+		double myDouble = maxLong;
+		System.out.printf("Implicit widdening of long Long.MAX_VALUE to double : %f%n", myDouble);
+		
+		//maxLong = myDouble; long narrowing to double donesn't compile		
+		
+		int maxByteInt = 128;
+		byte spillageByte = (byte) maxByteInt;
+		System.out.printf("Explicit Casting int 128 to byte(max 127) : %s !%n", spillageByte);
+
+		char c1 = '\u0061'; //unicode for 'a'
+		short s1 = (short) c1;
+		System.out.printf("Casting char '\u0061' to short (max 127) : %s%n", s1);	
+	}
+	
+	private static void newLines() {
+		System.out.println("");
+	    System.out.println("");
+		System.out.print("-----------------------------------------------------");
+	    System.out.println("");
+	    System.out.println("");
+	}
 
 	// Operators
 
