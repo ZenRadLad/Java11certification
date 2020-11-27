@@ -14,11 +14,13 @@ public class Primitives {
     
 	public static void main(String[] args) {
 		// https://docs.oracle.com/javase/tutorial/java%nutsandbolts/datatypes.html
-		primitives();
-		defaultValues();
-		wrappers();
-		casting();
+ 		primitives();
+ 		defaultValues();
+ 		wrappers();
+ 		casting();
+		operators();
 	}
+
 
 	// Primitives
 	/*
@@ -194,19 +196,83 @@ public class Primitives {
 		char c1 = '\u0061'; //unicode for 'a'
 		short s1 = (short) c1;
 		System.out.printf("Casting char '\u0061' to short (max 127) : %s%n", s1);	
+		newLines();
 	}
+	
+	
+	public static void operators() {
+
+		int modulus = 3 % 2;
+		System.out.println("Modulus/remainder operator 3 % 2 : " +  modulus);	
+		
+		System.out.println("Operator prcedence : * > / > % > + > - > =");	
+
+		int inc = 1;
+		int preInc = ++inc; 
+		int jinc = 1 ;
+		int postInc = jinc++;
+		
+		System.out.printf("Pre/Instant increment ++1 : %d, Post/Late Increment 1++ : %d %n", preInc, postInc);
+		
+		//Bitwise operators
+		int i = 7;
+		int j = 10;
+		
+		System.out.printf("Bitwise AND '&' operator (7 & 10) : %s, Bitwise OR (inclusive OR) '|' operator (7 | 10): %s %n", (i&j), (i|j));
+		System.out.printf("Bitwise XOR (exclusive OR) '^' operator (Sets each bit to 1 if one of the two bits is 1 = (7^10)) :  %d %n",  (i^j));
+		System.out.printf("Bitwise NOT '~' operator (Inverts all the bits = (~7)) :  %d %n",  (~i));
+		
+		System.out.printf("Right shift '>>' operator (Shifts the bits to the right and fills 0 on voids left as a result = (7>>10)) :  %d %n",  (i>>j));
+		System.out.printf("Left shift '<<' operator (Shifts the bits to the left and fills 0 on voids left as a result  = (7<<10)) :  %d %n",  (i<<j));
+		System.out.printf("Unsigned/ZeroFill right shift '>>>' operator (Shifts the bits to the right and fills 0 on voids left as a result. The leftmost bit is set to 0  = (7>>>10)) :  %d %n",  (i>>>j));
+
+		//instanceof operator
+		Integer in = 5;
+		System.out.println("instanceof operator (Integer i = 5 instanceof Integer) : " + (in instanceof Integer));
+		newLines();
+	}
+
+	// Parenthesis http://www.cs.ukzn.ac.za/~hughm/java/intro/week2/23.html
+
+	// Type promotion http://zetcode.com/lang/java/datatypes2/
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	private static void newLines() {
 		System.out.println("");
-	    System.out.println("");
+		System.out.println("");
 		System.out.print("-----------------------------------------------------");
-	    System.out.println("");
-	    System.out.println("");
+		System.out.println("");
+		System.out.println("");
 	}
-
-	// Operators
-
-	// Parenthesis
-
-	// Type promotion
 }

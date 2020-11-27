@@ -1,0 +1,14 @@
+Promotion : http://zetcode.com/lang/java/datatypes2/
+http://www.cs.ukzn.ac.za/~hughm/java/intro/week1/index.html
+
+
+Bitwise Operators : These operators are used to perform manipulation of individual bits of a number. They can be used with any of the integer types. 
+They are used when performing update and query operations of Binary indexed tree
+Shift Operators : These operators are used to shift the bits of a number left or right thereby multiplying or dividing the number by two respectively. They can be used when we have to multiply or divide a number by two. General format
+	~       Unary bitwise complement
+	<<      Signed left shift
+	>>      Signed right shift
+	>>>     Unsigned right shift
+	&       Bitwise AND
+	^       Bitwise exclusive OR
+	|       Bitwise inclusive OR
