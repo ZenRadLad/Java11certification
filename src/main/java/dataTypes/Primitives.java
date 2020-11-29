@@ -13,12 +13,12 @@ public class Primitives {
     static Object obj;
     
 	public static void main(String[] args) {
-		// https://docs.oracle.com/javase/tutorial/java%nutsandbolts/datatypes.html
  		primitives();
  		defaultValues();
  		wrappers();
  		casting();
 		operators();
+		typePromotion();
 	}
 
 
@@ -209,7 +209,7 @@ public class Primitives {
 
 		int inc = 1;
 		int preInc = ++inc; 
-		int jinc = 1 ;
+		int jinc = 1;
 		int postInc = jinc++;
 		
 		System.out.printf("Pre/Instant increment ++1 : %d, Post/Late Increment 1++ : %d %n", preInc, postInc);
@@ -232,42 +232,32 @@ public class Primitives {
 		newLines();
 	}
 
-	// Parenthesis http://www.cs.ukzn.ac.za/~hughm/java/intro/week2/23.html
+	public static void typePromotion() {
+		
+		//types can be promoted  :  byte > short > int > long
+								//  char > int > float > double
+								//  long > double
+								//  int > double
+								//  long > float
 
-	// Type promotion http://zetcode.com/lang/java/datatypes2/
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+		//No + operator for byte, both operands are promoted to int
+		byte b1 = 7;
+		byte b2 = 7;
+		byte b3 = (byte) (b1 + b2); // byte = (byte) (int + int)
+		System.out.println("byte b3 = b1 + b2; needs casting : byte b3 = (byte) (b1 + b2); + " + b3);
+		
+		//int + byte : compiler converts byte to int 
+		byte b = 7;
+		//b = 1 + b; doesn't compile b is converted to int byte = (int + int) casting needed
+		b = (byte) (1 + b);
+		System.out.println("byte b = 7; b = 1 + b; should be casted to : b = (byte) (1 + b); : " +  b);
+		
+		long l = 5;
+		//int i = 6 + l; //cannot convert long to int
+		int i = (int) (6 + l);
+		System.out.println("long l = 5; int i = 6 + l; needs casting int i = (int) (6 + l); : " +  i);
+	}
+
 	private static void newLines() {
 		System.out.println("");
 		System.out.println("");
