@@ -1,7 +1,7 @@
 Promotion : http://zetcode.com/lang/java/datatypes2/
 http://www.cs.ukzn.ac.za/~hughm/java/intro/week1/index.html
 // https://docs.oracle.com/javase/tutorial/java%nutsandbolts/datatypes.html
-
+Strings = https://livebook.manning.com/book/java-se-11-programmer-i-certification-guide/chapter-5/v-3/11
 
 Bitwise Operators : These operators are used to perform manipulation of individual bits of a number. They can be used with any of the integer types. 
 They are used when performing update and query operations of Binary indexed tree

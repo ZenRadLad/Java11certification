@@ -1,6 +1,6 @@
 ### Working with Java data types !important
-* Use primitives and wrapper classes, operators, parentheses, type promotion and casting //WIP
-* Handle text using String and StringBuilder classes
+* Use primitives and wrapper classes, operators, parentheses, type promotion and casting //DONE
+* Handle text using String and StringBuilder classes //WIP
 * Use local variable type inference, including as lambda parameters
 
 ### Java Object-Oriented Approach !important
