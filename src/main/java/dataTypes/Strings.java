@@ -4,8 +4,8 @@ public class Strings {
 
 	public static void main(String[] args) {
 		stringManipulation();
+		stringBuilder();
 	}
-
 
 	public static void stringManipulation() {
 		
@@ -62,5 +62,26 @@ public class Strings {
 		System.out.println("	'LoremIpsum'.isEmpty() : " + (sr.isEmpty()));
 		System.out.println("	'LoremIpsum'.equalsIgnoreCase('LoREMIpsum') : " + (sr.equalsIgnoreCase("LoREMIpsum")));
 		System.out.println("	'LoremIpsum2'.compareTo('LoremIpsumA') (lexicographical/ alphabetical order comparaison) : " + ("LoremIpsumZ".compareTo("LoremIpsumA")));
+	}
+	
+	public static void stringBuilder() {
+		//Mutuable String
+		//creates a mutable sequence of characters
+		StringBuilder sbr = new StringBuilder(); //initial capacity of 16 characters
+		sbr.append("lorem");
+		sbr.append(" ");
+		sbr.append("ipsum");
+		System.out.println("------------StringBuilder-------------");
+		System.out.println("	sbr.toString() : " + (sbr.toString()));
+		
+		StringBuilder sbrCapacity = new StringBuilder(); //initial capacity of 16 characters
+		sbrCapacity.append(new Object()); //Object reference, calls toString on the object
+		System.out.println("	StringBuilder(new Object()).toString() : " + (sbrCapacity.toString()));
+		
+		sbr.insert(3, "e");
+		System.out.println("	'lorem ipsum'.insert(3, 'e') (not replace) : " + (sbr.toString()));
+
+		sbr.replace(0, 6, "koteem"); //(startIdx, endIdx, stringReplacement)
+		System.out.println("	'lorem ipsum'.replace(0, 6, 'koteem')  : " + (sbr.toString()));		
 	}
 }
