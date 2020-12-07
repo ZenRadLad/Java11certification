@@ -1,10 +1,10 @@
 ### Working with Java data types !important
 * Use primitives and wrapper classes, operators, parentheses, type promotion and casting //DONE
 * Handle text using String and StringBuilder classes //DONE
-* Use local variable type inference, including as lambda parameters //WIP
+* Use local variable type inference, including as lambda parameters //DONE
 
 ### Java Object-Oriented Approach !important
-* Declare and instantiate Java objects including nested class objects, and explain objects' lifecycles (including creation, dereferencing by reassignment, and garbage collection)
+* Declare and instantiate Java objects including nested class objects, and explain objects' lifecycles (including creation, dereferencing by reassignment, and garbage collection) //WIP
 * Define and use fields and methods, including instance, static and overloaded methods
 * Initialize objects and their members using instance and static initialiser statements and constructors
 * Understand variable scopes, apply encapsulation and make objects immutable
