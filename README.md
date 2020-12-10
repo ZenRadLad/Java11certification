@@ -4,8 +4,8 @@
 * Use local variable type inference, including as lambda parameters //DONE
 
 ### Java Object-Oriented Approach !important
-* Declare and instantiate Java objects including nested class objects, and explain objects' lifecycles (including creation, dereferencing by reassignment, and garbage collection) //WIP
-* Define and use fields and methods, including instance, static and overloaded methods
+* Declare and instantiate Java objects including nested class objects, and explain objects' lifecycles (including creation, dereferencing by reassignment, and garbage collection) //DONE 
+* Define and use fields and methods, including instance, static and overloaded methods //WIP
 * Initialize objects and their members using instance and static initialiser statements and constructors
 * Understand variable scopes, apply encapsulation and make objects immutable
 * Create and use subclasses and superclasses, including abstract classes
