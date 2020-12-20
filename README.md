@@ -7,8 +7,8 @@
 * Declare and instantiate Java objects including nested class objects, and explain objects' lifecycles (including creation, dereferencing by reassignment, and garbage collection) //DONE 
 * Define and use fields and methods, including instance, static and overloaded methods //DONE
 * Initialize objects and their members using instance and static initialiser statements and constructors //DONE 
-* Understand variable scopes, apply encapsulation and make objects immutable //WIP
-* Create and use subclasses and superclasses, including abstract classes
+* Understand variable scopes, apply encapsulation and make objects immutable
+* Create and use subclasses and superclasses, including abstract classes //DONE
 * Utilize polymorphism and casting to call methods, differentiate object type versus reference type
 * Create and use interfaces, identify functional interfaces, and utilize private, static, and default methods
 * Create and use enumerations

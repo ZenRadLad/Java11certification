@@ -64,6 +64,6 @@ public class ClassFields {
 		teslaCar.setCarProperty(true);
 		
 		List<ClassFields.Car> carsList = ClassFields.Car.getCarsList(ferrariCar, lamboCar, teslaCar);
-		ClassFields.Car.toString(carsList);		
-	}
+		ClassFields.Car.toString(carsList);	
+	}	
 }
