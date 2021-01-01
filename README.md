@@ -7,10 +7,10 @@
 * Declare and instantiate Java objects including nested class objects, and explain objects' lifecycles (including creation, dereferencing by reassignment, and garbage collection) //DONE 
 * Define and use fields and methods, including instance, static and overloaded methods //DONE
 * Initialize objects and their members using instance and static initialiser statements and constructors //DONE 
-* Understand variable scopes, apply encapsulation and make objects immutable
+* Understand variable scopes, apply encapsulation and make objects immutable //DONE (read)
 * Create and use subclasses and superclasses, including abstract classes //DONE
-* Utilize polymorphism and casting to call methods, differentiate object type versus reference type
-* Create and use interfaces, identify functional interfaces, and utilize private, static, and default methods
+* Utilize polymorphism and casting to call methods, differentiate object type versus reference type //DONE (read)
+* Create and use interfaces, identify functional interfaces, and utilize private, static, and default methods //DONE
 * Create and use enumerations
 
 ### Working with Arrays and Collections
@@ -22,12 +22,10 @@
 * Declare, use, and expose modules, including the use of services
 * Deploy and execute modular applications, including automatic modules
 
-
 ### Java I/O API
 * Read and write console and file data using I/O Streams
 * Implement serialization and deserialization techniques on Java objects
 * Handle file system objects using java.nio.file API
-
 
 ### Database Applications with JDBC
 * Connect to and perform database SQL operations, process query results using JDBC API
