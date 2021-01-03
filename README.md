@@ -11,7 +11,7 @@
 * Create and use subclasses and superclasses, including abstract classes //DONE
 * Utilize polymorphism and casting to call methods, differentiate object type versus reference type //DONE (read)
 * Create and use interfaces, identify functional interfaces, and utilize private, static, and default methods //DONE
-* Create and use enumerations
+* Create and use enumerations //DONE
 
 ### Working with Arrays and Collections
 * Use generics, including wildcards
