@@ -9,18 +9,17 @@
 * Initialize objects and their members using instance and static initialiser statements and constructors //DONE 
 * Understand variable scopes, apply encapsulation and make objects immutable //DONE (read)
 * Create and use subclasses and superclasses, including abstract classes //DONE
-* Utilize polymorphism and casting to call methods, differentiate object type versus reference type //DONE (read)
+* Utilize polymorphism and casting to call methods, differentiate object type versus reference type //DONE (readOnly)
 * Create and use interfaces, identify functional interfaces, and utilize private, static, and default methods //DONE
 * Create and use enumerations //DONE
 
-### Working with Arrays and Collections
-* Use generics, including wildcards
-* Use a Java array and List, Set, Map and Deque collections, including convenience methods
-* Sort collections and arrays using Comparator and Comparable interfaces
+### Controlling Program Flow
+* Create and use loops, if/else, and switch statements //DONE
 
-### Java Platform Module System
-* Declare, use, and expose modules, including the use of services
-* Deploy and execute modular applications, including automatic modules
+### Working with Arrays and Collections
+* Use a Java array and List, Set, Map and Deque collections, including convenience methods //WIP
+* Sort collections and arrays using Comparator and Comparable interfaces
+* Use generics, including wildcards
 
 ### Java I/O API
 * Read and write console and file data using I/O Streams
@@ -30,11 +29,12 @@
 ### Database Applications with JDBC
 * Connect to and perform database SQL operations, process query results using JDBC API
 
+### Java Platform Module System
+* Declare, use, and expose modules, including the use of services
+* Deploy and execute modular applications, including automatic modules
+
 ### Annotations
 * Create, apply, and process annotations
-
-### Controlling Program Flow
-* Create and use loops, if/else, and switch statements
 
 ### Exception Handling
 * Handle exceptions using try/catch/finally clauses, try-with-resource, and multi-catch statements
