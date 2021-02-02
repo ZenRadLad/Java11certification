@@ -17,9 +17,9 @@
 * Create and use loops, if/else, and switch statements //DONE
 
 ### Working with Arrays and Collections
-* Use a Java array and List, Set, Map and Deque collections, including convenience methods //WIP
-* Sort collections and arrays using Comparator and Comparable interfaces
-* Use generics, including wildcards
+* Use a Java array and List, Set, Map and Deque collections, including convenience methods //DONE
+* Sort collections and arrays using Comparator and Comparable interfaces //DONE
+* Use generics, including wildcards //WIP
 
 ### Java I/O API
 * Read and write console and file data using I/O Streams

@@ -15,7 +15,15 @@ public class Strings {
 		String sCharArr = new String(charArray);
 		
 		//Equality
+		// ==  object reference check
+		// .equals() checks value check
+		
+		String s1 = "str";
+		StringBuilder sbr = new StringBuilder("str");
+
 		System.out.println("------------Equality-------------");
+		System.out.println("	String  == StringBuilder : Incompatible operand types String and StringBuilder");
+		System.out.println("	String.equals(StringBuilder) : " + (s1.equals(sbr)));
 		System.out.println("	using == (reference check) :   " + (s == s2) + " because the two strings aren't in the same string pool");
 		System.out.println("	using .equals() (value check) : " + s.equals(s2));
 		System.out.println("	String(charArray) using .equals() : " + sCharArr.equals(s2));
