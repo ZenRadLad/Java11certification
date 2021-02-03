@@ -20,9 +20,17 @@ public class Lists {
 	public static void main(String[] args) {
 
 		// Collections :
-		// List (Dynamic arrays) --> ArrayList, LinkedList
-		// Set (Unique elements) --> HashSet, SortedSet, TreeSet
-		// Queue (Order is important) --> PriorityQueue, Deque
+			// List: An ordered collection of elements that allows duplicate entries
+			//   Array: Fixed size list
+			//   ArrayList: Standard resizable list
+			// Set: Does not allow duplicates
+			//    HashSet: Uses hashCode() to find unordered elements
+			//	  TreeSet: Sorted. Does not allow null values
+			//	Queue: Orders elements for processing
+			//	LinkedList: Can easily add/remove from beginning or end
+			//	Map: Maps unique keys to values
+			//	  HashMap: Uses hashCode() to find keys
+			//    TreeMap: Sorted map. Does not allow null keys
 
 		array();
 		arrayList();
@@ -30,7 +38,6 @@ public class Lists {
 		map();
 		queue();
 		comparatorAndComparable();
-		genericsAndWildCards();
 	}
 
 	private static void array() {
@@ -97,10 +104,11 @@ public class Lists {
 		varList.equals(l1);
 		System.out.println("varList firstElement : " + varList.get(0));
 
-		// Create list using varArgs
-		List<String> strList = Arrays.asList("one", "two"); // asList(T... a)
-		List<Integer> intList = List.of(2, 1, 9); // of(E... elements)
-
+		// Create List using varArgs/factory : Returns immutable list
+		Arrays.asList("one", "two"); // asList(T... a) returns 
+		List.of(2, 1, 9); // of(E... elements)
+		List.copyOf(varList); //copyOf(collection)
+		
 		// Sorting
 		Collections.sort(varList);
 		System.out.println("Sort ArrayList<Integer> : " + varList);
@@ -142,6 +150,7 @@ public class Lists {
 		hashMap.put(20, "one");
 		hashMap.put(10, "two");
 		hashMap.put(22, "three");
+		hashMap.putIfAbsent(1, "secondThree");
 		hashMap.put(null, null); // allows one null
 
 		System.out.println("Map<Integer, String> : " + hashMap);
@@ -245,10 +254,5 @@ public class Lists {
 		public String toString() {
 			return "Player goal score : " + goalScore;
 		}
-	}
-	
-	private static void genericsAndWildCards() {
-		// TODO Auto-generated method stub
-		
 	}
 }
