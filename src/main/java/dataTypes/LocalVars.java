@@ -3,8 +3,6 @@ package dataTypes;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
-import javax.annotation.Nonnull;
-
 public class LocalVars {
 
 	// var invalidVar = 9; var can't be used for instance members
@@ -31,7 +29,7 @@ public class LocalVars {
 	public static void localVarsTypeInferenceInLambdas() {
 		//(a) -> a % 2 == 0; even numbers
 		var intArr = new Integer[]{1,2,3,4,5,6,7,8,9,10};
-		var evenCount = Arrays.stream(intArr).filter((@Nonnull var n) -> n % 2 == 0).collect(Collectors.toList());
+		var evenCount = Arrays.stream(intArr).filter((var n) -> n % 2 == 0).collect(Collectors.toList());
 		System.out.println("get even numbers from list '1-10' using filter and lambda : " + evenCount);
 	}
 }

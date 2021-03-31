@@ -21,24 +21,28 @@
 * Sort collections and arrays using Comparator and Comparable interfaces //DONE
 * Use generics, including wildcards //WIP
 
+### Database Applications with JDBC
+* Connect to and perform database SQL operations, process query results using JDBC API  //DONE
+
+### Exception Handling
+* Checked, Unchecked exception and Errors //WIP
+* Handle exceptions using try/catch/finally clauses, try-with-resource, and multi-catch statements
+* Create and use custom exceptions
+
 ### Java I/O API
 * Read and write console and file data using I/O Streams
 * Implement serialization and deserialization techniques on Java objects
 * Handle file system objects using java.nio.file API
 
-### Database Applications with JDBC
-* Connect to and perform database SQL operations, process query results using JDBC API
+### Localization
+* Implement Localization using Locale, resource bundles, and Java APIs to parse and format messages, dates, and numbers
 
-### Java Platform Module System
-* Declare, use, and expose modules, including the use of services
-* Deploy and execute modular applications, including automatic modules
+### Secure Coding in Java SE Application
+* Develop code that mitigates security threats such as denial of service, code injection, input validation and ensure data integrity
+* Secure resource access including filesystems, manage policies and execute privileged code
 
 ### Annotations
 * Create, apply, and process annotations
-
-### Exception Handling
-* Handle exceptions using try/catch/finally clauses, try-with-resource, and multi-catch statements
-* Create and use custom exceptions
 
 ### Working with Streams and Lambda expressions !important
 * Implement functional interfaces using lambda expressions, including interfaces from the java.util.function package
@@ -49,9 +53,7 @@
 * Create worker threads using Runnable and Callable, and manage concurrency using an ExecutorService and java.util.concurrent API
 * Develop thread-safe code, using different locking mechanisms and java.util.concurrent API
 
-### Secure Coding in Java SE Application
-* Develop code that mitigates security threats such as denial of service, code injection, input validation and ensure data integrity
-* Secure resource access including filesystems, manage policies and execute privileged code
-
-### Localization
-* Implement Localization using Locale, resource bundles, and Java APIs to parse and format messages, dates, and numbers
+### Java Platform Module System
+* How modular project compiles and runs
+* Declare, use, and expose modules, including the use of services
+* Deploy and execute modular applications, including automatic modules
