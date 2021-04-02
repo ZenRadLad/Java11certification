@@ -25,17 +25,17 @@
 * Connect to and perform database SQL operations, process query results using JDBC API  //DONE
 
 ### Exception Handling
-* Checked, Unchecked exception and Errors //WIP
-* Handle exceptions using try/catch/finally clauses, try-with-resource, and multi-catch statements
-* Create and use custom exceptions
+* Checked, Unchecked exception and Errors //DONE
+* Handle exceptions using try/catch/finally clauses, try-with-resource, and multi-catch statements //DONE
+* Create and use custom exceptions //DONE
+
+### Localization
+* Implement Localization using Locale, resource bundles, and Java APIs to parse and format messages, dates, and numbers //WIP
 
 ### Java I/O API
 * Read and write console and file data using I/O Streams
 * Implement serialization and deserialization techniques on Java objects
 * Handle file system objects using java.nio.file API
-
-### Localization
-* Implement Localization using Locale, resource bundles, and Java APIs to parse and format messages, dates, and numbers
 
 ### Secure Coding in Java SE Application
 * Develop code that mitigates security threats such as denial of service, code injection, input validation and ensure data integrity
