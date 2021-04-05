@@ -14,7 +14,7 @@
 * Create and use enumerations //DONE
 
 ### Controlling Program Flow //DONE
-* Create and use loops, if/else, and switch statements //DONE
+* Create and use loops, if/else, and switch statements
 
 ### Working with Arrays and Collections //DONE
 * Use a Java array and List, Set, Map and Deque collections, including convenience methods //DONE
@@ -22,20 +22,20 @@
 * Use generics, including wildcards //WIP
 
 ### Database Applications with JDBC //DONE
-* Connect to and perform database SQL operations, process query results using JDBC API  //DONE
+* Connect to and perform database SQL operations, process query results using JDBC API
 
 ### Exception Handling //DONE
 * Checked, Unchecked exception and Errors //DONE
 * Handle exceptions using try/catch/finally clauses, try-with-resource, and multi-catch statements //DONE
 * Create and use custom exceptions //DONE
 
-### Localization //WIP
+### Localization //DONE
 * Dates  //Done
-* Localization using Locale //WIP
-* Resource bundles
-* Java APIs to parse and format messages and numbers
+* Localization using Locale //DONE
+* Resource bundles //DONE
+* Java APIs to parse and format messages and numbers //DONE
 
-### Annotations
+### Annotations //WIP
 * Create, apply, and process annotations
 
 ### Java I/O API
