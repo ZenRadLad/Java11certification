@@ -35,11 +35,11 @@
 * Resource bundles //DONE
 * Java APIs to parse and format messages and numbers //DONE
 
-### Annotations //WIP
-* Create, apply, and process annotations
+### Annotations //DONE
+* Create, apply, and process annotations //DONE
 
-### Java I/O API
-* Read and write console and file data using I/O Streams
+### Java I/O API //WÏP
+* Read and write console and file data using I/O Streams //WÏP
 * Implement serialization and deserialization techniques on Java objects
 * Handle file system objects using java.nio.file API
 
