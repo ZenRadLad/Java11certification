@@ -8,6 +8,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.ObjectStreamField;
 import java.io.PrintWriter;
 import java.io.Serializable;
 import java.net.URI;
@@ -103,6 +104,13 @@ public class InputOutput {
 
 			// new code version
 			// private static final long serialVersionUID = 2L;
+			
+			// Define fields to be serialized (opposite of transient)
+			// overrides transient behavior
+			private final ObjectStreamField[] serialPersistentFields = {
+					new ObjectStreamField("name", String.class),
+					new ObjectStreamField("price", double.class),
+			};
 
 			private transient long id; // exclude this field from serialization
 			private String name;
