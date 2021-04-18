@@ -1,0 +1,4 @@
+grant codeBase "file:/" {
+	permission java.io.FilePermission "/secureFile", "read, write";
+	permission java.net.SocketPermission "localhost:3000", "listen";
+}
