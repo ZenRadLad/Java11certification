@@ -48,9 +48,9 @@
 * Secure resource access including filesystems, manage policies and execute privileged code //DONE
 
 ### Working with Streams and Lambda expressions !important //WIP
-* Implement functional interfaces using lambda expressions, including interfaces from the java.util.function package //WIP
-* Use Java Streams to filter, transform and process data
-* Perform decomposition and reduction, including grouping and partitioning on sequential and parallel streams
+* Implement functional interfaces using lambda expressions, including interfaces from the java.util.function package  //DONE 
+* Use Java Streams to filter, transform and process data //WIP
+* Perform decomposition and reduction, including grouping and partitioning on sequential and parallel streams //WIP
 
 ### Concurrency
 * Create worker threads using Runnable and Callable, and manage concurrency using an ExecutorService and java.util.concurrent API
