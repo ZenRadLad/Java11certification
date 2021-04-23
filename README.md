@@ -49,14 +49,15 @@
 
 ### Working with Streams and Lambda expressions !important //WIP
 * Implement functional interfaces using lambda expressions, including interfaces from the java.util.function package  //DONE 
-* Use Java Streams to filter, transform and process data //WIP
+* Use Java Streams to filter, transform and process data //DONE
 * Perform decomposition and reduction, including grouping and partitioning on sequential and parallel streams //WIP
+
+### Java Platform Module System //WIP
+* How modular project compiles and runs
+* Declare, use, and expose modules, including the use of services
+* Deploy and execute modular applications, including automatic modules
 
 ### Concurrency
 * Create worker threads using Runnable and Callable, and manage concurrency using an ExecutorService and java.util.concurrent API
 * Develop thread-safe code, using different locking mechanisms and java.util.concurrent API
 
-### Java Platform Module System
-* How modular project compiles and runs
-* Declare, use, and expose modules, including the use of services
-* Deploy and execute modular applications, including automatic modules
