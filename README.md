@@ -19,7 +19,7 @@
 ### Working with Arrays and Collections //DONE
 * Use a Java array and List, Set, Map and Deque collections, including convenience methods //DONE
 * Sort collections and arrays using Comparator and Comparable interfaces //DONE
-* Use generics, including wildcards //WIP
+* Use generics, including wildcards //DONE
 
 ### Database Applications with JDBC //DONE
 * Connect to and perform database SQL operations, process query results using JDBC API
@@ -58,6 +58,6 @@
 * Deploy and execute modular applications, including automatic modules //DONE
 
 ### Concurrency //WIP
-* Create worker threads using Runnable and Callable, and manage concurrency using an ExecutorService and java.util.concurrent API
-* Develop thread-safe code, using different locking mechanisms and java.util.concurrent API
+* Create worker threads using Runnable and Callable, and manage concurrency using an ExecutorService and java.util.concurrent API //WIP
+* Develop thread-safe code, using different locking mechanisms and java.util.concurrent API //WIP
 
