@@ -52,12 +52,12 @@
 * Use Java Streams to filter, transform and process data //DONE
 * Perform decomposition and reduction, including grouping and partitioning on sequential and parallel streams //WIP
 
-### Java Platform Module System //WIP
-* How modular project compiles and runs
-* Declare, use, and expose modules, including the use of services
-* Deploy and execute modular applications, including automatic modules
+### Java Platform Module System //DONE
+* How modular project compiles and runs //DONE
+* Declare, use, and expose modules, including the use of services //DONE
+* Deploy and execute modular applications, including automatic modules //DONE
 
-### Concurrency
+### Concurrency //WIP
 * Create worker threads using Runnable and Callable, and manage concurrency using an ExecutorService and java.util.concurrent API
 * Develop thread-safe code, using different locking mechanisms and java.util.concurrent API
 
