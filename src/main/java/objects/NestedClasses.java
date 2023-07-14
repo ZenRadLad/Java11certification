@@ -3,8 +3,8 @@ package objects;
 public class NestedClasses {
 
 	public static void main(String[] args) {
-		//nested classes used to logically group classes used ine one place
-		//more readable and maintainable code (small classes)
+		// nested classes used to logically group classes used in one place
+		// more readable and maintainable code (small classes)
 		System.out.println("--------------------Inner Static Class--------------------");
 
 		OuterSClass.InnerSClass.helloISC(null);
@@ -29,11 +29,11 @@ public class NestedClasses {
 	}
 
 	//Static nested
-	static private class OuterSClass {
+	static class OuterSClass {
 
 
 		static class InnerSClass {
-			static private void helloISC(String message){
+			private static void helloISC(String message){
 				System.out.println(message != null ? message : "Hello From Inner Static Class");
 			}
 		}
@@ -41,7 +41,7 @@ public class NestedClasses {
 	}
 
 	//Static nested
-	static private class OuterClass {
+	private static class OuterClass {
 
 		class InnerClass {
 			private void helloNISC(){
@@ -52,7 +52,7 @@ public class NestedClasses {
 	}
 	
 	//Shadowing
-	static private class ShadowOuterClass {
+	private static class ShadowOuterClass {
 		public int a = 0;
 
 		class ShadowInnerClass {

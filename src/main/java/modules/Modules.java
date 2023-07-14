@@ -9,6 +9,10 @@ public class Modules {
 		compilationAndPackaging();
 		jdeps();
 		migration();
+		//TODO : 
+			//create module example with providers to understand fully exports and requires ..
+			//Modules service parts and usage
+			//jdeps outputs
 	}
 
 	private static void modules() {

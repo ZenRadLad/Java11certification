@@ -1,0 +1,124 @@
+==> Do tests to assess current state first
+
+Plan :
+-StringBuilder exercises
+-Loops
+-Interfaces
+-Classes
+-Advanced enums mastery
+-I/O 
+-Streams, lambdas 
+-Collections
+-Generics and wildcards
+-Modules
+-Multithreading
+
+==> Theory from book and videos
+==> Eclipse coding
+==> A Lot of Questions
+
+****Interfaces*****
+-Advanced interface methods and implementations
+	-indentify functionalIfaces, utilize default, private, static methods
+	
+	
+****Classes******
+-Variable scopes, apply encapsulation, make objects immutable
+-subsclasses, superclasses, abstract classes
+-nested class objects, dereferencing by assignment, when object/string is GCed
+-super() this() advanced when are they called, implicit vs explicit 
+-Static access static methods nested classes
+-Polymorphism and Casting to call methods
+-Object type vs reference type
+
+
+***Strings*****
+-StringBuilder reassigment garbage collection identification
+
+
+*****Enums*******
+-Advanced enumerations : creation and usage
+
+
+***Loops****
+-from a String get selected chars using loops and break/continue "PRRT" form "PRRQRPPTT"
+for(char[} xx : arr)
+char[][] arr = {{'a','b'}, {'s','d'}, {'f','g'}:
+	for(char yy : xx)
+		system.print(y)
+
+
+-/Generics and wildcards
+-var usage and valid var usage as lambda params
+
+Streams, Lambdas, Collections : 
+-filter, transform, process streams
+-implment functionalIfaces using lambda expressions
+	including ifaces from java.util.function API
+-Lambdas valid parameters
+-PartitionBy, GroupBy streams
+-new ArrayList<>(list1.copy()),   new ArrayList<>(List.Of())
+-IntStream.range(1,100) vs rangeClose(1,100) (for i < 101) 
+-filter(predicate && condition) works ?
+-map with size 4, 4keys/values, if we clear its keys what happens ?
+-Arrays.binarySearch workings
+-Iterator hasNext() and Iterator in initialization in for
+-Generic wildcards and generic paramaters in methods
+-reduce(), parallel() vs parallelStream() on collection or stream, boxed()
+-Optional when to use .get
+-Valid lambda expressions
+-Decomposition and reduction
+-Sort arrays/collections using Comparator/Comparable
+
+
+I/O : 
+-FileChannel
+-basicfileattributes is directory 
+-Localisation  - 2 16 
+	first setLocalDefault(fr_FR) the set to Local("ru") works ? on message_ru.propes ?
+ default locale bundle is used if matching key is not found in specified bundle
+	
+	
+
+
+Modules : 
+-create module example with providers to understand fully exports and requires ..
+-Modules service parts and usage
+-jdeps outputs
+Suppose you have separate modules for a service provider interface, service provider, service locator, and consumer. 
+If you add a new abstract method to the service provider interface and call it from the consumer module, 
+how many of these modules do you need to re-compile?
+Since you are changing the service provider interface, you have to re-compile it. 
+Similarly, you need to re-compile the service provider because it now needs to implement the new method. 
+The consumer module needs to be re-compiled as well since the code has changed to call the new method. 
+Therefore, three modules need to be re-compiled, and option D is correct.
+ The service locator does not need to be re-compiled since it simply looks up the interface.
+JDBC : 
+-SetParams, executeStatment stmts order, error detection if placed outside/inside scope
+-setNull param : what happens ?
+-Connect to and perform SQL operations, process results
+
+Annotations : 
+-Annotations on FIELD (target FIELD vs TYPE) 
+
+
+Multi-threading : 
+-UnsupportedOperationException ?
+-Worker threads runnable/callable
+-Threading issues identification
+-Executor service
+-java.util.concurrent API
+
+PRACTICE TESTS AFTER EXAM : 
+Page - question number :
+31 18
+34  28
+41 10
+ALL OF CHAPTER 3
+130 - 11 18 35
+229 - 118 125 130 136 141 143 147
+Modules - 12 17 21 23 24 26 27 28 30 43 58 59 61 78 86 88 89
+Concurrency - 3 5 6 8 10 13 15 17 24 28
+SECURITY - 21 
+
+

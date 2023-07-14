@@ -41,7 +41,7 @@ public class ExceptionHandling {
 		// Exception, SQLException, IOException ->
 		// (FileNotFoundException,FileSystemException)
 
-		// Multi-cath = to be used for non-related exceptions
+		// Multi-catch = to be used for non-related exceptions
 		// it prevents you from specifying redundant types in a multi-catch
 
 		// Try-with-resources : implicitly creates a finally block to close

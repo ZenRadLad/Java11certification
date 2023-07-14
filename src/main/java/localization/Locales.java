@@ -21,6 +21,10 @@ public class Locales {
 		locale();
 		localeAndNumericValues();
 		resourceBundle();
+		//TODO : 
+			////Localisation  - 2 16 
+			//first setLocalDefault(fr_FR) the set to Local("ru") works ? on message_ru.propes ?
+
 	}
 
 	private static void locale() {

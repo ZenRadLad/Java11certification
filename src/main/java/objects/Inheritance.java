@@ -5,11 +5,11 @@ public class Inheritance {
 	static class Vehicle {
 		protected String model;
 				
-		public void getVehicleMaxSpeed(int speed) {
+		protected void getVehicleMaxSpeed(int speed) {
 		    System.out.println(speed);
 		}
 		
-		public void setCarModel(String model) {
+		protected void setCarModel(String model) {
 			this.model = model;
 		}
 	}

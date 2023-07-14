@@ -3,11 +3,13 @@ package annotations;
 import java.lang.annotation.Annotation;
 import java.util.stream.Stream;
 
-@RiskAnnotation(danger="none")
-@RiskAnnotation(danger="possible", riskLevel=7)
+@RiskAnnotation(danger = "possible", riskLevel = 7)
 public class Annotations {
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
+
+        //TODO :
+        // Annotations on FIELD (target FIELD vs TYPE)
 	/*
 		A form of metadata that have no direct effect on the code they annotate
 		
@@ -34,32 +36,32 @@ public class Annotations {
 			
 			@Repeatable(RisksContainingAnnotation.class) : when we want to apply the same annotation on a type more than once
 	*/
-		
-		dynamicAnnotationDisovery();
-		commonJavaAnnotations();
-	}
 
-	private static void dynamicAnnotationDisovery() {
-			// Java Reflection API allows dynamic discovery of class structures including annotations
-		
-			//Get all annotations
-			Annotation[] myAnnotations = RiskAnnotation.class.getAnnotations();
-			Stream.of(myAnnotations).forEach(a -> System.out.println("Annotation : " + a));
-			
-			//Get first class annotation type
-			Class annotationType = RiskAnnotation.class.getAnnotations()[1].annotationType();
-			System.out.println("AnnotationType : " + annotationType);
-			
-			//Get annotation by type 
-			RiskAnnotation[] riskAnnotations = RiskAnnotation.class.getAnnotationsByType(RiskAnnotation.class);
-			Stream.of(riskAnnotations).forEach(a -> System.out.println("annotations by type : " + a));
-	}
-	
-	private static void commonJavaAnnotations() {
-		/* @Override 
-		 * @FunctionalInterface 
-		 * @Deprecated(since=javaVersion || forRemoval=boolean)
-		 * @SupressWarnings("deprecation" || "unchecked") = ignore compiler warnings related to types/methods || raw types
-		 * @SafeVarArgs	indicated that a method doesn't perform any unsafe ops on its varargs params, makes compiler ignore type safety warns	 * */
-	}
+        dynamicAnnotationDisovery();
+        commonJavaAnnotations();
+    }
+
+    private static void dynamicAnnotationDisovery() {
+        // Java Reflection API allows dynamic discovery of class structures including annotations
+
+        //Get all annotations
+        Annotation[] myAnnotations = RiskAnnotation.class.getAnnotations();
+        Stream.of(myAnnotations).forEach(a -> System.out.println("Annotation : " + a));
+
+        //Get first class annotation type
+        Class annotationType = RiskAnnotation.class.getAnnotations()[1].annotationType();
+        System.out.println("AnnotationType : " + annotationType);
+
+        //Get annotation by type
+        RiskAnnotation[] riskAnnotations = RiskAnnotation.class.getAnnotationsByType(RiskAnnotation.class);
+        Stream.of(riskAnnotations).forEach(a -> System.out.println("annotations by type : " + a));
+    }
+
+    private static void commonJavaAnnotations() {
+        /* @Override
+         * @FunctionalInterface
+         * @Deprecated(since=javaVersion || forRemoval=boolean)
+         * @SupressWarnings("deprecation" || "unchecked") = ignore compiler warnings related to types/methods || raw types
+         * @SafeVarArgs	indicated that a method doesn't perform any unsafe ops on its varargs params, makes compiler ignore type safety warns	 * */
+    }
 }

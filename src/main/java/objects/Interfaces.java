@@ -10,6 +10,7 @@ interface MyIface {
 		System.out.println("Default myIface method");
 	}
 
+	// Static inteface method
 	static void staticHelloMethod() {
 		privateStaticIfaceMethod();
 		System.out.println("Static myIface method");
@@ -38,6 +39,11 @@ interface FunctionalIface {
 public class Interfaces implements MyIface, FunctionalIface {
 
 	public static void main(String[] args) {
+		
+		//TODO :
+			//Advanced interface methods and implementations
+			//indentify functionalIfaces, ustilize default, private, static methods
+			
 
 		Interfaces ifaces = new Interfaces();
 		ifaces.ifaceDefaultMethod();

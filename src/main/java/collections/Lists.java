@@ -12,6 +12,7 @@ import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Set;
+import java.util.Stack;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
@@ -20,17 +21,24 @@ public class Lists {
 	public static void main(String[] args) {
 
 		// Collections :
-			// List: An ordered collection of elements that allows duplicate entries
-			//   Array: Fixed size list
-			//   ArrayList: Standard resizable list
-			// Set: Does not allow duplicates
-			//    HashSet: Uses hashCode() to find unordered elements
-			//	  TreeSet: Sorted. Does not allow null values
-			//	Queue: Orders elements for processing
-			//	LinkedList: Can easily add/remove from beginning or end
-			//	Map: Maps unique keys to values
-			//	  HashMap: Uses hashCode() to find keys
-			//    TreeMap: Sorted map. Does not allow null keys
+		// List: An ordered collection of elements that allows duplicate entries
+		// Array: Fixed size list
+		// ArrayList: Standard resizable list
+		// Set: Does not allow duplicates
+		// HashSet: Uses hashCode() to find unordered elements
+		// TreeSet: Sorted. Does not allow null values
+		// Queue: Orders elements for processing
+		// LinkedList: Can easily add/remove from beginning or end
+		// Map: Maps unique keys to values
+		// HashMap: Uses hashCode() to find keys
+		// TreeMap: Sorted map. Does not allow null keys
+
+		// TODO :
+		// map with size 4, 4keys/values, if we clear its keys what happens ?
+		// Arrays.binarySearch workings
+		// Iterator hasNext() and Iterator in initialization in for
+		// Sort arrays/collections using Comparator/Comparable
+		// new ArrayList<>(list1.copy()), new ArrayList<>(List.Of())
 
 		array();
 		arrayList();
@@ -38,6 +46,39 @@ public class Lists {
 		map();
 		queue();
 		comparatorAndComparable();
+		stack();
+	}
+
+	private static void stack() {
+		// LIFO data structure
+		Stack<Integer> stack = new Stack<>();
+
+		// Pushing element on the top of the stack
+		for (int i = 0; i < 5; i++) {
+			stack.push(i);
+		}
+
+		// Popping element from the top of the stack
+		System.out.println("Pop Operation:");
+		
+		for (int i = 0; i < 5; i++) {
+			Integer y = stack.pop();
+			System.out.println(y);
+		}
+
+		// Displaying element on the top of the stack
+		Integer element = stack.peek();
+		
+		System.out.println("Element on stack top: " + element);
+
+		// Searching element in the stack
+		Integer pos =  stack.search(element);
+
+		if (pos == -1)
+			System.out.println("Element not found");
+		else
+			System.out.println("Element is found at position: " + pos);
+
 	}
 
 	private static void array() {
@@ -54,7 +95,7 @@ public class Lists {
 		char[] charArray = { 'a', 'z' };
 		char[] charArrayCopy = charArray;
 		System.out.println("charArray : " + Arrays.toString(charArray) + ", charArrayCopy : "
-				+ Arrays.toString(charArrayCopy) + ", areEqual : " + charArray.equals(charArrayCopy));
+				+ Arrays.toString(charArrayCopy) + ", areEqual : " + Arrays.equals(charArray, charArrayCopy));
 
 		// sorting
 		Arrays.sort(shortArray);
@@ -72,8 +113,6 @@ public class Lists {
 
 		// Valid ways to declare 2D array
 		int[][] twoDArray = new int[2][2];
-		int twoDArray2[][];
-		int[] twoDArray3[];
 
 		String[][] names = { { "firstCol", "firstCol2", "firstCol3" }, { "secCol", "secCol2" } };
 		System.out.println("Asymmetric multiDimensional array : " + Arrays.deepToString(names));
@@ -100,15 +139,15 @@ public class Lists {
 		varList.add(20);
 		varList.add(190);
 		varList.add(8);
-		varList.contains(1);
+		boolean contains = varList.contains(1);
 		varList.equals(l1);
 		System.out.println("varList firstElement : " + varList.get(0));
 
 		// Create List using varArgs/factory : Returns immutable list
-		Arrays.asList("one", "two"); // asList(T... a) returns 
+		Arrays.asList("one", "two"); // asList(T... a) returns
 		List.of(2, 1, 9); // of(E... elements)
-		List.copyOf(varList); //copyOf(collection)
-		
+		List.copyOf(varList); // copyOf(collection)
+
 		// Sorting
 		Collections.sort(varList);
 		System.out.println("Sort ArrayList<Integer> : " + varList);
@@ -152,6 +191,15 @@ public class Lists {
 		hashMap.put(22, "three");
 		hashMap.putIfAbsent(1, "secondThree");
 		hashMap.put(null, null); // allows one null
+//		forEach
+//		replace
+//		replaceAll
+//		remove(key, value)
+//		putIfAbsent
+//		compute
+//		computeIfAbsent
+//		computeIfPresent
+//		merge
 
 		System.out.println("Map<Integer, String> : " + hashMap);
 		System.out.println("Map<Integer, String> keys : " + hashMap.keySet());
@@ -179,17 +227,17 @@ public class Lists {
 	private static void queue() {
 
 		// Queue : interface that holds elements to be processed in FIFO order
-					// inserts elements at the end of the list
-					// deletes delements at the start of the list
-		  // java.util.Queue --> PriorityQueue (natural order of elements), LinkedList
-			// have 2 version of same func :
-			// poll() removeFirstElement and returns null if queue is empty
-			// remove() removeFirstElement and throws an exception if queue is empty
+		// inserts elements at the end of the list
+		// deletes delements at the start of the list
+		// java.util.Queue --> PriorityQueue (natural order of elements), LinkedList
+		// have 2 version of same func :
+		// poll() removeFirstElement and returns null if queue is empty
+		// remove() removeFirstElement and throws an exception if queue is empty
 
 		// LinkedList : stores items in containers that are linked to each other
-					// each new element's container is linked to to another container in the list
-					// used for frequent add/remove items from start/middle/end of the list
-		
+		// each new element's container is linked to to another container in the list
+		// used for frequent add/remove items from start/middle/end of the list
+
 		Queue<Integer> linkedList = new LinkedList();
 		linkedList.add(1);
 		linkedList.add(2);
@@ -208,48 +256,52 @@ public class Lists {
 		priorityQ.add((short) 9);
 		System.out.println("PriorityQueue  =  " + priorityQ);
 	}
-	
+
 	private static void comparatorAndComparable() {
-		//Compare objects that are not directly comparable
-		
-		//Comparable : natural order (default way of comparing objects)
-			//implements Comparable<T> and override method compareTo(T o )
-		
-		//Comparator : used to define multiple/different comparison strategies
+		// Compare objects that are not directly comparable
+
+		// Comparable : natural order (default way of comparing objects)
+		// implements Comparable<T> and override method compareTo(T o )
+
+		// Comparator : used to define multiple/different comparison strategies
 		Player p1 = new Player(17);
 		Player p2 = new Player(2);
-	    List<Player> playersList = new ArrayList<>();
-	    playersList.add(p1);
-	    playersList.add(p2);
+		List<Player> playersList = new ArrayList<>();
+		playersList.add(p1);
+		playersList.add(p2);
 
 		System.out.println("compareTo(T o) of Comparable<T> returns (-1, 1, 0) : " + p1.compareTo(p2));
-        
+
 		Collections.sort(playersList, Player::compareTo);//
 		System.out.println("sort list using Comparator<T>.compare() : " + playersList);
 	}
-	
+
 	static class Player implements Comparable<Player>, Comparator<Player> {
-		
+
 		private int goalScore;
-		
-		Player(int score){
+
+		Player(int score) {
 			this.goalScore = score;
 		}
-		
-		public int getGoalScore() { return goalScore;}
 
-		public void setGoalScore(int goalScore) { this.goalScore = goalScore;}
+		public int getGoalScore() {
+			return goalScore;
+		}
 
-		@Override //Comparable<T>
+		public void setGoalScore(int goalScore) {
+			this.goalScore = goalScore;
+		}
+
+		@Override // Comparable<T>
 		public int compareTo(Player otherPlayer) {
-			return Integer.compare(this.getGoalScore(), otherPlayer.getGoalScore() );
+			return Integer.compare(this.getGoalScore(), otherPlayer.getGoalScore());
 		}
-		
-		@Override //Comparator<T>
+
+		@Override // Comparator<T>
 		public int compare(Player p1, Player p2) {
-			return Integer.compare(p1.getGoalScore(), p2.getGoalScore() );
+			return Integer.compare(p1.getGoalScore(), p2.getGoalScore());
 		}
-		
+
 		@Override
 		public String toString() {
 			return "Player goal score : " + goalScore;

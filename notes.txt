@@ -10,6 +10,38 @@ Shift Operators : These operators are used to shift the bits of a number left or
 	<<      Signed left shift
 	>>      Signed right shift
 	>>>     Unsigned right shift
-	&       Bitwise AND
-	^       Bitwise exclusive OR
-	|       Bitwise inclusive OR
+	&       Bitwise AND			 (true only all cases are true (1 & 1))
+	^       Bitwise exclusive OR (true when one case is true (1^0 || 0^1) and false in the rest (1^1 || 0^0))
+	|       Bitwise inclusive OR (true in all cases except when all cases are false (0 | 0))
+	
+	 
+
+
+*******Notes from taking Q&As*****************
+-Value of switch cases should be a constant, literal value or final variable
+-default value for the transient fields = null
+-default locale bundle is used if matching key is not found in specified bundle
+-An inner class requires an instance of it's outer class to be instantiated
+	-new OuterClass().new InnerClass().innerClassMethod();
+	-var outer = new OuterClass();
+	 or outer.new InnerClass().innerClassMethod();
+-An annotation element must be a primitive, String, Class, enum, another annotation, or an array of these types
+-static interface methods are not permitted to call default, abstract, or non-static private interface methods.
+-A resource must be marked final or be effectively final to be used in a try-with-resources statement
+-Generic wildcards cannot occur on the right side of assignments
+-
+-
+-
+-
+
+
+
+
+
+
+
+
+
+
+
+

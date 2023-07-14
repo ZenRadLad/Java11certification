@@ -44,13 +44,16 @@ public class InputOutput {
 		serializationTechniques();
 		fileSystemObjects();
 		paths();
+		//TODO : 
+			//FileChannel
+			//basicfileattributes is directory 
 	}
 
 	private static void readWriteFiles() throws IOException {
 		// Read
 		StringBuilder fileContent = new StringBuilder();
 
-		Files.lines(poemPath).forEach(l -> fileContent.append(l));
+		Files.lines(poemPath).forEach(fileContent::append);
 
 		System.out.println("File Content : " + fileContent);
 
@@ -61,7 +64,7 @@ public class InputOutput {
 	}
 
 	private static void consoleIOStreams() {
-		// Use java.util.Scanner to perse input in console
+		// Use java.util.Scanner to parse input in console
 		Scanner sc = new Scanner(System.in);
 
 		String inputText = null;

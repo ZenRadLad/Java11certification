@@ -104,33 +104,33 @@ public class Primitives {
 	public static void wrappers() {
 		// Numberic
 		Byte byteVal = Byte.valueOf("9");
-		System.out.printf("Byte wrapper => Byte.valueOf(\"9\") byteValue() : %d%n", byteVal.byteValue());
+		System.out.printf("Byte wrapper => Byte.valueOf(\"9\") byteValue() : %d%n", byteVal);
 		
 		Short myShort = 89;
-		System.out.printf("Short wrapper => Short myShort = 89 shortValue() : %d%n", myShort.shortValue());
+		System.out.printf("Short wrapper => Short myShort = 89 shortValue() : %d%n", myShort);
 
 		Integer myInt = Integer.valueOf(Integer.MAX_VALUE);
-		System.out.printf("Integer wrapper => Integer.valueOf(Integer.MAX_VALUE) longValue() : %d%n", myInt.intValue());
+		System.out.printf("Integer wrapper => Integer.valueOf(Integer.MAX_VALUE) longValue() : %d%n", myInt);
 
 		Long myLong = Long.valueOf(20l);
-		System.out.printf("Long wrapper => Long.valueOf(20l) : %d%n", myLong.longValue());
+		System.out.printf("Long wrapper => Long.valueOf(20l) : %d%n", myLong);
 
 		Float myFloat = 699.19f;
-		System.out.printf("Float wrapper => Float myFloat = 699.19f  floatValue(): %f%n", myFloat.floatValue());
+		System.out.printf("Float wrapper => Float myFloat = 699.19f  floatValue(): %f%n", myFloat);
 
 		Double myDouble = 699.19;
-		System.out.printf("Double wrapper => Double myDouble = 699.19 doubleValue() : %f%n", myDouble.doubleValue());
+		System.out.printf("Double wrapper => Double myDouble = 699.19 doubleValue() : %f%n", myDouble);
 
 		// Textual
 		Boolean myBool = Boolean.valueOf("true");
-		System.out.printf("Boolean wrapper => Boolean myBool = Boolean.valueOf(\"true\") booleanValue() : %s%n", myBool.booleanValue());
+		System.out.printf("Boolean wrapper => Boolean myBool = Boolean.valueOf(\"true\") booleanValue() : %s%n", myBool);
 		
 		Character myChar = 'A';
-		System.out.printf("Character wrapper => Character myChar = 'A' charValue() : %s%n", myChar.charValue());
+		System.out.printf("Character wrapper => Character myChar = 'A' charValue() : %s%n", myChar);
 		
 		//AutoBoxing
 		Double autoboxDouble = 99.99;
-		System.out.printf("Autoboxing 99.99 literal value in an Double object : %f%n", autoboxDouble.doubleValue());
+		System.out.printf("Autoboxing 99.99 literal value in an Double object : %f%n", autoboxDouble);
 		
 		//Caching
 		Float floatObj = 11f;

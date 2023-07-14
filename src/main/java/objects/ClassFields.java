@@ -49,6 +49,16 @@ public class ClassFields {
 	
 	
 	public static void main(String[] args) {
+		
+		//TODO : 
+			//Variable scopes, apply encapsulation, make objects immutable
+			//subsclasses, superclasses, abstract classes
+			//nested class objects, dereferencing by assignment, when object/string is GCed
+			//super() this() advanced when are they called, implicit vs explicit 
+			//Static access static methods nested classes
+			//Polymorphism and Casting to call methods
+			//Object type vs reference type
+		
 		ClassFields.Car ferrariCar = new ClassFields.Car("Ferrari", "LaFerrari");
 		ClassFields.Car lamboCar = new ClassFields.Car("Lamborghini", "Gaillardo");
 		ClassFields.Car teslaCar = new ClassFields.Car("Tesla", "Model X");

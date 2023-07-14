@@ -14,23 +14,27 @@ public class Enums {
 
 		UserRole[] rolesList = UserRole.values();
 		System.out.println("enum.values() : " + Arrays.toString(rolesList));
+		
+		//TODO : 
+			//Advanced enumerations : creation and usage
+			//Q&As 
 	}
 
 	public enum UserRole {
 		USER("user"), MODERATOR("moderator"), ADMIN("admin"), ROOT("root");
 
-		private String userRole;
+		private String role;
 
 		UserRole(String role) {
-			this.userRole = role;
+			this.role = role;
 		}
 
 		public String getUserRole() {
-			return this.userRole;
+			return this.role;
 		}
 
 		public String toString() {
-			return "Role : " + this.userRole;
+			return "Role : " + this.role;
 		}
 	}
 }

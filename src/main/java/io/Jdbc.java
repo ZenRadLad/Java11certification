@@ -21,13 +21,18 @@ public class Jdbc {
 				//	jdbc:provider://host:port/dbName   
 
 		// JDBC Interfaces (under java.sql.*)
-			// DriverManage, use DataSource for real life apps(maintains a connection pool)
+			// DriverManager, use DataSource for real life apps(maintains a connection pool)
 			// Connection = a session to sends commands to the db
 			// Statement = basic sql query, has to be parsed an compilaed before every
 			// execution and risk of sql injection
 			// PreparedStatement = executes sql queries, (pre-compiled sql statements)
 			// CallableStatement = executes sql procedures stored in db
 			// ResultSet = reads results of a query
+
+		//TODO : 
+			//SetParams, executeStatment stmts order, error detection if placed outside/inside scope
+			//setNull param : what happens ?
+			//Connect to and perform SQL operations, process results
 
 		try (Connection connection = DriverManager.getConnection(DB_URL)) {
 			connectAndInsert(connection);

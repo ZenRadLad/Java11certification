@@ -5,8 +5,19 @@ public class Controls {
 	public static void main(String[] args) {
 		// If else break continue, switch
 		// Do/while, while, for, nested for
-		conditions();
-		loops();
+//		conditions();
+//		loops();
+		// TODO :
+			// from a String get selected chars using loops and break/continue "PRRT" form
+			// "PRRQRPPTT"
+		
+			//loop over 2D table Q&A
+			char[][] arr = { { 'a', 'b' }, { 's', 'd' }, { 'f', 'g' } };
+			for (char[] x : arr) {
+				for (char y : x) {
+					System.out.println(y);
+				}
+			}
 	}
 
 	private static void conditions() {
@@ -74,7 +85,10 @@ public class Controls {
 		}
 		System.out.println();
 
-		// infinite for => for(;;) {}
+		// infinite loops 
+			// for(;;) {}
+			// while(true)
+			// do{}	while(true)
 
 		// Enhanced for
 		for (char c : "ABCDEFGHIK".toCharArray()) {
@@ -90,6 +104,8 @@ public class Controls {
 					System.out.println();
 			}
 		}
+
+		// TODO loop with int i = 0, j = 0 in initialization and increm i++,j++Q
 	}
 
 	private static int newLine(int i) {

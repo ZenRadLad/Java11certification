@@ -5,6 +5,16 @@ public class Strings {
 	public static void main(String[] args) {
 		stringManipulation();
 		stringBuilder();
+		stringReassigmentGC();
+		//TODO :
+			//StringBuilder reassigment garbage collection identification
+	}
+
+	//TODO :
+	private static void stringReassigmentGC() {
+		//StringBuilder reassigment garbage collection identification
+		// check questions and extract lessons here
+		// page 26 ocp questions
 	}
 
 	public static void stringManipulation() {
@@ -29,7 +39,7 @@ public class Strings {
 		System.out.println("	String(charArray) using .equals() : " + sCharArr.equals(s2));
 		Object strObj = "test";
 		System.out.println("	Object s = 'test' : " + (strObj));
-		System.out.println("	String s += s2 (appending) : " + (s+= s2));
+		System.out.println("	String s += s2 (appending) : " + (s += s2));
 		
 		//String pool : 
 			//Any time you create a new string without using the new keyword, Java checks whether the

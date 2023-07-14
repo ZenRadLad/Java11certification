@@ -15,9 +15,13 @@ public class Functionalnterfaces {
 		lambdas();
 		methodReferences();
 		functionalIntefaces();
+		//TODO : 
+			// implement functionalIfaces using lambda expressions including ifaces from java.util.function API
+
 	}
 
 	private static void lambdas() {
+		//https://philvarner.github.io/pages/modern-java.html
 		//		() -> "Hello"
 		
 		//		() -> System.out.println("Hello")
@@ -62,7 +66,6 @@ public class Functionalnterfaces {
 	private static void functionalIntefaces() {
 		// Implement functional interfaces using lambda expressions
 		// including interfaces from the java.util.function package
-		//get Github code 
 		
 		// Functional Interfaces :
 			// have only one abstract method
@@ -74,7 +77,7 @@ public class Functionalnterfaces {
 		// Function<T,R>        -> R apply(T value)
 			// transform values
 		// UnaryOperator<T>     -> T apply(T value) same as function but its I/O have the same type
-		// BinaryOperator<T>    -> T apply(T v1, Tv2) two inputs and ouput have the same type
+		// BinaryOperator<T>    -> T apply(T v1, Tv2) two inputs and output have the same type
 		// BiFunction<T, U, R>  -> R apply(T v1, U v2) same as function but its I/O have the same type
 		// Consumer<T>  	    -> void accept(T value) => input without output
 			// last operation on a sequence of ops 
@@ -106,13 +109,13 @@ public class Functionalnterfaces {
 
 		// Supplier : supplies a value without an input
 			// interface Supplier<T> { T get() }
-		Supplier<LocalDateTime> dateTimeSupplier =  () -> LocalDateTime.now();
+		Supplier<LocalDateTime> dateTimeSupplier = LocalDateTime::now; // same as () -> LocalDateTime.now()
 		System.out.println("LocalDateTime Supplier : " + dateTimeSupplier.get());
 		
 
 		// Function : (Consumer + Supplier ) transforms a value from one type to another
 			// interface Function<T, R> { R apply(T t) }
-		Function<Integer, String> integerToStringFunc = (Integer i) -> 	 Integer.toString(i);
+		Function<Integer, String> integerToStringFunc = (Integer i) -> Integer.toString(i);
 		System.out.println("Function<Integer, String>  integerToString : " + integerToStringFunc.apply(77));
 
 		// BiFunction : represents a function that accepts two args and produce a result

@@ -23,7 +23,10 @@ public class Generics {
 			// N = number
 			// T = generic data type
 			// S,U,V = multiple generic types
-
+		//TODO : 
+		    // review wild cards and do Q&As
+			// Generic wildcards and generic paramaters in methods
+			// Valid lambda expressions
 		methodReferences();
 		classes();
 		interfaces();
@@ -139,7 +142,7 @@ public class Generics {
 		List<? extends Exception> extendsTypeList3 = new ArrayList<RuntimeException>();
 		List<? extends RuntimeException> extendsTypeList4 = new ArrayList<IllegalArgumentException>();
 		
-		//Doesn't compile because RuntimeException extends Objects not the inverese
+		//Doesn't compile because RuntimeException extends Objects not the inverse
 		//List<? extends NullPointerException> extendsTypeList5 = new ArrayList<RuntimeException>();
 		
 		// super = List<? super MyClass> (lower bound)

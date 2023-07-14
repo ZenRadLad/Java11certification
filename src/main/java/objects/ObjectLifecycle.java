@@ -4,7 +4,7 @@ public class ObjectLifecycle {
 
 	public static void main(String[] args) {
 		//Created object instances in Java are stored in a Heap, a memory zone shared by all threads
-		//the heap size can be fixed of variable. Objects are cleaned by the garbage collector
+		//the heap size can be changed. Objects are cleaned by the garbage collector
 		
 		//Heap is entirely managed by the JVM, it keeps track of all object references
 		//when it detects that there are no references to an object => garbage
@@ -21,7 +21,7 @@ public class ObjectLifecycle {
 		    //deserialization
 			//cloning
 		
-		//1-load the class of the object to be instanciated
+		//1-load the class of the object to be instantiated
 		//2-initialize static fields using static initializers
 			//	static {
 			//		var creationDate = new Date();

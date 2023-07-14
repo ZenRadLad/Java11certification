@@ -3,17 +3,41 @@ package streams;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class Streams {
 
 	public static void main(String[] args) {
-		streams();
-		advancedStreamsProcessing();
+//		streams();
+//		advancedStreamsProcessing();
+		//TODO : 
+			// filter, transform, process streams
+			// PartitionBy, GroupBy streams
+			// IntStream.range(1,100) vs rangeClose(1,100) (for i < 101) 
+			// filter(predicate && condition) works ?
+			// reduce(), parallel() vs parallelStream() on collection or stream, boxed()
+			// Optional when to use .get
+			// Decomposition and reduction
+		
+		List<Integer> data = Collections.synchronizedList(new ArrayList<>());
+		List<Integer> arrayList = new ArrayList<>();
+		List<Integer> asynchData = new CopyOnWriteArrayList<>();
+		//Performs an action for each element of this stream, guaranteeing thateach element
+			//is processed in encounter order for streams that have adefined encounter order. 
+		IntStream.range(0,100).parallel().forEach(s -> data.add(s));
+		IntStream.range(0,100).parallel().forEachOrdered(s -> arrayList.add(s));
+		IntStream.range(0,100).forEach(s -> asynchData.add(s)); // asynchData::add
+		
+		System.out.println("Collections.synchronizedList(new ArrayList<>()) : " + data.size());
+		System.out.println("new ArrayList : " + arrayList.size());
+		System.out.println("new CopyOnWriteArrayList : " + asynchData.size());
 	}
 
 	private static void streams() {
@@ -29,10 +53,27 @@ public class Streams {
 		Stream<UUID> uuids = Stream.generate(UUID::randomUUID);
 		uuids.limit(2).forEach(System.out::println);
 		
+		Stream.generate(Math::random)
+		   .limit(5)
+		   .sorted()
+		   .distinct()
+		   .forEach(System.out::println);
+		
+		Stream.generate(() -> "*")
+		   .limit(5)
+		   .sorted((s,t) -> s.length() - t.length()) //takes a comparator
+		   .distinct()
+		   .forEach(System.out::println);
+		
 		//Stream.iterate(initial value, next value)
 	    Stream.iterate(0, n -> n + 1)
 	                .limit(10)
 	                .forEach(System.out::print);
+	    
+	    IntStream.generate(() -> 111)
+				.limit(5)
+				.parallel()
+				.forEach(System.out::println);
 
 		List<User> users = getUsers();
 		
@@ -78,17 +119,17 @@ public class Streams {
 		System.out.println("List of cities : " + cities);
 
 		
-		// Reducation and collections
+		// Reduction and collections
 		
 		
 		
 		
-		// Grouping and partioning
+		// Grouping and partitioning
 		
 		
 		
 		
-		// Parrallel streams 
+		// Parallel streams 
 		
 		
 		
