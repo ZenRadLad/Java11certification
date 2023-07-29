@@ -1,0 +1,74 @@
+# Handling values - Using primitives and wrapper classes
+
+-Integral division (dividing an int by 0) will cause an java.lang.ArithmeticException: / by zero to be thrown.
+But a floating point division with 0 (dividing a float or double by with 0 or 0.0) will result in Float.POSITIVE_INFINITY 
+or Float.NEGATIVE_INFINITY (or Double.POSITIVE_INFINITY or Double.NEGATIVE_INFINITY).
+
+-
+
+# Streams and Lambda - Java Stream API
+
+-Optional.of method throws NullPointerException if you try to create an Optional with a null value.
+ If you expect the argument to be null, you should use Optional.ofNullable method, which returns an empty Optional if the argument is null.
+
+*Optionals or methods : 
+    - optional.orElse(object) 
+    - optional.orElseGet(Supplier<? extends T> other) = optional.orElseGet(() -> method())
+
+
+# Modules - Services in a Modular Application
+
+- Service providers, loaders ?
+- Migration to Modular Application
+
+
+# Controlling Program Flow - Loops
+
+- Weird for while do while questions 
+
+
+
+# Exceptions 
+
+- In a try catch finally code, if finally throws an exceptions other throw exceptions in catch clauses with be ignored
+
+- Exception thrown by a catch cannot be caught by the following catch blocks in the same method. 
+- Unchecked Exceptions : don't need to be catched, they are thrown automatically : RunTime, Error subclasses
+- Checked Exception: must be catched, subclasses of Error (not Runtime) unhandled exception compilation error
+
+
+# Java OOA - Using fields and methods
+
+- "? super Number" means "a super-type of Number" ( ex : Object and Number).
+
+
+
+# NIO 2 
+
+- Path p1 = Paths.get(""c:\\code\\java\\PathTest.java"");
+
+p1.getRoot()  is c:\  ((For Unix based environments, the root is usually / ).
+p1.getName(0)  is code
+p1.getName(1)  is java
+p1.getName(2)  is PathTest.java
+p1.getName(3)  will cause IllegalArgumentException to be thrown.
+
+
+# Java OOA - Sealed classes
+?
+
+# Multithreading :
+
+- wait() vs sleep()
+- Deadlock
+- Livelock
+- Thrashing
+- Starvation
+- thread safe classes 
+
+
+# OOP :
+
+- Can interfaces extend other interfaces ?
+- Which of the following statements regarding inner classes are true ?
+- Sealed classes
