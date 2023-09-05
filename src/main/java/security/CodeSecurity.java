@@ -3,11 +3,10 @@ package security;
 import javax.crypto.*;
 import javax.crypto.spec.GCMParameterSpec;
 import java.io.FilePermission;
-import java.io.IOException;
 import java.net.SocketPermission;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.security.*;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidParameterSpecException;
 import java.util.ArrayList;
 
@@ -47,8 +46,8 @@ public class CodeSecurity {
         SocketPermission socketPermission = new SocketPermission("localhost:3000", "accept, connect, listen");
 
         try {
-            AccessController.checkPermission(filePermission);
-            AccessController.checkPermission(socketPermission);
+            //AccessController.checkPermission(filePermission);
+            //AccessController.checkPermission(socketPermission);
         } catch (SecurityException e) {
             // access denied by policies
         }
@@ -62,7 +61,7 @@ public class CodeSecurity {
 
         //Deleting file even it file has only r+w permissions
         //doPrivileged allow an isolated code to be executed above defined permissions
-        AccessController.doPrivileged((PrivilegedAction<Void>) () -> {
+        /*AccessController.doPrivileged((PrivilegedAction<Void>) () -> {
             try {
                 Files.delete(Path.of(file));
             } catch (IOException iox) {
@@ -70,7 +69,7 @@ public class CodeSecurity {
             } finally {
                 return null;
             }
-        });
+        });*/
 
 
         // I/O Operations :

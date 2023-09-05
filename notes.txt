@@ -36,6 +36,10 @@ Shift Operators : These operators are used to shift the bits of a number left or
 
 
 
+Run the app : 
+javac src/main/java/run/Run.java && java -cp src/main/java/ run.Run
+
+
 
 
 

@@ -4,7 +4,7 @@
 But a floating point division with 0 (dividing a float or double by with 0 or 0.0) will result in Float.POSITIVE_INFINITY 
 or Float.NEGATIVE_INFINITY (or Double.POSITIVE_INFINITY or Double.NEGATIVE_INFINITY).
 
--
+
 
 # Streams and Lambda - Java Stream API
 
@@ -59,6 +59,7 @@ p1.getName(3)  will cause IllegalArgumentException to be thrown.
 
 # Multithreading :
 
+- CopyOnWriteArrayList
 - wait() vs sleep()
 - Deadlock
 - Livelock
@@ -72,3 +73,9 @@ p1.getName(3)  will cause IllegalArgumentException to be thrown.
 - Can interfaces extend other interfaces ?
 - Which of the following statements regarding inner classes are true ?
 - Sealed classes
+
+
+# Datastuctures  :
+
+- Queue Deuque and poll pollFirst() ..
+- NavigableMap<String, String> mymap = new TreeMap<String, String>();

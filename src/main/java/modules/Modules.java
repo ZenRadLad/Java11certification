@@ -46,12 +46,12 @@ public class Modules {
 					
 					exports javacertification11.io;
 					exports javacertification11.modules to otherModule; //only to otherModule
-					opens javacertification11.dataTypes:
+					opens javacertification11.datatypes:
 				}
 				
 				module otherModule {
 					requires javacertification11.modules;
-					requires javacertification11.dataTypes; //via reflection
+					requires javacertification11.datatypes; //via reflection
 				}
 				
 				// accessible to all other modules via reflection
