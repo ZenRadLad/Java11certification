@@ -26,14 +26,13 @@ Perform type casting, identify object types using instanceof operator and patter
 * Use Java object and primitive Streams, including lambda expressions implementing functional interfaces, to supply, filter, map, consume, and sort data
 * Perform decomposition, concatenation and reduction, and grouping and partitioning on sequential and parallel streams
 
-
 ### Packaging and deploying Java code and use the Java Platform Module System
 * Define modules and their dependencies, expose module content including for reflection. 
 * Define services, producers, and consumers
 * Compile Java code, produce modular and non-modular jars, runtime images, and implement migration using unnamed and automatic modules
 
 ### Concurrency 
-*  Create worker threads using Runnable and Callable, manage the thread lifecycle, including automations provided by different Executor services and concurrent API
+* Create worker threads using Runnable and Callable, manage the thread lifecycle, including automations provided by different Executor services and concurrent API
 * Develop thread-safe code, using different locking mechanisms and concurrent API
 * Process Java collections concurrently including the use of parallel streams
 
@@ -45,7 +44,7 @@ Perform type casting, identify object types using instanceof operator and patter
 ### Database Applications with JDBC //DONE
 * Create connections, create and execute basic, prepared and callable statements, process query results and control transactions using JDBC API 
 
-### Localization //WIP
+### Localization //DONE
 * Implement localization using locales, resource bundles, parse and format messages, dates, times, and numbers including currency and percentage values 
 
 ### Others
