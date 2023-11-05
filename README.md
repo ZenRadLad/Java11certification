@@ -22,7 +22,7 @@ Perform type casting, identify object types using instanceof operator and patter
 ### Working with Arrays and Collections //DONE
 * Create Java arrays, List, Set, Map, and Deque collections, and add, remove, update, retrieve and sort their elements 
 
-### Working with Streams and Lambda expressions !important  //WIP
+### Working with Streams and Lambda expressions !important  //DONE
 * Use Java object and primitive Streams, including lambda expressions implementing functional interfaces, to supply, filter, map, consume, and sort data
 * Perform decomposition, concatenation and reduction, and grouping and partitioning on sequential and parallel streams
 
@@ -36,7 +36,7 @@ Perform type casting, identify object types using instanceof operator and patter
 * Develop thread-safe code, using different locking mechanisms and concurrent API
 * Process Java collections concurrently including the use of parallel streams
 
-### Java I/O API 
+### Java I/O API // WIP
 * Read and write console and file data using I/O Streams 
 * Serialize and de-serialize Java objects
 * Create, traverse, read, and write Path objects and their properties using java.nio.file API
