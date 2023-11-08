@@ -26,7 +26,7 @@ Perform type casting, identify object types using instanceof operator and patter
 * Use Java object and primitive Streams, including lambda expressions implementing functional interfaces, to supply, filter, map, consume, and sort data
 * Perform decomposition, concatenation and reduction, and grouping and partitioning on sequential and parallel streams
 
-### Packaging and deploying Java code and use the Java Platform Module System
+### Packaging and deploying Java code and use the Java Platform Module System //WIP
 * Define modules and their dependencies, expose module content including for reflection. 
 * Define services, producers, and consumers
 * Compile Java code, produce modular and non-modular jars, runtime images, and implement migration using unnamed and automatic modules
@@ -36,7 +36,7 @@ Perform type casting, identify object types using instanceof operator and patter
 * Develop thread-safe code, using different locking mechanisms and concurrent API
 * Process Java collections concurrently including the use of parallel streams
 
-### Java I/O API // WIP
+### Java I/O API // DONE
 * Read and write console and file data using I/O Streams 
 * Serialize and de-serialize Java objects
 * Create, traverse, read, and write Path objects and their properties using java.nio.file API

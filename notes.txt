@@ -43,6 +43,8 @@ Tests answers notes:
 but referring to such fields/methods in an ambiguous way will cause a compile time error.
 -A sealed class/interface must have a permits clause.
 -HashMap allows both - the key and the value to  be null (but not HashTable)
+-An abstract class is allowed to  not implement any method of an implemented interface
+-new Object[]{ "aaa", new Object(), new ArrayList(), 10} is valid because primitive 10 will be boxed
 
 
 NIO :
@@ -50,6 +52,22 @@ NIO :
 		absolute path then path2 is used (overrides the original)
 		relative path (f it doesn't start with a root such as c: or / on linux)) then both paths are combined (appends to the original)
 		empty path "" the original path is used
+	-Path is "c:\\code\\java\\PathTest.java",
+		p1.getRoot()  is c:\  ((For Unix based environments, the root is usually / ).
+		p1.getName(0)  is code
+		p1.getName(1)  is java
+		p1.getName(2)  is PathTest.java
+		p1.getName(3)  will cause IllegalArgumentException to be thrown.
+	-Files.move/copy are static utility methods that do not return a resource that needs to be closed. They cannot be used with try-with-resources
+	-A Reader such as a FileReader provides only low level operations such as reading a single character or array of characters. 
+		BufferedReader "decorates" Reader to provide higher level method readLine() by buffering characters. 
+		It is an efficient way of reading characters, character arrays, and lines. The same relationship exists between FileWriter and BufferedWriter but for writing.
+	-Call to System.console() doesn't throw any exception. It just returns null if Console is not available.
+	-path1.resolveSibling(path2) : replaces the filename portion of the first path with the entire second path to create a new path
+	-file.mkdirs() will create also non existing parent directories
+	-NoSuchFileException is thrown when Files.delete(path); is executed and the file it is attempting to delete is non existing
+	-A BufferedReader can wrap any Reader (like FileReader and BufferedReader)
+	-The size in bytes of a character depends on the default character encoding of the underlying platform.
 Exceptions : 
 	-Catch and finally blocks are executed after the resource opened in try-with-resources is closed.
 	- no need to catch RuntimeExceptions (like IndexOutOfBoundsException)
@@ -59,10 +77,17 @@ Collections :
 	- pay attention to what stream() methods return, is it an intermediate method followed by nothing, is filter() called after xMatch() ?
 	- steam().peak() peak performs an action on the elements of the stream :
 	it expects a consumer lambda like peek(System.out::println), must be used with terminal operation or it will do nothing.
+	- Summary statistics just means the computation of count, min, max, sum, and average.
 Modules :
+	-module-info.java must not be empty, at a minimum, it must specify the name of the module. 
+	-A module does not depend or belong to any package. Packages belong to a module.
+	-"packages are exported" and "modules are required"
+	-A uses clause is used for declaring dependence on a service, while a requires clause is used to declare dependence on a module.
+	-a module exports packages to other modules. It cannot export individual classes.		
 	-To run a module  --module-path and --module options are required : java --module-path course.jar --module com.course.Main
 	-Jmod tool has 5 options: create, extract, list, describe, hash.
-	-requires transitive <module name> : any module that reads the module containing this clause implicitly also reads the transitive module. 
+	-"requires transitive <module name> ": any module that reads the module containing this clause implicitly also reads the transitive module.
+		 (hence, will be able to read, without explicitly requiring it) the module mentioned in the requires transitive clause 
 JDBC :
 	-format of a JDBC URL is : jdbc:<subprotocol>:<subname>
 	-connection.setAutoCommit(true) will have a side effect of commiting a transaction
@@ -75,6 +100,7 @@ JDBC :
 	-PreparedStatement offers protection against SQL injection attacks over Statement
 	-Once a Connection object is closed, you cannot access any of the subsequent objects such as Statement and ResultSet 
 		that are retrieved from that Connection.
+	-PreparedStatement retains parameter values until closed. Repeated executions with the same values don't require re-setting them.
 Dates :
 	-Substracting hours from  -GMT timezone is equivalent to adding them (9:00 -6GMT = 9 + 6hours = 15:00 GMT)
 Enums : 
