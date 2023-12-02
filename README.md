@@ -38,7 +38,7 @@
 - Define services, producers, and consumers
 - Compile Java code, produce modular and non-modular jars, runtime images, and implement migration using unnamed and automatic modules
 
-### Concurrency
+### Concurrency // WIP
 
 - Create worker threads using Runnable and Callable, manage the thread lifecycle, including automations provided by different Executor services and concurrent API
 - Develop thread-safe code, using different locking mechanisms and concurrent API

@@ -1,3 +1,11 @@
+Links : 
+Promotion : http://zetcode.com/lang/java/datatypes2/
+http://www.cs.ukzn.ac.za/~hughm/java/intro/week1/index.html
+// https://docs.oracle.com/javase/tutorial/java%nutsandbolts/datatypes.html
+Strings = https://livebook.manning.com/book/java-se-11-programmer-i-certification-guide/chapter-5/v-3/11
+
+
+	
 ==> Do tests to assess current state first
 
 Plan :
@@ -85,29 +93,12 @@ Modules :
 -create module example with providers to understand fully exports and requires ..
 -Modules service parts and usage
 -jdeps outputs
-Suppose you have separate modules for a service provider interface, service provider, service locator, and consumer. 
-If you add a new abstract method to the service provider interface and call it from the consumer module, 
-how many of these modules do you need to re-compile?
-Since you are changing the service provider interface, you have to re-compile it. 
-Similarly, you need to re-compile the service provider because it now needs to implement the new method. 
-The consumer module needs to be re-compiled as well since the code has changed to call the new method. 
-Therefore, three modules need to be re-compiled, and option D is correct.
- The service locator does not need to be re-compiled since it simply looks up the interface.
 JDBC : 
 -SetParams, executeStatment stmts order, error detection if placed outside/inside scope
 -setNull param : what happens ?
 -Connect to and perform SQL operations, process results
 
-Annotations : 
--Annotations on FIELD (target FIELD vs TYPE) 
-
-
-Multi-threading : 
--UnsupportedOperationException ?
--Worker threads runnable/callable
--Threading issues identification
--Executor service
--java.util.concurrent API
+ 
 
 PRACTICE TESTS AFTER EXAM : 
 Page - question number :

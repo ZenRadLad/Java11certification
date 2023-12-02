@@ -1,0 +1,186 @@
+### Java Basics ### 
+
+    -Bitwise Operators : perform manipulation of individual bits of a number. They can be used with any of the integer types.
+    	&       Bitwise AND			 (true only all cases are true (1 & 1))
+    	^       Bitwise exclusive OR (true when one case is true (1^0 || 0^1) and false in the rest (1^1 || 0^0))
+    	|       Bitwise inclusive OR (true in all cases except when all cases are false (0 | 0))
+    -Shift Operators : shift the bits of a number left or right thereby multiplying or dividing the number by two respectively.
+    They can be used when we have to multiply or divide a number by two
+    	~       Unary bitwise complement
+    	<<      Signed left shift
+    	>>      Signed right shift
+    	>>>     Unsigned right shift
+    -Constants in Switch Cases: Value of switch cases should be a constant, literal value, or final variable.
+    -Instance initialization order : class static fields, static intializers, instance fields, instance initializers, constructors
+    -Transient Field Defaults: The default value for transient fields is null.
+    -Locale and Resource Bundles: If a matching key is not found in the specified bundle, the default locale bundle is used.
+    -Inner Class Instantiation: An inner class requires an instance of its outer class for instantiation, e.g., new OuterClass().new InnerClass()
+    	or via an outer class instance.
+    -Static Interface Methods: Cannot call default, abstract, or non-static private interface methods.
+    -Try-with-Resources Statement: A resource must be marked final or be effectively final.
+    -Generic Wildcards: Cannot occur on the right side of assignments.
+    -Array Initializer Block: Cannot specify length when using an initializer block (e.g., new String[3]{ "a", "b", "c"} is invalid).
+    -Inheritance of Constructors: If a parent class only declares an args constructor, the child must explicitly declare a constructor with super().
+    -Static and Instance Initializers: Both can access static variables.
+    -Immutable Classes: Must be non-extendable outside the class declaration, and their data cannot be modified by the caller.
+    -Inheritance and Interface Implementation: Inheriting ambiguous fields or methods doesn't cause issues unless referred to ambiguously,
+    	which leads to compile-time errors.
+    -Timezones : Substracting hours from  -GMT timezone is equivalent to adding them (9:00 -6GMT = 9 + 6hours = 15:00 GMT)
+    -Sealed Classes/Interfaces: Must have a permits clause.
+    -Type Bounds in Generics: "? super Number" means "a super-type of Number" (e.g., Object and Number).
+    -Interfaces can indeed extend other interfaces. This allows for a form of inheritance in interfaces
+    -NavigableMap is extends SortedMap to provide navigation methods, used to navigate the map in both ascending and descending key order.
+    -Division by Zero in Java: Integral division by zero throws ArithmeticException, while floating-point division results in POSITIVE_INFINITY or NEGATIVE_INFINITY.
+
+### Collections and Data Structures ### 
+
+    -HashMap vs Hashtable: HashMap allows both key and value to be null, unlike Hashtable.
+    -Abstract Classes and Interfaces: An abstract class is allowed not to implement any methods of an implemented interface.
+    -List.subList method returns a view backed by the original list. It doesn't change the existing list.
+    	But if you modify the subList, the changes will be visible in the original list.
+    -Pay attention to what stream() methods return, is it an intermediate method followed by nothing, is filter() called after xMatch() ?
+    -steam().peak() peak performs an action on the elements of the stream :
+    it expects a consumer lambda like peek(System.out::println), must be used with terminal operation or it will do nothing.
+    -Summary statistics just means the computation of count, min, max, sum, and average.
+    -Queue is a FIFO structure (add to the end and remove from the front)
+     	offer(e)/add(e)  add an element to the end or tail
+    	poll()/remove() remove an element from the front or head
+    -Stack is a LIFO structure (add to the front and remove from the front)
+     	push(e) push adds to the front
+    	pop() removes from the front.First,
+
+### Exception Handling ### 
+
+    -Try-Catch-Finally Behavior: If finally throws an exception, other exceptions thrown in catch clauses will be ignored.
+    -Catch Block Exceptions: Exceptions thrown by a catch cannot be caught by subsequent catch blocks in the same method.
+    -Catch and finally blocks are executed after the resource opened in try-with-resources is closed.
+    -No need to catch RuntimeExceptions (like IndexOutOfBoundsException)
+    -Unchecked vs. Checked Exceptions:
+        Unchecked Exceptions (e.g., RuntimeException, Error subclasses) don't need to be caught explicitly.
+        Checked Exceptions must be caught or declared; failure to handle them leads to a compilation error.
+    -Optional Class Methods:
+        Optional.of(): Throws NullPointerException if the argument is null.
+        Optional.ofNullable(): Returns an empty Optional for null arguments.
+        optional.orElse() and optional.orElseGet(): Provide fallback mechanisms.
+
+### NIO ### 
+
+    -Path.resolve() : path.resolve(path2) : combines two paths
+    	absolute path then path2 is used (overrides the original)
+    	relative path (f it doesn't start with a root such as c: or / on linux)) then both paths are combined (appends to the original)
+    	empty path "" the original path is used
+    -Path is "c:\\code\\java\\PathTest.java",
+    	p1.getRoot()  is c:\  ((For Unix based environments, the root is usually / ).
+    	p1.getName(0)  is code
+    	p1.getName(1)  is java
+    	p1.getName(2)  is PathTest.java
+    	p1.getName(3)  will cause IllegalArgumentException to be thrown.
+    -Files.move/copy are static utility methods that do not return a resource that needs to be closed. They cannot be used with try-with-resources
+    -A Reader such as a FileReader provides only low level operations such as reading a single character or array of characters.
+    	BufferedReader "decorates" Reader to provide higher level method readLine() by buffering characters.
+    	It is an efficient way of reading characters, character arrays, and lines. The same relationship exists between FileWriter and BufferedWriter but for writing.
+    -Call to System.console() doesn't throw any exception. It just returns null if Console is not available.
+    -path1.resolveSibling(path2) : replaces the filename portion of the first path with the entire second path to create a new path
+    -file.mkdirs() will create also non existing parent directories
+    -NoSuchFileException is thrown when Files.delete(path); is executed and the file it is attempting to delete is non existing
+    -A BufferedReader can wrap any Reader (like FileReader and BufferedReader)
+    -The size in bytes of a character depends on the default character encoding of the underlying platform.
+
+### JPMS ### 
+
+    -Overview
+        Basic Structure: module-info.java is mandatory and must at least declare the module's name.
+        Module and Package Relationship: Modules contain packages, but packages don't contain or depend on modules.
+        Exports and Dependencies:
+        Only packages can be exported; individual classes cannot.
+        Dependencies are established at the module level, not on individual classes or packages.
+        The "uses" clause declares dependence on a service, while "requires" specifies dependence on a module.
+        "Requires transitive <module name>": Modules reading a module with this clause implicitly read the transitive module, avoiding the need for explicit declaration.
+        Service Usage: A module utilizing a service must require the module defining the service interface.
+
+    -Module Operations and Tools
+        Running Modules: Use --module-path and --module (e.g., java --module-path course.jar --module com.course.Main).
+        Jmod Tool Options: Includes create, extract, list, describe, hash.
+        Jdeps Tool: Analyzes dependencies of class files or JARs, specifying dependencies via --module-path, --class-path, or -cp.
+
+    -Module Accessibility and Interactions
+        Unnamed vs. Named Modules: Classes in unnamed modules can't be accessed by named modules.
+        Automatic Modules: They can access classes from all other modules.
+        Direct Usage: If a module directly uses classes from another JAR, that JAR must be a named or automatic module.
+        Module Resolution: Use java --show-module-resolution to view module resolution during startup.
+        Module Source Path: The --module-source-path option in javac sets the location of module files (e.g., javac --module-source-path src -d out src/moduleA/a/A.java).
+        When adding a new abstract method to the service provider interface and calling it from the consumer module, you need to re-compile three specific modules:
+        the service provider interface, the service provider, and the consumer module. The service locator module does not require re-compilation.
+        -Customizing Module Access
+        Command Line Customization: Although not recommended, package exports of a module can be customized via command-line options.
+        --add-reads moduleA=moduleB: ModuleA reads all exported packages of moduleB.
+        --add-exports moduleB/com.modB.package1=moduleA: ModuleB exports the package com.modB.package1 to moduleA.
+        JDBC Overview
+
+### JDBC ### 
+
+    -Connection Management
+    JDBC URL Format: The standard format is jdbc:<subprotocol>:<subname>. This format helps in establishing a connection to the database.
+    AutoCommit Behavior: Using connection.setAutoCommit(true) commits the current transaction automatically.
+    Driver Registration (JDBC 4.0 and later): If the JDBC driver's JAR file is in the classpath, the driver is automatically registered.
+    This simplifies the connection process, typically done via DriverManager.getConnection(url, userid, pwd).
+
+    -PreparedStatement and SQLException Handling
+    Usage of setNull in PreparedStatement:
+    For string types: ps.setString(4, null) is valid.
+    For non-string types: Use ps.setNull(4, Types.XXX) (e.g., Types.INTEGER for integers). Using setNull with an incorrect SQL type may result in a SQLException.
+    Ensuring Parameter Setting: Failing to set parameters before executing a query will result in a SQLException.
+    Protection Against SQL Injection: PreparedStatement is preferred over Statement due to its inherent protection against SQL injection attacks.
+    Object Accessibility After Connection Closure: Once a Connection object is closed, related objects like Statement and ResultSet, derived from that connection,
+    become inaccessible.
+    Parameter Retention in PreparedStatement: PreparedStatement retains its parameter values until it is closed. If executing multiple times with the same values,
+    there's no need to reset them each time.
+
+### Enums ###
+
+  Interface Implementation: Enums can implement interfaces.
+  Declaration Order: Enum constants must be declared first in the enum type.
+  Constructor Visibility: Enum constructors are always implicitly private and cannot be public or protected.
+  Implicit Constructor: If no constructor is declared, an implicit private no-argument constructor is provided.
+  Final and Non-extendable: Enums are implicitly final, so they can't be extended or sealed, and they inherently extend java.lang.Enum.
+  Singleton Nature: Enums maintain a single instance of each constant, disallowing cloning (the clone method in java.lang.Enum is final).
+  Built-in Methods:
+  values(): Returns an array of enum constants.
+  valueOf(String): Returns the enum constant matching the string argument (case-sensitive) or throws IllegalArgumentException.
+  ordinal(): Returns the constant's index (starting from 0).
+  name(): Returns the enum constant's name as declared.
+  toString() Method: By default, returns the enum's name, but it's overridable.
+  Comparable Implementation: Enums implement java.lang.Comparable, following the natural order of their ordinal values.
+  Definition Scope: Enums can be defined inside methods or constructors but without any access modifiers.
+  Field Access Restrictions: Non-final static fields cannot be accessed from an enum's constructor.
+
+### Functional/Lambda
+
+    Abstract Method Source: The abstract method in a functional interface can be declared in the interface itself or a super interface.
+    Method Constraints: No constraints on parameter types or return type. The interface may contain other default or static methods.
+    Single Abstract Method Requirement: The core requirement is having exactly one abstract method.
+    Variable Access: Local variables referenced in a lambda expression must be final or effectively final.
+
+### Concurrency ### 
+
+    CopyOnWriteArrayList: A thread-safe variant of ArrayList. When the list is modified, it creates a fresh copy of the underlying array, making it ideal for environments with more reads than writes.
+    java.util.concurrent API Usage: Commonly used for managing and coordinating concurrent tasks. Key components include Executors for thread pool management, ConcurrentHashMap for concurrent hash maps, and CountDownLatch, CyclicBarrier, Semaphore for synchronization aids.
+    wait() vs sleep(): wait() releases the monitor lock allowing other threads to synchronize on the locked resource, while sleep() keeps the monitor lock, pausing the current thread without releasing any locks.
+    Deadlock: Occurs when two or more threads block forever, each waiting for the other to release a resource.
+    Livelock: A situation where threads are unable to make further progress, despite being active and not blocked, typically due to constantly responding to each other.
+    Thrashing: Occurs when a system spends more time processing task overhead than executing tasks, often seen in poor task or resource management.
+    Starvation: Happens when a thread is perpetually denied access to resources and unable to make progress.
+    Thread Safe Classes: Classes that are safe to use in a multithreaded environment, ensuring internal consistency and state when accessed by multiple threads. Examples include Vector, Hashtable, and classes in java.util.concurrent.
+    UnsupportedOperationException: Thrown to indicate that a requested operation is not supported, often used in immutable collections or when an operation is not applicable for a specific class.
+    Worker Threads (Runnable/Callable): Threads that execute tasks. Runnable defines a task and Callable is similar but can return a result and throw checked exceptions.
+    Identifying Threading Issues:
+        Look for deadlocks, livelocks, and race conditions.
+        Use thread dumps and monitoring tools.
+        Inspect code for common issues like improper synchronization and thread confinement violations.
+    Executor Service: A framework provided by the java.util.concurrent package to manage threads and tasks. It simplifies thread management and offers utilities like thread pools. Benefits include resource management, improved performance, and increased scalability.
+
+
+
+### Misc ###  
+
+    Run the app : > javac src/main/java/run/Run.java && java -cp src/main/java/ run.Run
