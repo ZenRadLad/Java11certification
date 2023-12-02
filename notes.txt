@@ -88,6 +88,11 @@ Modules :
 	-Jmod tool has 5 options: create, extract, list, describe, hash.
 	-"requires transitive <module name> ": any module that reads the module containing this clause implicitly also reads the transitive module.
 		 (hence, will be able to read, without explicitly requiring it) the module mentioned in the requires transitive clause 
+	-Jdeps : analyze one or multiple class file(s) or jar file(s). If a given target file depends on a module, then that module must be specified on --module-path or -p. 
+		If the given target file depends on a non-modular jar file (or a class), then that jar (or class) must be specified on -classpath or --class-path or -cp. 
+	-Classes in unnamed modules cannot be accessed by a named module
+	-Nn automatic module is allowed to access classes from all other modules
+	-If a Module directly uses classes from another jar, then that jar has to be a module either named or automatic.  
 JDBC :
 	-format of a JDBC URL is : jdbc:<subprotocol>:<subname>
 	-connection.setAutoCommit(true) will have a side effect of commiting a transaction
