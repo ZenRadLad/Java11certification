@@ -1,36 +1,152 @@
 ### Java Basics ### 
-
     -Bitwise Operators : perform manipulation of individual bits of a number. They can be used with any of the integer types.
     	&       Bitwise AND			 (true only all cases are true (1 & 1))
     	^       Bitwise exclusive OR (true when one case is true (1^0 || 0^1) and false in the rest (1^1 || 0^0))
     	|       Bitwise inclusive OR (true in all cases except when all cases are false (0 | 0))
+    -The | and & operators, when applied to boolean operands, ensure that both the sides are evaluated. This is opposed to || and && operators, 
+        which do not evaluate the Right Hand Side operand if the result can be known by just evaluating the Left Hand Side.
     -Shift Operators : shift the bits of a number left or right thereby multiplying or dividing the number by two respectively.
     They can be used when we have to multiply or divide a number by two
     	~       Unary bitwise complement
     	<<      Signed left shift
     	>>      Signed right shift
     	>>>     Unsigned right shift
+      
     -Constants in Switch Cases: Value of switch cases should be a constant, literal value, or final variable.
     -Instance initialization order : class static fields, static intializers, instance fields, instance initializers, constructors
     -Transient Field Defaults: The default value for transient fields is null.
+    -String str = null; String newStr = "a " + str; => "a null"
     -Locale and Resource Bundles: If a matching key is not found in the specified bundle, the default locale bundle is used.
     -Inner Class Instantiation: An inner class requires an instance of its outer class for instantiation, e.g., new OuterClass().new InnerClass()
     	or via an outer class instance.
-    -Static Interface Methods: Cannot call default, abstract, or non-static private interface methods.
     -Try-with-Resources Statement: A resource must be marked final or be effectively final.
     -Generic Wildcards: Cannot occur on the right side of assignments.
+    -List<?> is same as List<? extends Object> : A List containing instances of some class that extends Object class.
+    - "=" has least precedence of all operators
     -Array Initializer Block: Cannot specify length when using an initializer block (e.g., new String[3]{ "a", "b", "c"} is invalid).
     -Inheritance of Constructors: If a parent class only declares an args constructor, the child must explicitly declare a constructor with super().
     -Static and Instance Initializers: Both can access static variables.
+    -String substring(int beginInclusiveIndexFrom0) = "Hello World".substring(6); from W = "World"
+    -String substring(int beginInclusiveIndexFrom0, int endExclusiveIndex) : "Hello World".substring(0, 5) = "Hello" 01234  
+    -int indexOf(int ch, int fromIndex) = Returns the index of the first occurrence of the specified character, starting the search at the specified index. 
+    -The compiler does not provide the default no-args constructor if the programmer provides any other constructor for the class.
+    -If a class extends and abstract class and implements an Interface and both of them has a static class with the same name, the abstract class is the one that can be used not the interface one
+    -Static methods are never overriden because they are not inherited like instance methods, they belong to their classes
     -Immutable Classes: Must be non-extendable outside the class declaration, and their data cannot be modified by the caller.
     -Inheritance and Interface Implementation: Inheriting ambiguous fields or methods doesn't cause issues unless referred to ambiguously,
     	which leads to compile-time errors.
-    -Timezones : Substracting hours from  -GMT timezone is equivalent to adding them (9:00 -6GMT = 9 + 6hours = 15:00 GMT)
     -Sealed Classes/Interfaces: Must have a permits clause.
     -Type Bounds in Generics: "? super Number" means "a super-type of Number" (e.g., Object and Number).
-    -Interfaces can indeed extend other interfaces. This allows for a form of inheritance in interfaces
     -NavigableMap is extends SortedMap to provide navigation methods, used to navigate the map in both ascending and descending key order.
     -Division by Zero in Java: Integral division by zero throws ArithmeticException, while floating-point division results in POSITIVE_INFINITY or NEGATIVE_INFINITY.
+    -if(x % 3 == 0) : checks multiples of x (divisible w/o reminder)
+    - && checks if lefthand operand is false, || checks if lefthand operand is true. Both will not check the right operand
+    -an Inherited classes' Constructor cannot be private (constructor of super class has to be called via super())
+    -A class implements Comparable interface when it wants to let an object of that class to be compared with another object of that class. A Comparable constitutes the "natural" ordering of objects of that class.
+        When a class implements Comparable, you can sort a collection (or array) of objects of that class using Collections.sort (or Arrays.sort) without requiring a separate Comparator object.
+    -compareTo(Obj obj) takes only one argument -> Comparable interface method
+    -A extends B, so a A is-a B
+    -Hashset allows null values
+    -According to the rule of covariant returns, an overriding method must return either the same type or a subtype of the type returned by the overridden method. 
+    -Stream can be sorted with stream().sorted()    
+    -stream.count() returns a long
+    -A local variable needs to be final or effectively final to be accessed from an INNER CLASS OR lambda expression.
+    -Pay attention to unreachable code in try-catch-finally 
+    -GC : 
+        1. An object can be made eligible for garbage collection by making sure there are no references pointing to that object.
+        2. You cannot directly invoke the garbage collector. You can suggest the JVM to perform garbage collection by calling System.gc();
+        3. Objects pointed to by static variables of a class are not collected even when all objects of that class are collected because those variables belong 
+            to the class (and not to the instance of the class). They are GCed only when the class itself is unloaded by the class loader.
+    -Serialization : 
+        Constructor and Initializers During Deserialization:
+            -Class constructors and instance initializers are not called.
+            -Fields not in the serialized file are set to default values (numbers to 0, booleans to false, objects to null).
+            -Non-serializable superclass fields are initialized via its no-args constructor and instance initializers.
+        serialVersionUID:
+            -Represents the class version number; crucial for serialization compatibility.
+            -Automatically generated if not specified, based on class attributes like fields and interfaces.
+            -Used during deserialization to verify class compatibility. Mismatch results in InvalidClassException.
+         Handling of Fields During Deserialization:
+            -Fields present in the serialized object but not in the class are ignored.
+            -Additional fields in the class (not in serialized object) are set to default values.
+            -If serialVersionUID matches, deserialization completes successfully.
+        Superclass Behavior:
+            -If a superclass is not serializable, its constructor is called during deserialization.
+
+### Records  ###
+    Location & Nature:
+        -Can be top-level, nested (implicitly static), or local (within a method).
+        -Implicitly final; can't be abstract, sealed, or non-sealed.
+        -cannot extend Record
+        -can implement interfaces
+        -Serialization uses canonical constructor.
+
+    Structure Restrictions:
+        -Static fields and initializers are allowed
+        -No instance fields or instance initializers
+        -No abstract or native methods.
+
+    Constructors & Methods:
+        -No setters (records are immutable)
+        -Non-canonical constructors must call the canonical constructor or another constructor first.
+        -Canonical constructor can be regular or compact form but cannot be generic or have a throws clause; non-canonical constructors can.
+        -Cannonical constructor mainly used for validation
+        -Accessor methods can't throw exceptions.
+        -Additional methods are allowed, similar to regular classes.
+        -Record  can't declare Object class methods like clone, finalize, getClass, hashCode, notify, notifyAll, toString, or wait.
+        -A programmer may provide the canonical constructor in regular form or in a "compact form" like this:
+
+        public record Student(int id, String name){
+            public Student{ //no parameter list is specified here
+            if(id <0) throw new IllegalArgumentException();
+            }
+        }
+
+       -Important : If you write a non-canonical constructor in a record explicitly then, on the first line of such a constructor, you must provide a call to either the canonical constructor or another constructor.
+
+        public record Student(int id, String name){
+            public Student(){ // a non-canonical constructor
+                this(10); // Required call
+            }
+            public Student(int id){ // another non-canonical constructor
+                this(id, ""); // Required call
+            }
+            public Student(int id, String name){ // canonical constructor (redundant)
+                this.id = id; this.name=name;
+            }
+        }
+
+
+###  DateTime API ### 
+
+    -Timezones : Substracting hours from  -GMT timezone is equivalent to adding them (at 9:00 -6GMT = 9 + 6hours = 15:00 GMT)
+    -Period affects only the date component and doesn't alter time, whereas Duration can impact the time component, 
+        particularly around Daylight Saving Time (DST) transitions.    
+    -Duration (PT) does not convert hours into days (25 hours will remain as 25 hours instead of 1 day and 1 hour) PT25H (Duation : HoursMinutesSeconds)
+    -Duration of 0 is printed as 0S and a Period of 0 is printed as 0D.
+    -DateTimeFormatter.ofPattern("eeee"); eeee is day of week (Monday)
+        less than 4 pattern letters will use the short form. Exactly 4 pattern letters will use the full form. Exactly 5 pattern letters will use the narrow form. more than 5 times it will thrown an exception. 
+    -Instant's truncatedTo() can take only ChronoUnit Days and lower (half days, hours, seconds..)
+        : Instant.ofEpochSecond(1945820820).truncatedTo(ChronoUnit.DAYS) truncates to the start of the day in UTC & zeroes out the hours minutes seconds : 2031-08-30T00:00:00Z
+
+
+###  Interfaces ### 
+    Basic Properties:
+        -Any field in an interface is implicitly public, static, and final, whether these keywords are specified or not.
+        -Fields on an Interface must always be initialized.
+    Inheritance:
+        -Interfaces can extend other interfaces.
+        -An interface can extend from any number of interfaces: interface A extends B, C, D.
+    Method Specifications:
+        -Only methods of an interface can be private. Private/protected fields are not allowed.
+        -Static Interface Methods cannot call default, abstract, or non-static private interface methods.
+        -Static methods can never be abstract (neither in an interface nor in a class).
+        -An interface default and static method must have a body.
+        -Private methods are not inherited.
+    Method Redefinition and Overriding:
+        -An interface can redeclare a default method and provide a different implementation or make it abstract.
+        -A default method cannot be overridden by a static method. (A default method is a non-static method.)
+        -You cannot override a non-static method with a static method and vice versa.
 
 ### Collections and Data Structures ### 
 
@@ -41,18 +157,24 @@
     -Pay attention to what stream() methods return, is it an intermediate method followed by nothing, is filter() called after xMatch() ?
     -steam().peak() peak performs an action on the elements of the stream :
     it expects a consumer lambda like peek(System.out::println), must be used with terminal operation or it will do nothing.
+    -flatMap is used when each element of a given stream can itself generate a Stream of objects. 
+        It's used to extract the elements of each of those individual streams and return a stream that contains all those elements.
     -Summary statistics just means the computation of count, min, max, sum, and average.
     -Queue is a FIFO structure (add to the end and remove from the front)
      	offer(e)/add(e)  add an element to the end or tail
     	poll()/remove() remove an element from the front or head
     -Stack is a LIFO structure (add to the front and remove from the front)
      	push(e) push adds to the front
-    	pop() removes from the front.First,
+    	pop() removes from the front.First
+    -Collections.unmodifiableList creates an unmodifiable view of the underlying list, restricting add/remove operations on the view. 
+        However, modifications to the original list are reflected in this view.
+    -Collectors.joining(delim, prefix, suffix) returns a Collector that joins all the Strings in the given Stream separated by comma and then prefixes and suffixes the resulting String
 
 ### Exception Handling ### 
 
     -Try-Catch-Finally Behavior: If finally throws an exception, other exceptions thrown in catch clauses will be ignored.
     -Catch Block Exceptions: Exceptions thrown by a catch cannot be caught by subsequent catch blocks in the same method.
+    -An overriding method can only throw either the checked exceptions (and their subclasses) listed in the throws clause of the overridden method or decide not to throw any exception at all. 
     -Catch and finally blocks are executed after the resource opened in try-with-resources is closed.
     -No need to catch RuntimeExceptions (like IndexOutOfBoundsException)
     -Unchecked vs. Checked Exceptions:
@@ -62,6 +184,13 @@
         Optional.of(): Throws NullPointerException if the argument is null.
         Optional.ofNullable(): Returns an empty Optional for null arguments.
         optional.orElse() and optional.orElseGet(): Provide fallback mechanisms.
+    -Errors are usually thrown due to resource constrains encountered by the JVM. They do not necessarily indicate a programming bug.
+    -RuntimeExceptions should be identified during testing and eliminated by fixing the code, while Errors should be eliminated by fixing the environment.
+    -Constructor must declare all the checked exceptions declared in the base constructor (or the super classes of the checked exceptions). 
+        They may add other exceptions as well. This behavior is exactly opposite from that of methods. 
+        The overriding method cannot throw any checked exception other than what the overridden method throws. It may throw subclasses of those exceptions as well.
+    -If both catch and finally block throw an exception. The exception thrown by the finally block is the one that is thrown from the method. 
+        The catch exception is lost and not added to the suppressed exceptions list of the exception thrown from the finally block.
 
 ### NIO ### 
 
@@ -79,12 +208,30 @@
     -A Reader such as a FileReader provides only low level operations such as reading a single character or array of characters.
     	BufferedReader "decorates" Reader to provide higher level method readLine() by buffering characters.
     	It is an efficient way of reading characters, character arrays, and lines. The same relationship exists between FileWriter and BufferedWriter but for writing.
+    System.Console : 
+    -methods : format(), printf(), reader(), writer(), readPassword, readLine()
     -Call to System.console() doesn't throw any exception. It just returns null if Console is not available.
     -path1.resolveSibling(path2) : replaces the filename portion of the first path with the entire second path to create a new path
     -file.mkdirs() will create also non existing parent directories
     -NoSuchFileException is thrown when Files.delete(path); is executed and the file it is attempting to delete is non existing
     -A BufferedReader can wrap any Reader (like FileReader and BufferedReader)
     -The size in bytes of a character depends on the default character encoding of the underlying platform.
+    -Files.newDirectoryStream(Path dir, String globPattern) :
+        try (DirectoryStream<Path> stream = Files.newDirectoryStream(dir, "*.txt"))  // "*.txt" : only text files
+        try (DirectoryStream<Path> ds = Files.newDirectoryStream(dir, "*.{gif,jpeg}")) // "*.{gif,jpeg}" : gif & jpeg files   
+        try (DirectoryStream<Path> ds = Files.newDirectoryStream(dir, "?.txt"))  // "?" Matches exactly one character : matches a.txt, but not ab.txt
+    -RandomAccessFile if a file doesn't exist it will attempt to create it
+    -write and print methods of PrintWriter return void
+    -none of the PrintWriter's methods throw any I/O exceptions because they supress the errors in writing and set an internal flag for error status instead.
+    The checkError method returns true if there has been a problem in writing.
+    -Path resolveSibling(Path other) :
+        Resolves the given path against this path's parent path. This is useful where a file name needs to be replaced with another file name.
+            Path.subpath(int beginIndex, int endIndex)
+            1. Indexing starts from 0.
+            2. Root (i.e. c:\) is not considered as the beginning.
+            3. name at beginIndex is included but name at endIndex is not.
+            4. paths do not start or end with \.
+
 
 ### JPMS ### 
 
@@ -102,6 +249,11 @@
         Running Modules: Use --module-path and --module (e.g., java --module-path course.jar --module com.course.Main).
         Jmod Tool Options: Includes create, extract, list, describe, hash.
         Jdeps Tool: Analyzes dependencies of class files or JARs, specifying dependencies via --module-path, --class-path, or -cp.
+            list all the modules on which moduleA depends, it will show an error if moduleA requires any other application module.
+        -p is the short form for --module-path
+        -m is the short form for --module 
+        Structure of a module jar file is same as the regular jar file. It's possible to treat the jar file of a module as a regular jar file containing classes and 
+            run a class that is present in the jar : java -classpath a.jar com.example.a.Main
 
     -Module Accessibility and Interactions
         Unnamed vs. Named Modules: Classes in unnamed modules can't be accessed by named modules.
@@ -115,51 +267,59 @@
         Command Line Customization: Although not recommended, package exports of a module can be customized via command-line options.
         --add-reads moduleA=moduleB: ModuleA reads all exported packages of moduleB.
         --add-exports moduleB/com.modB.package1=moduleA: ModuleB exports the package com.modB.package1 to moduleA.
-        JDBC Overview
+        -any jar that you put on module-path is a named module, while any jar that you put on the classpath belongs to one "unnamed" module.
+                Since the structure of a modular jar is same as a regular jar, it can still be used in the old manner.
+        -java -classpath jar1.jar;jar2.jar com.abc.module.Main
 
 ### JDBC ### 
 
-    -Connection Management
-    JDBC URL Format: The standard format is jdbc:<subprotocol>:<subname>. This format helps in establishing a connection to the database.
-    AutoCommit Behavior: Using connection.setAutoCommit(true) commits the current transaction automatically.
-    Driver Registration (JDBC 4.0 and later): If the JDBC driver's JAR file is in the classpath, the driver is automatically registered.
-    This simplifies the connection process, typically done via DriverManager.getConnection(url, userid, pwd).
+    Connection Management
+        -JDBC URL Format: The standard format is jdbc:<subprotocol>:<subname>. This format helps in establishing a connection to the database.
+        -AutoCommit Behavior: Using connection.setAutoCommit(true) commits the current transaction automatically.
+        -Driver Registration (JDBC 4.0 and later): If the JDBC driver's JAR file is in the classpath, the driver is automatically registered.
+            This simplifies the connection process, typically done via DriverManager.getConnection(url, userid, pwd).
 
-    -PreparedStatement and SQLException Handling
-    Usage of setNull in PreparedStatement:
-    For string types: ps.setString(4, null) is valid.
-    For non-string types: Use ps.setNull(4, Types.XXX) (e.g., Types.INTEGER for integers). Using setNull with an incorrect SQL type may result in a SQLException.
-    Ensuring Parameter Setting: Failing to set parameters before executing a query will result in a SQLException.
-    Protection Against SQL Injection: PreparedStatement is preferred over Statement due to its inherent protection against SQL injection attacks.
-    Object Accessibility After Connection Closure: Once a Connection object is closed, related objects like Statement and ResultSet, derived from that connection,
-    become inaccessible.
-    Parameter Retention in PreparedStatement: PreparedStatement retains its parameter values until it is closed. If executing multiple times with the same values,
-    there's no need to reset them each time.
+    PreparedStatement and SQLException Handling
+        Usage of setNull in PreparedStatement:
+            For string types: ps.setString(4, null) is valid.
+            For non-string types: Use ps.setNull(4, Types.XXX) (e.g., Types.INTEGER for integers). Using setNull with an incorrect SQL type may result in a SQLException.
+        -Ensuring Parameter Setting: Failing to set parameters before executing a query will result in a SQLException.
+        -Protection Against SQL Injection: PreparedStatement is preferred over Statement due to its inherent protection against SQL injection attacks.
+        -Once a Connection object is closed, related objects like Statement and ResultSet, derived from that connection, become inaccessible.
+        -PreparedStatement retains its parameter values until it is closed. 
+        -If executing multiple times with the same values,there's no need to reset them each time.
+
+
+    -In JDBC 4.0 : the drivers are loaded automatically based on the information provided by the driver's META-INF/services/java.sql.Driver file. No java code in necessary to load the driver classes.
 
 ### Enums ###
 
-  Interface Implementation: Enums can implement interfaces.
-  Declaration Order: Enum constants must be declared first in the enum type.
-  Constructor Visibility: Enum constructors are always implicitly private and cannot be public or protected.
-  Implicit Constructor: If no constructor is declared, an implicit private no-argument constructor is provided.
-  Final and Non-extendable: Enums are implicitly final, so they can't be extended or sealed, and they inherently extend java.lang.Enum.
-  Singleton Nature: Enums maintain a single instance of each constant, disallowing cloning (the clone method in java.lang.Enum is final).
-  Built-in Methods:
-  values(): Returns an array of enum constants.
-  valueOf(String): Returns the enum constant matching the string argument (case-sensitive) or throws IllegalArgumentException.
-  ordinal(): Returns the constant's index (starting from 0).
-  name(): Returns the enum constant's name as declared.
-  toString() Method: By default, returns the enum's name, but it's overridable.
-  Comparable Implementation: Enums implement java.lang.Comparable, following the natural order of their ordinal values.
-  Definition Scope: Enums can be defined inside methods or constructors but without any access modifiers.
-  Field Access Restrictions: Non-final static fields cannot be accessed from an enum's constructor.
+    Interface Implementation: Enums can implement interfaces.
+    Declaration Order: Enum constants must be declared first in the enum type.
+    Constructor Visibility: Enum constructors are always implicitly private and cannot be public or protected.
+    Implicit Constructor: If no constructor is declared, an implicit private no-argument constructor is provided.
+    Final and Non-extendable: Enums are implicitly final, so they can't be extended or sealed, and they inherently extend java.lang.Enum.
+    Singleton Nature: Enums maintain a single instance of each constant, disallowing cloning (the clone method in java.lang.Enum is final).
+    Built-in Methods:
+        values(): Returns an array of enum constants.
+        valueOf(String): Returns the enum constant matching the string argument (case-sensitive) or throws IllegalArgumentException.
+        ordinal(): Returns the constant's index (starting from 0).
+        name(): Returns the enum constant's name as declared.
+        toString() Method: By default, returns the enum's name, but it's overridable.
+    Comparable Implementation: Enums implement java.lang.Comparable, following the natural order of their ordinal values.
+    Definition Scope: Enums can be defined inside methods or constructors but without any access modifiers.
+    Field Access Restrictions: Non-final static fields cannot be accessed from an enum's constructor.
 
 ### Functional/Lambda
 
-    Abstract Method Source: The abstract method in a functional interface can be declared in the interface itself or a super interface.
-    Method Constraints: No constraints on parameter types or return type. The interface may contain other default or static methods.
-    Single Abstract Method Requirement: The core requirement is having exactly one abstract method.
-    Variable Access: Local variables referenced in a lambda expression must be final or effectively final.
+    -Local variables referenced from a lambda expression must be final or effectively final
+    -Abstract Method Source: The abstract method in a functional interface can be declared in the interface itself or a super interface.
+    -Method Constraints: No constraints on parameter types or return type. The interface may contain other default or static methods.
+    -Single Abstract Method Requirement: The core requirement is having exactly one abstract method.
+    -Variable Access: Local variables referenced in a lambda expression must be final or effectively final.
+    -forEach method expects a Consumer as an argument.
+    -a lambda expression does not create a new scope for variables validateEmployee(e, e->e.age<10000) must be validateEmployee(e, x -> x.age <10000) (e still in scope)
+    -pay attention to stream operations result loss is result is not assigned to a variable
 
 ### Concurrency ### 
 
@@ -178,8 +338,9 @@
         Use thread dumps and monitoring tools.
         Inspect code for common issues like improper synchronization and thread confinement violations.
     Executor Service: A framework provided by the java.util.concurrent package to manage threads and tasks. It simplifies thread management and offers utilities like thread pools. Benefits include resource management, improved performance, and increased scalability.
-
-
+    When a synchronized method ends with a checked exception, the intrinsic lock held by the thread is released automatically.  
+    The intrinsic lock is released when the method ends. Irrespective of how it ends.
+    A thread acquires the intrinsic lock of an object when it enters synchronized method on that object or when it enter a synchronized block that uses that object. The lock is not acquired when a thread enters a non-synchronized method.
 
 ### Misc ###  
 
