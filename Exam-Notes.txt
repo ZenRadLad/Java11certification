@@ -11,31 +11,37 @@
     	<<      Signed left shift
     	>>      Signed right shift
     	>>>     Unsigned right shift
-      
     -Constants in Switch Cases: Value of switch cases should be a constant, literal value, or final variable.
     -Instance initialization order : class static fields, static intializers, instance fields, instance initializers, constructors
     -Transient Field Defaults: The default value for transient fields is null.
     -String str = null; String newStr = "a " + str; => "a null"
     -Locale and Resource Bundles: If a matching key is not found in the specified bundle, the default locale bundle is used.
+    -this(params) can only be called in a constructor and that too as a first statement not in a method
     -Inner Class Instantiation: An inner class requires an instance of its outer class for instantiation, e.g., new OuterClass().new InnerClass()
     	or via an outer class instance.
-    -Try-with-Resources Statement: A resource must be marked final or be effectively final.
     -Generic Wildcards: Cannot occur on the right side of assignments.
     -List<?> is same as List<? extends Object> : A List containing instances of some class that extends Object class.
     - "=" has least precedence of all operators
-    -Array Initializer Block: Cannot specify length when using an initializer block (e.g., new String[3]{ "a", "b", "c"} is invalid).
+    -Array Initializer Block: 
+        -Cannot specify length when using an initializer block : new String[3]{ "a", "b", "c"} 
+        -Cannot specify the size on left hand side : int i[4] = { 1, 2, 3, 4 } ;
+        -int i[ ][ ] = { { 1, 2 }, new int[ 2 ] } ; is Valiud
     -Inheritance of Constructors: If a parent class only declares an args constructor, the child must explicitly declare a constructor with super().
     -Static and Instance Initializers: Both can access static variables.
     -String substring(int beginInclusiveIndexFrom0) = "Hello World".substring(6); from W = "World"
     -String substring(int beginInclusiveIndexFrom0, int endExclusiveIndex) : "Hello World".substring(0, 5) = "Hello" 01234  
     -int indexOf(int ch, int fromIndex) = Returns the index of the first occurrence of the specified character, starting the search at the specified index. 
     -The compiler does not provide the default no-args constructor if the programmer provides any other constructor for the class.
-    -If a class extends and abstract class and implements an Interface and both of them has a static class with the same name, the abstract class is the one that can be used not the interface one
+    -An overriding method cannot throw an exception that is a super class of the exception thrown by the overridden method.  Or not throw an exception at all.
+    -If a class extends and abstract class and implements an Interface and both of them has a static class with the same name
+    -Accessing a static field of a superclass doesn't trigger initialization of it's child class or it's constructor
+        the abstract class is the one that can be used not the interface one
     -Static methods are never overriden because they are not inherited like instance methods, they belong to their classes
     -Immutable Classes: Must be non-extendable outside the class declaration, and their data cannot be modified by the caller.
-    -Inheritance and Interface Implementation: Inheriting ambiguous fields or methods doesn't cause issues unless referred to ambiguously,
-    	which leads to compile-time errors.
-    -Sealed Classes/Interfaces: Must have a permits clause.
+    -Sealed Classes/Interfaces: 
+        -Must have a permits claus (unless nested : It is ok for a nested sealed class to omit the permits clause.)
+        -All subclasses of a sealed class must belong to the same module (or to the same package if the sealed class is not a part of a named module).
+            even if a sealed class is visible outside a module, it cannot be extended by classes of other modules.
     -Type Bounds in Generics: "? super Number" means "a super-type of Number" (e.g., Object and Number).
     -NavigableMap is extends SortedMap to provide navigation methods, used to navigate the map in both ascending and descending key order.
     -Division by Zero in Java: Integral division by zero throws ArithmeticException, while floating-point division results in POSITIVE_INFINITY or NEGATIVE_INFINITY.
@@ -52,10 +58,15 @@
     -stream.count() returns a long
     -A local variable needs to be final or effectively final to be accessed from an INNER CLASS OR lambda expression.
     -Pay attention to unreachable code in try-catch-finally 
+    -StringBuilder and String methods : 
+          StringBuilder append(CharSequence s, int start, int end)
+          StringBuilder insert(int dstOffset, CharSequence s, int start, int end)
+          StringBuilder replace(int start, int end, String str)
+          String substring(int start, int end)
     -GC : 
         1. An object can be made eligible for garbage collection by making sure there are no references pointing to that object.
-        2. You cannot directly invoke the garbage collector. You can suggest the JVM to perform garbage collection by calling System.gc();
-        3. Objects pointed to by static variables of a class are not collected even when all objects of that class are collected because those variables belong 
+        2. You cannot directly invoke GC. You can suggest the JVM to perform garbage collection by calling System.gc(); no guarantee for execution
+        3. Objects pointed to by static variables of a class are not collected even when all objects of that class are collected because they belong 
             to the class (and not to the instance of the class). They are GCed only when the class itself is unloaded by the class loader.
     -Serialization : 
         Constructor and Initializers During Deserialization:
@@ -72,6 +83,9 @@
             -If serialVersionUID matches, deserialization completes successfully.
         Superclass Behavior:
             -If a superclass is not serializable, its constructor is called during deserialization.
+    -A virtual call : a call is bound to a method at runtime and not at compile time. All non-private and non-final instance method calls are virtual.
+    -instanceOf :
+        A pattern variable is not allowed to shadow a local variable: A a = null; if(c instanceof A a ) // failure to compile
 
 ### Records  ###
     Location & Nature:
@@ -93,7 +107,8 @@
         -Cannonical constructor mainly used for validation
         -Accessor methods can't throw exceptions.
         -Additional methods are allowed, similar to regular classes.
-        -Record  can't declare Object class methods like clone, finalize, getClass, hashCode, notify, notifyAll, toString, or wait.
+        -Record  can't declare Object class methods like clone, finalize, getClass, notify, notifyAll, or wait
+            Can override equals, hashCode, toString
         -A programmer may provide the canonical constructor in regular form or in a "compact form" like this:
 
         public record Student(int id, String name){
@@ -131,10 +146,12 @@
 
 
 ###  Interfaces ### 
+
     Basic Properties:
         -Any field in an interface is implicitly public, static, and final, whether these keywords are specified or not.
         -Fields on an Interface must always be initialized.
     Inheritance:
+        -Inheriting ambiguous fields or methods doesn't cause issues unless referred to ambiguously, which leads to compile-time errors.
         -Interfaces can extend other interfaces.
         -An interface can extend from any number of interfaces: interface A extends B, C, D.
     Method Specifications:
@@ -169,12 +186,15 @@
     -Collections.unmodifiableList creates an unmodifiable view of the underlying list, restricting add/remove operations on the view. 
         However, modifications to the original list are reflected in this view.
     -Collectors.joining(delim, prefix, suffix) returns a Collector that joins all the Strings in the given Stream separated by comma and then prefixes and suffixes the resulting String
+    -average() method actually returns an OptionalDouble (and not Double).
 
 ### Exception Handling ### 
 
     -Try-Catch-Finally Behavior: If finally throws an exception, other exceptions thrown in catch clauses will be ignored.
+    -Try-with-Resources Statement: A resource must be marked final or be effectively final.
     -Catch Block Exceptions: Exceptions thrown by a catch cannot be caught by subsequent catch blocks in the same method.
     -An overriding method can only throw either the checked exceptions (and their subclasses) listed in the throws clause of the overridden method or decide not to throw any exception at all. 
+    -IException is a subclass of Exception. You cannot include classes that are related by inheritance in the same multi-catch block.
     -Catch and finally blocks are executed after the resource opened in try-with-resources is closed.
     -No need to catch RuntimeExceptions (like IndexOutOfBoundsException)
     -Unchecked vs. Checked Exceptions:
@@ -236,14 +256,16 @@
 ### JPMS ### 
 
     -Overview
-        Basic Structure: module-info.java is mandatory and must at least declare the module's name.
-        Module and Package Relationship: Modules contain packages, but packages don't contain or depend on modules.
-        Exports and Dependencies:
-        Only packages can be exported; individual classes cannot.
-        Dependencies are established at the module level, not on individual classes or packages.
-        The "uses" clause declares dependence on a service, while "requires" specifies dependence on a module.
-        "Requires transitive <module name>": Modules reading a module with this clause implicitly read the transitive module, avoiding the need for explicit declaration.
-        Service Usage: A module utilizing a service must require the module defining the service interface.
+        -Basic Structure: module-info.java is mandatory and must at least declare the module's name.
+        -Module and Package Relationship: Modules contain packages, but packages don't contain or depend on modules.
+        -Exports and Dependencies:
+        -Only packages can be exported; individual classes cannot.
+        -Dependencies are established at the module level, not on individual classes or packages.
+        -The "uses" clause declares dependence on a service, while "requires" specifies dependence on a module.
+        -"Requires transitive <module name>": Modules reading a module with this clause implicitly read the transitive module, avoiding the need for explicit declaration.
+        -Service Usage: A module utilizing a service must require the module defining the service interface.
+        -You cannot have more than one module in a directory. Although you may package a module into a jar, put multiple such module jars in a directory, and put that directory (which contains multiple module jars) on the module path.
+        -A modular jar can still be used like a regular jar. So, any non-modular application can use a modularized jar by putting that jar in the classpath just like any other jar.
 
     -Module Operations and Tools
         Running Modules: Use --module-path and --module (e.g., java --module-path course.jar --module com.course.Main).
@@ -256,15 +278,16 @@
             run a class that is present in the jar : java -classpath a.jar com.example.a.Main
 
     -Module Accessibility and Interactions
-        Unnamed vs. Named Modules: Classes in unnamed modules can't be accessed by named modules.
-        Automatic Modules: They can access classes from all other modules.
-        Direct Usage: If a module directly uses classes from another JAR, that JAR must be a named or automatic module.
-        Module Resolution: Use java --show-module-resolution to view module resolution during startup.
-        Module Source Path: The --module-source-path option in javac sets the location of module files (e.g., javac --module-source-path src -d out src/moduleA/a/A.java).
-        When adding a new abstract method to the service provider interface and calling it from the consumer module, you need to re-compile three specific modules:
-        the service provider interface, the service provider, and the consumer module. The service locator module does not require re-compilation.
-        -Customizing Module Access
-        Command Line Customization: Although not recommended, package exports of a module can be customized via command-line options.
+        -Unnamed vs. Named Modules: Classes in unnamed modules can't be accessed by named modules.
+        -Automatic Modules: They can access classes from all other modules.
+        -Java modules do allow a service consumer to find a service implementation, however, it is not done using dependecy injection. 
+            A service consumer has to loop through each available service implementation and pick the one it needs.
+        -Direct Usage: If a module directly uses classes from another JAR, that JAR must be a named or automatic module.
+        -Module Resolution: Use java --show-module-resolution to view module resolution during startup.
+        -Module Source Path: The --module-source-path option in javac sets the location of module files (e.g., javac --module-source-path src -d out src/moduleA/a/A.java).
+        -When adding a new abstract method to the service provider interface and calling it from the consumer module, you need to re-compile three specific modules:
+            the service provider interface, the service provider, and the consumer module. The service locator module does not require re-compilation.
+        -Command Line Customization: Although not recommended, package exports of a module can be customized via command-line options.
         --add-reads moduleA=moduleB: ModuleA reads all exported packages of moduleB.
         --add-exports moduleB/com.modB.package1=moduleA: ModuleB exports the package com.modB.package1 to moduleA.
         -any jar that you put on module-path is a named module, while any jar that you put on the classpath belongs to one "unnamed" module.
@@ -288,9 +311,14 @@
         -Once a Connection object is closed, related objects like Statement and ResultSet, derived from that connection, become inaccessible.
         -PreparedStatement retains its parameter values until it is closed. 
         -If executing multiple times with the same values,there's no need to reset them each time.
+   
+    Statment methods: 
+    -executeUpdate() returns the number of rows affected by the query.
+    -execute() returns boolean : true if the first result is a ResultSet object; false if it is an update count or there are no results
+    -executeQuery() returns ResultSet
 
-
-    -In JDBC 4.0 : the drivers are loaded automatically based on the information provided by the driver's META-INF/services/java.sql.Driver file. No java code in necessary to load the driver classes.
+    -In JDBC 4.0 : the drivers are loaded automatically based on the information provided by the driver's META-INF/services/java.sql.Driver file.
+         No java code in necessary to load the driver classes.
 
 ### Enums ###
 
