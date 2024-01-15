@@ -1,4 +1,5 @@
 ### Java Basics ### 
+    
     -Bitwise Operators : perform manipulation of individual bits of a number. They can be used with any of the integer types.
     	&       Bitwise AND			 (true only all cases are true (1 & 1))
     	^       Bitwise exclusive OR (true when one case is true (1^0 || 0^1) and false in the rest (1^1 || 0^0))
@@ -6,69 +7,82 @@
     -The | and & operators, when applied to boolean operands, ensure that both the sides are evaluated. This is opposed to || and && operators, 
         which do not evaluate the Right Hand Side operand if the result can be known by just evaluating the Left Hand Side.
     -Shift Operators : shift the bits of a number left or right thereby multiplying or dividing the number by two respectively.
-    They can be used when we have to multiply or divide a number by two
-    	~       Unary bitwise complement
-    	<<      Signed left shift
-    	>>      Signed right shift
-    	>>>     Unsigned right shift
+        They can be used when we have to multiply or divide a number by two
+    	    ~ (Unary Bitwise Complement): Inverts bits. (~2 = -3).
+            << (Signed Left Shift): Multiplies by two. (2 << 1 = 4).
+            >> (Signed Right Shift): Divides by two, preserving the sign. (2 >> 1 = 1).
+            >>> (Unsigned Right Shift): Divides by two, filling left bits with zero. (2 >>> 1 = 1).
+
     -Constants in Switch Cases: Value of switch cases should be a constant, literal value, or final variable.
-    -Instance initialization order : class static fields, static intializers, instance fields, instance initializers, constructors
-    -Transient Field Defaults: The default value for transient fields is null.
-    -String str = null; String newStr = "a " + str; => "a null"
-    -Locale and Resource Bundles: If a matching key is not found in the specified bundle, the default locale bundle is used.
-    -this(params) can only be called in a constructor and that too as a first statement not in a method
-    -Inner Class Instantiation: An inner class requires an instance of its outer class for instantiation, e.g., new OuterClass().new InnerClass()
-    	or via an outer class instance.
-    -Generic Wildcards: Cannot occur on the right side of assignments.
-    -List<?> is same as List<? extends Object> : A List containing instances of some class that extends Object class.
     - "=" has least precedence of all operators
     -Array Initializer Block: 
         -Cannot specify length when using an initializer block : new String[3]{ "a", "b", "c"} 
         -Cannot specify the size on left hand side : int i[4] = { 1, 2, 3, 4 } ;
-        -int i[ ][ ] = { { 1, 2 }, new int[ 2 ] } ; is Valiud
-    -Inheritance of Constructors: If a parent class only declares an args constructor, the child must explicitly declare a constructor with super().
-    -Static and Instance Initializers: Both can access static variables.
-    -String substring(int beginInclusiveIndexFrom0) = "Hello World".substring(6); from W = "World"
-    -String substring(int beginInclusiveIndexFrom0, int endExclusiveIndex) : "Hello World".substring(0, 5) = "Hello" 01234  
-    -int indexOf(int ch, int fromIndex) = Returns the index of the first occurrence of the specified character, starting the search at the specified index. 
-    -The compiler does not provide the default no-args constructor if the programmer provides any other constructor for the class.
-    -An overriding method cannot throw an exception that is a super class of the exception thrown by the overridden method.  Or not throw an exception at all.
-    -If a class extends and abstract class and implements an Interface and both of them has a static class with the same name
-    -Accessing a static field of a superclass doesn't trigger initialization of it's child class or it's constructor
-        the abstract class is the one that can be used not the interface one
-    -Static methods are never overriden because they are not inherited like instance methods, they belong to their classes
-    -Immutable Classes: Must be non-extendable outside the class declaration, and their data cannot be modified by the caller.
-    -Sealed Classes/Interfaces: 
-        -Must have a permits claus (unless nested : It is ok for a nested sealed class to omit the permits clause.)
-        -All subclasses of a sealed class must belong to the same module (or to the same package if the sealed class is not a part of a named module).
-            even if a sealed class is visible outside a module, it cannot be extended by classes of other modules.
-    -Type Bounds in Generics: "? super Number" means "a super-type of Number" (e.g., Object and Number).
-    -NavigableMap is extends SortedMap to provide navigation methods, used to navigate the map in both ascending and descending key order.
+        -int i[ ][ ] = { { 1, 2 }, new int[ 2 ] } ; //is Valid
     -Division by Zero in Java: Integral division by zero throws ArithmeticException, while floating-point division results in POSITIVE_INFINITY or NEGATIVE_INFINITY.
-    -if(x % 3 == 0) : checks multiples of x (divisible w/o reminder)
+    -if(x % 3 == 0) : checks multiples of x (divisible without a reminder)
     - && checks if lefthand operand is false, || checks if lefthand operand is true. Both will not check the right operand
-    -an Inherited classes' Constructor cannot be private (constructor of super class has to be called via super())
-    -A class implements Comparable interface when it wants to let an object of that class to be compared with another object of that class. A Comparable constitutes the "natural" ordering of objects of that class.
-        When a class implements Comparable, you can sort a collection (or array) of objects of that class using Collections.sort (or Arrays.sort) without requiring a separate Comparator object.
-    -compareTo(Obj obj) takes only one argument -> Comparable interface method
-    -A extends B, so a A is-a B
-    -Hashset allows null values
-    -According to the rule of covariant returns, an overriding method must return either the same type or a subtype of the type returned by the overridden method. 
-    -Stream can be sorted with stream().sorted()    
-    -stream.count() returns a long
-    -A local variable needs to be final or effectively final to be accessed from an INNER CLASS OR lambda expression.
-    -Pay attention to unreachable code in try-catch-finally 
-    -StringBuilder and String methods : 
-          StringBuilder append(CharSequence s, int start, int end)
-          StringBuilder insert(int dstOffset, CharSequence s, int start, int end)
-          StringBuilder replace(int start, int end, String str)
-          String substring(int start, int end)
-    -GC : 
+    
+    
+    OOP :
+
+        -Instance initialization order : class static fields, static intializers, instance fields, instance initializers, constructors
+        -this(params) can only be called in a constructor and that too as a first statement, and not in a method
+        -Inner Class Instantiation: An inner class requires an instance of its outer class for instantiation, e.g., new OuterClass().new InnerClass()
+            or via an outer class instance.
+        -Inheritance of Constructors: If a parent class only declares an args constructor, the child must explicitly declare a constructor with super().
+        -Static and Instance Initializers: Both can access static variables.
+        -The compiler does not provide the default no-args constructor if the programmer provides any other constructor for the class.
+        -An overriding method cannot throw an exception that is a super class of the exception thrown by the overridden method.  But can not throw an exception at all.
+        -If a class extends and abstract class and implements an Interface and both of them has a static class with the same name = there is no conflict 
+            static nested classes are associated with their outer class or interface, and they must be accessed using their fully qualified names, which include the name of the outer class or interface.
+        -Accessing a static field of a superclass doesn't trigger initialization of it's child class or it's constructor
+            the abstract class is the one that can be used not the interface one
+        -Static methods are never overriden (but hidden) because they are not inherited like instance methods, they belong to their classes
+        -Immutable Classes: Must be non-extendable outside the class declaration, and their data cannot be modified by the caller.
+        -Sealed Classes/Interfaces: 
+                -Must have a permits clause (unless nested : It is ok for a nested sealed class to omit the permits clause.)
+                -All subclasses of a sealed class must belong to the same module (or to the same package if the sealed class is not a part of a named module).
+                    even if a sealed class is visible outside a module, it cannot be extended by classes of other modules.
+                -sealed and non-sealed keywords can comme before or after public/private ..
+        -an Inherited classes' Constructor cannot be private (constructor of super class has to be called via super())
+        -A class implements Comparable interface when it wants to let an object of that class to be compared with another object of that class. A Comparable = "natural" ordering of objects of that class.
+            When a class implements Comparable, you can sort a collection (or array) of objects of that class using Collections.sort (or Arrays.sort) without requiring a separate Comparator object.
+        -compareTo(Obj obj) takes only one argument -> Comparable interface method
+        -A extends B, so a A is-a B
+        -According to the rule of covariant returns, an overriding method must return either the same type or a subtype of the type returned by the overridden method. 
+            -primitives must be the same
+        -A local variable needs to be final or effectively final to be accessed from an INNER CLASS OR lambda expression.
+        -A virtual call : a call is bound to a method at runtime and not at compile time. All non-private and non-final instance method calls are virtual.
+        -instanceof :
+             A pattern variable is not allowed to shadow a local variable: A a = null; if(c instanceof A a ) // failure to compile
+             null instanceof Object a = false
+        -Locale and Resource Bundles: If a matching key is not found in the specified bundle, the default locale bundle is used.
+    GC : 
         1. An object can be made eligible for garbage collection by making sure there are no references pointing to that object.
         2. You cannot directly invoke GC. You can suggest the JVM to perform garbage collection by calling System.gc(); no guarantee for execution
         3. Objects pointed to by static variables of a class are not collected even when all objects of that class are collected because they belong 
             to the class (and not to the instance of the class). They are GCed only when the class itself is unloaded by the class loader.
-    -Serialization : 
+
+    Generics : 
+        -Generic Wildcards: Cannot occur on the right side of assignments. 
+            Wildcards are not concrete types and cannot be used to instantiate objects. They are used in type declarations for flexibility, allowing for various kinds of type relationships.
+        -List<?> is same as List<? extends Object> : A List containing instances of some class that extends Object class.
+        -Type Bounds in Generics: "? super Number" means "a super-type of Number" (e.g., Object and Number).
+        -Must use a type without bounds while instantiating : new ArrayList<? super Number>() is invalid, new ArrayList() is OK ( all type information are removed : type erasure)
+        -Wildcards (?) are used for declaring variables, parameters, and return types, but they are not used in actual object creation (instantiation).
+
+    String : 
+        -String str = null; String newStr = "a " + str; => "a null"
+        methods() :  
+             -String substring(int beginInclusiveIndexFrom0) = "Hello World".substring(6); from W = "World"
+             -String substring(int beginInclusiveIndexFrom0, int endExclusiveIndex) : "Hello World".substring(0, 5) = "Hello" 01234  
+             -int indexOf(int ch, int fromIndex) = Returns the index of the first occurrence of the specified character, starting the search at the specified index. 
+              -StringBuilder append(CharSequence s, int start, int end)
+              -StringBuilder insert(int dstOffset, CharSequence s, int start, int end)
+              -StringBuilder replace(int start, int end, String str)
+
+    Serialization : 
         Constructor and Initializers During Deserialization:
             -Class constructors and instance initializers are not called.
             -Fields not in the serialized file are set to default values (numbers to 0, booleans to false, objects to null).
@@ -83,14 +97,107 @@
             -If serialVersionUID matches, deserialization completes successfully.
         Superclass Behavior:
             -If a superclass is not serializable, its constructor is called during deserialization.
-    -A virtual call : a call is bound to a method at runtime and not at compile time. All non-private and non-final instance method calls are virtual.
-    -instanceOf :
-        A pattern variable is not allowed to shadow a local variable: A a = null; if(c instanceof A a ) // failure to compile
+
+
+###  DateTime API ### 
+
+    -Timezones : Substracting hours from  -GMT timezone is equivalent to adding them (at 9:00 -6GMT = 9 + 6hours = 15:00 GMT)
+    -Period affects only the date component and doesn't alter time, whereas Duration can impact the time component, 
+        particularly around Daylight Saving Time (DST) transitions.    
+    -Duration (PT) does not convert hours into days (25 hours will remain as 25 hours instead of 1 day and 1 hour) PT25H (Duation : HoursMinutesSeconds)
+    -Duration of 0 is printed as 0S and a Period of 0 is printed as 0D.
+    -DateTimeFormatter.ofPattern("eeee"); eeee is day of week (Monday)
+        less than 4 pattern letters will use the short form. Exactly 4 pattern letters will use the full form. Exactly 5 pattern letters will use the narrow form. more than 5 times it will thrown an exception. 
+    -Instant's truncatedTo() can take only ChronoUnit Days and lower (half days, hours, seconds..)
+        : Instant.ofEpochSecond(1945820820).truncatedTo(ChronoUnit.DAYS) truncates to the start of the day in UTC & zeroes out the hours minutes seconds : 2031-08-30T00:00:00Z
+
+
+###  Interfaces ### 
+        -Any field in an interface is implicitly public, static, and final, whether these keywords are specified or not.
+        -Fields on an Interface must always be initialized.
+    Inheritance:
+        -Inheriting ambiguous fields or methods doesn't cause issues unless referred to ambiguously, which leads to compile-time errors.
+        -Interfaces can extend other interfaces.
+        -An interface can extend from any number of interfaces: interface A extends B, C, D.
+    Method Specifications:
+        -Only methods of an interface can be private. Private/protected fields are not allowed.
+        -Static Interface Methods cannot call default, abstract, or non-static private interface methods.
+        -Static methods can never be abstract (neither in an interface nor in a class).
+        -An interface default and static method must have a body.
+        -Private methods are not inherited.
+    Method Redefinition and Overriding:
+        -An interface can redeclare a default method and provide a different implementation or make it abstract.
+        -A default method cannot be overridden by a static method. (A default method is a non-static method.)
+        -You cannot override a non-static method with a static method and vice versa.
+
+### Collections and Data Structures ### 
+
+    -HashMap vs Hashtable: HashMap allows both key and value to be null, unlike Hashtable.
+    -Hashset allows null values
+    -An abstract class is allowed not to implement any methods of an implemented interface.
+    -List.subList method returns a view backed by the original list. It doesn't change the existing list.
+    	But if you modify the subList, the changes will be visible in the original list.
+    -NavigableMap extends SortedMap to provide navigation methods, used to navigate the map in both ascending and descending key order.
+    -Pay attention to what stream() methods return, is it an intermediate method followed by nothing, is filter() called after xMatch() ?
+    -steam().peak(consumer) : performs an action on the elements of the stream :
+        it expects a consumer lambda like peek(System.out::println), must be used with terminal operation or it will do nothing.
+    -flatMap is used when each element of a given stream can itself generate a Stream of objects. 
+        It's used to extract the elements of each of those individual streams and return a stream that contains all those elements.
+    -Summary statistics is an object that contains the computation of count, min, max, sum, and average.
+    -Queue is a FIFO structure (add to the end - remove from the front)
+     	offer(e)/add(e)  add an element to the end or tail
+    	poll()/remove() remove an element from the front or head
+    -Stack is a LIFO structure (add to the front - remove from the front)
+     	push(e) push adds to the front
+    	pop() removes from the front.First
+    -Collections.unmodifiableList creates an unmodifiable view of the underlying list, restricting add/remove operations on the view. 
+        However, modifications to the original list are reflected in this view.
+    -Collectors.joining(delim, prefix, suffix) returns a Collector that joins all the Strings in the given Stream separated by comma and then prefixes and suffixes the resulting String
+    -average() method actually returns an OptionalDouble (and not Double).
+    
+### Functional/Lambda
+
+    -Local variables referenced from a lambda expression must be final or effectively final
+    -Abstract Method Source: The abstract method in a functional interface can be declared in the interface itself or a super interface.
+    -Method Constraints: No constraints on parameter types or return type. The interface may contain other default or static methods.
+    -Single Abstract Method Requirement: The core requirement is having exactly one abstract method.
+    -a lambda expression does not create a new scope for variables validateEmployee(e, e->e.age<10000) must be validateEmployee(e, x -> x.age <10000) (e still in scope)
+    -Stream can be sorted with stream().sorted()    
+    -stream.count() returns a long
+
+### Exception Handling ### 
+
+    -Try-Catch-Finally Behavior: If finally throws an exception, other exceptions thrown in catch clauses will be ignored.
+    -Try-with-Resources Statement: A resource must be marked final or be effectively final.
+    -Catch Block Exceptions: Exceptions thrown by a catch cannot be caught by subsequent catch blocks in the same method.
+    -An overriding method can only throw either the checked exceptions (and their subclasses) listed in the throws clause of the overridden method or decide not to throw any exception at all. 
+    -IException is a subclass of Exception. You cannot include classes that are related by inheritance in the same multi-catch block.
+    -Catch and finally blocks are executed after the resource opened in try-with-resources is closed.
+    -Pay attention to unreachable code in try-catch-finally 
+    -No need to catch RuntimeExceptions (like IndexOutOfBoundsException)
+    -if finally throws an exception (always last) it will be the one thrown by the code block or method
+    -Exception thrown by a catch cannot be caught by the following catch blocks at the same level.
+    -Unchecked vs. Checked Exceptions:
+        Unchecked Exceptions (e.g., RuntimeException, Error subclasses) don't need to be caught explicitly.
+        Checked Exceptions must be caught or declared; failure to handle them leads to a compilation error.
+    -Optional Class Methods:
+        Optional.of(): Throws NullPointerException if the argument is null.
+        Optional.ofNullable(): Returns an empty Optional for null arguments.
+        optional.orElse() and optional.orElseGet(): Provide fallback mechanisms.
+    -Errors are usually thrown due to resource constrains encountered by the JVM. They do not necessarily indicate a programming bug.
+    -RuntimeExceptions should be identified during testing and eliminated by fixing the code, while Errors should be eliminated by fixing the environment.
+    -Constructor must declare all the checked exceptions declared in the base constructor (or the super classes of the checked exceptions). 
+        They may add other exceptions as well. This behavior is exactly opposite from that of methods. 
+        The overriding method cannot throw any checked exception other than what the overridden method throws. It may throw subclasses of those exceptions as well.
+    -If both catch and finally block throw an exception. The exception thrown by the finally block is the one that is thrown from the method. 
+        The catch exception is lost and not added to the suppressed exceptions list of the exception thrown from the finally block.
+
+
 
 ### Records  ###
     Location & Nature:
         -Can be top-level, nested (implicitly static), or local (within a method).
-        -Implicitly final; can't be abstract, sealed, or non-sealed.
+        -Cannot be abstract, sealed, or non-sealed. It is always final.
         -cannot extend Record
         -can implement interfaces
         -Serialization uses canonical constructor.
@@ -131,86 +238,6 @@
             }
         }
 
-
-###  DateTime API ### 
-
-    -Timezones : Substracting hours from  -GMT timezone is equivalent to adding them (at 9:00 -6GMT = 9 + 6hours = 15:00 GMT)
-    -Period affects only the date component and doesn't alter time, whereas Duration can impact the time component, 
-        particularly around Daylight Saving Time (DST) transitions.    
-    -Duration (PT) does not convert hours into days (25 hours will remain as 25 hours instead of 1 day and 1 hour) PT25H (Duation : HoursMinutesSeconds)
-    -Duration of 0 is printed as 0S and a Period of 0 is printed as 0D.
-    -DateTimeFormatter.ofPattern("eeee"); eeee is day of week (Monday)
-        less than 4 pattern letters will use the short form. Exactly 4 pattern letters will use the full form. Exactly 5 pattern letters will use the narrow form. more than 5 times it will thrown an exception. 
-    -Instant's truncatedTo() can take only ChronoUnit Days and lower (half days, hours, seconds..)
-        : Instant.ofEpochSecond(1945820820).truncatedTo(ChronoUnit.DAYS) truncates to the start of the day in UTC & zeroes out the hours minutes seconds : 2031-08-30T00:00:00Z
-
-
-###  Interfaces ### 
-
-    Basic Properties:
-        -Any field in an interface is implicitly public, static, and final, whether these keywords are specified or not.
-        -Fields on an Interface must always be initialized.
-    Inheritance:
-        -Inheriting ambiguous fields or methods doesn't cause issues unless referred to ambiguously, which leads to compile-time errors.
-        -Interfaces can extend other interfaces.
-        -An interface can extend from any number of interfaces: interface A extends B, C, D.
-    Method Specifications:
-        -Only methods of an interface can be private. Private/protected fields are not allowed.
-        -Static Interface Methods cannot call default, abstract, or non-static private interface methods.
-        -Static methods can never be abstract (neither in an interface nor in a class).
-        -An interface default and static method must have a body.
-        -Private methods are not inherited.
-    Method Redefinition and Overriding:
-        -An interface can redeclare a default method and provide a different implementation or make it abstract.
-        -A default method cannot be overridden by a static method. (A default method is a non-static method.)
-        -You cannot override a non-static method with a static method and vice versa.
-
-### Collections and Data Structures ### 
-
-    -HashMap vs Hashtable: HashMap allows both key and value to be null, unlike Hashtable.
-    -Abstract Classes and Interfaces: An abstract class is allowed not to implement any methods of an implemented interface.
-    -List.subList method returns a view backed by the original list. It doesn't change the existing list.
-    	But if you modify the subList, the changes will be visible in the original list.
-    -Pay attention to what stream() methods return, is it an intermediate method followed by nothing, is filter() called after xMatch() ?
-    -steam().peak() peak performs an action on the elements of the stream :
-    it expects a consumer lambda like peek(System.out::println), must be used with terminal operation or it will do nothing.
-    -flatMap is used when each element of a given stream can itself generate a Stream of objects. 
-        It's used to extract the elements of each of those individual streams and return a stream that contains all those elements.
-    -Summary statistics just means the computation of count, min, max, sum, and average.
-    -Queue is a FIFO structure (add to the end and remove from the front)
-     	offer(e)/add(e)  add an element to the end or tail
-    	poll()/remove() remove an element from the front or head
-    -Stack is a LIFO structure (add to the front and remove from the front)
-     	push(e) push adds to the front
-    	pop() removes from the front.First
-    -Collections.unmodifiableList creates an unmodifiable view of the underlying list, restricting add/remove operations on the view. 
-        However, modifications to the original list are reflected in this view.
-    -Collectors.joining(delim, prefix, suffix) returns a Collector that joins all the Strings in the given Stream separated by comma and then prefixes and suffixes the resulting String
-    -average() method actually returns an OptionalDouble (and not Double).
-
-### Exception Handling ### 
-
-    -Try-Catch-Finally Behavior: If finally throws an exception, other exceptions thrown in catch clauses will be ignored.
-    -Try-with-Resources Statement: A resource must be marked final or be effectively final.
-    -Catch Block Exceptions: Exceptions thrown by a catch cannot be caught by subsequent catch blocks in the same method.
-    -An overriding method can only throw either the checked exceptions (and their subclasses) listed in the throws clause of the overridden method or decide not to throw any exception at all. 
-    -IException is a subclass of Exception. You cannot include classes that are related by inheritance in the same multi-catch block.
-    -Catch and finally blocks are executed after the resource opened in try-with-resources is closed.
-    -No need to catch RuntimeExceptions (like IndexOutOfBoundsException)
-    -Unchecked vs. Checked Exceptions:
-        Unchecked Exceptions (e.g., RuntimeException, Error subclasses) don't need to be caught explicitly.
-        Checked Exceptions must be caught or declared; failure to handle them leads to a compilation error.
-    -Optional Class Methods:
-        Optional.of(): Throws NullPointerException if the argument is null.
-        Optional.ofNullable(): Returns an empty Optional for null arguments.
-        optional.orElse() and optional.orElseGet(): Provide fallback mechanisms.
-    -Errors are usually thrown due to resource constrains encountered by the JVM. They do not necessarily indicate a programming bug.
-    -RuntimeExceptions should be identified during testing and eliminated by fixing the code, while Errors should be eliminated by fixing the environment.
-    -Constructor must declare all the checked exceptions declared in the base constructor (or the super classes of the checked exceptions). 
-        They may add other exceptions as well. This behavior is exactly opposite from that of methods. 
-        The overriding method cannot throw any checked exception other than what the overridden method throws. It may throw subclasses of those exceptions as well.
-    -If both catch and finally block throw an exception. The exception thrown by the finally block is the one that is thrown from the method. 
-        The catch exception is lost and not added to the suppressed exceptions list of the exception thrown from the finally block.
 
 ### NIO ### 
 
@@ -257,6 +284,7 @@
 
     -Overview
         -Basic Structure: module-info.java is mandatory and must at least declare the module's name.
+        -modular JDK is divided of two kinds of modules - the standard modules (java.) and the non-standard modules (jdk.)
         -Module and Package Relationship: Modules contain packages, but packages don't contain or depend on modules.
         -Exports and Dependencies:
         -Only packages can be exported; individual classes cannot.
@@ -264,9 +292,10 @@
         -The "uses" clause declares dependence on a service, while "requires" specifies dependence on a module.
         -"Requires transitive <module name>": Modules reading a module with this clause implicitly read the transitive module, avoiding the need for explicit declaration.
         -Service Usage: A module utilizing a service must require the module defining the service interface.
-        -You cannot have more than one module in a directory. Although you may package a module into a jar, put multiple such module jars in a directory, and put that directory (which contains multiple module jars) on the module path.
+        -You cannot have more than one module in a directory. Although you may package a module into a jar, put multiple such module jars in a directory, and put that directory 
+            (which contains multiple module jars) on the module path.
         -A modular jar can still be used like a regular jar. So, any non-modular application can use a modularized jar by putting that jar in the classpath just like any other jar.
-
+        --cp, -classpath, and --class-path are equivalent options and the nonmodular jars should be put on classpath instead of module-path.
     -Module Operations and Tools
         Running Modules: Use --module-path and --module (e.g., java --module-path course.jar --module com.course.Main).
         Jmod Tool Options: Includes create, extract, list, describe, hash.
@@ -322,54 +351,88 @@
 
 ### Enums ###
 
-    Interface Implementation: Enums can implement interfaces.
-    Declaration Order: Enum constants must be declared first in the enum type.
-    Constructor Visibility: Enum constructors are always implicitly private and cannot be public or protected.
-    Implicit Constructor: If no constructor is declared, an implicit private no-argument constructor is provided.
-    Final and Non-extendable: Enums are implicitly final, so they can't be extended or sealed, and they inherently extend java.lang.Enum.
-    Singleton Nature: Enums maintain a single instance of each constant, disallowing cloning (the clone method in java.lang.Enum is final).
-    Built-in Methods:
+    -Interface Implementation: Enums can implement interfaces.
+    -Declaration Order: Enum constants must be declared first in the enum type.
+    -Constructor Visibility: Enum constructors are always implicitly private and cannot be public or protected.
+    -Implicit Constructor: If no constructor is declared, an implicit private no-argument constructor is provided.
+    -Final and Non-extendable: Enums are implicitly final, so they can't be extended or sealed, and they inherently extend java.lang.Enum.
+    -Singleton Nature: Enums maintain a single instance of each constant, disallowing cloning (the clone method in java.lang.Enum is final).
+    -Built-in Methods:
         values(): Returns an array of enum constants.
         valueOf(String): Returns the enum constant matching the string argument (case-sensitive) or throws IllegalArgumentException.
         ordinal(): Returns the constant's index (starting from 0).
         name(): Returns the enum constant's name as declared.
         toString() Method: By default, returns the enum's name, but it's overridable.
-    Comparable Implementation: Enums implement java.lang.Comparable, following the natural order of their ordinal values.
-    Definition Scope: Enums can be defined inside methods or constructors but without any access modifiers.
-    Field Access Restrictions: Non-final static fields cannot be accessed from an enum's constructor.
+    -Comparable Implementation: Enums implement java.lang.Comparable, following the natural order of their ordinal values.
+    -Definition Scope: Enums can be defined inside methods or constructors but without any access modifiers.
+    -Field Access Restrictions: Non-final static fields cannot be accessed from an enum's constructor.
 
-### Functional/Lambda
-
-    -Local variables referenced from a lambda expression must be final or effectively final
-    -Abstract Method Source: The abstract method in a functional interface can be declared in the interface itself or a super interface.
-    -Method Constraints: No constraints on parameter types or return type. The interface may contain other default or static methods.
-    -Single Abstract Method Requirement: The core requirement is having exactly one abstract method.
-    -Variable Access: Local variables referenced in a lambda expression must be final or effectively final.
-    -forEach method expects a Consumer as an argument.
-    -a lambda expression does not create a new scope for variables validateEmployee(e, e->e.age<10000) must be validateEmployee(e, x -> x.age <10000) (e still in scope)
-    -pay attention to stream operations result loss is result is not assigned to a variable
 
 ### Concurrency ### 
 
-    CopyOnWriteArrayList: A thread-safe variant of ArrayList. When the list is modified, it creates a fresh copy of the underlying array, making it ideal for environments with more reads than writes.
-    java.util.concurrent API Usage: Commonly used for managing and coordinating concurrent tasks. Key components include Executors for thread pool management, ConcurrentHashMap for concurrent hash maps, and CountDownLatch, CyclicBarrier, Semaphore for synchronization aids.
-    wait() vs sleep(): wait() releases the monitor lock allowing other threads to synchronize on the locked resource, while sleep() keeps the monitor lock, pausing the current thread without releasing any locks.
-    Deadlock: Occurs when two or more threads block forever, each waiting for the other to release a resource.
-    Livelock: A situation where threads are unable to make further progress, despite being active and not blocked, typically due to constantly responding to each other.
-    Thrashing: Occurs when a system spends more time processing task overhead than executing tasks, often seen in poor task or resource management.
-    Starvation: Happens when a thread is perpetually denied access to resources and unable to make progress.
-    Thread Safe Classes: Classes that are safe to use in a multithreaded environment, ensuring internal consistency and state when accessed by multiple threads. Examples include Vector, Hashtable, and classes in java.util.concurrent.
-    UnsupportedOperationException: Thrown to indicate that a requested operation is not supported, often used in immutable collections or when an operation is not applicable for a specific class.
-    Worker Threads (Runnable/Callable): Threads that execute tasks. Runnable defines a task and Callable is similar but can return a result and throw checked exceptions.
+    -CopyOnWriteArrayList: A thread-safe variant of ArrayList. When the list is modified, it creates a fresh copy of the underlying array, making it ideal for environments with more reads than writes.
+        Multiple threads can safely add and remove objects from CopyOnWriteArrayList simultaneously
+    -java.util.concurrent API Usage: Commonly used for managing and coordinating concurrent tasks. Key components include Executors for thread pool management, 
+        ConcurrentHashMap for concurrent hash maps, and CountDownLatch, CyclicBarrier, Semaphore for synchronization aids.
+    -wait() vs sleep(): wait() releases the monitor lock allowing other threads to synchronize on the locked resource, while sleep() keeps the monitor lock, pausing the current thread without releasing any locks.
+    -ConcurrentHashMap doesn't support null values
+    Multithreading issues : 
+        -Deadlock: Occurs when two or more threads block forever, each waiting for the other to release a resource.
+        -Livelock: A situation where threads are unable to make further progress, despite being active and not blocked, typically due to constantly responding to each other.
+        -Thrashing: Occurs when a system spends more time processing task overhead than executing tasks, often seen in poor task or resource management.
+        -Starvation: Happens when a thread is perpetually denied access to resources and unable to make progress.
+        -Thread Safe Classes: Classes that are safe to use in a multithreaded environment, ensuring internal consistency and state when accessed by multiple threads. 
+            Ex (Immutable classes, Vector, Hashtable, classes in java.util.concurrent).
+    
     Identifying Threading Issues:
-        Look for deadlocks, livelocks, and race conditions.
-        Use thread dumps and monitoring tools.
-        Inspect code for common issues like improper synchronization and thread confinement violations.
-    Executor Service: A framework provided by the java.util.concurrent package to manage threads and tasks. It simplifies thread management and offers utilities like thread pools. Benefits include resource management, improved performance, and increased scalability.
-    When a synchronized method ends with a checked exception, the intrinsic lock held by the thread is released automatically.  
-    The intrinsic lock is released when the method ends. Irrespective of how it ends.
-    A thread acquires the intrinsic lock of an object when it enters synchronized method on that object or when it enter a synchronized block that uses that object. The lock is not acquired when a thread enters a non-synchronized method.
+        -Look for deadlocks, livelocks, and race conditions.
+        -Use thread dumps and monitoring tools.
+        -Inspect code for common issues like improper synchronization and thread confinement violations.
+    
+    -UnsupportedOperationException: Thrown to indicate that a requested operation is not supported, often used in immutable collections or when an operation is not applicable for a specific class.
+    -Worker Threads (Runnable/Callable): Threads that execute tasks. Runnable defines a task and Callable is similar but can return a result and throw checked exceptions.
+    -Executor Service: A framework provided by the java.util.concurrent package to manage threads and tasks. It simplifies thread management and offers utilities like thread pools. Benefits include resource management, improved performance, and increased scalability.
+    -When a synchronized method ends with a checked exception, the intrinsic lock held by the thread is released automatically.  
+    -The intrinsic lock is released when the method ends. Irrespective of how it ends.
+    -A thread acquires the intrinsic lock of an object when it enters synchronized method on that object or when it enter a synchronized block that uses that object. The lock is not acquired when a thread enters a non-synchronized method.
 
 ### Misc ###  
 
     Run the app : > javac src/main/java/run/Run.java && java -cp src/main/java/ run.Run
+
+
+Other notes :
+-record cannot be sealed and can implement a method that has a getter like the iface abstract method
+-substring begin index start from 0 not 1
+-exceptions don't enhance security by reporting errors, they improve code because of clearly
+sparating error handling code from app main logic
+-Collection.sort modifies the original list that is called on
+-Optional.orElseGet() and orElse() doesn't throw an exception 
+-Optional.of() throws a NullPointerException if the passed value is null
+-A loader of a given service can be retrived by :
+    -ServiceLoader<?> loader = ServiceLoader.load(?.class)
+    -Once the service provider is loaded, iterate through it using :
+        -for(? service: loader) service.serviceMethod(); 
+            // java.util.ServiceLoader implements java.util.Iterable
+        -Optional<?> service = loader.findFirst();
+-There is no toPath method, Path is an interface it cannot be instanciated
+-Paths.get("/", "file.txt") joins strings into a path
+-Collectors.summarizingDouble(mappingFunc) = returns DoubleSummaryStatistics object containing getCount/Min/Max/Sum/Average
+    getCount return long instead of double
+-only one top level class can be in a single file (one visibility keyword)
+    public class A  // ok
+    class B  //ok
+    class C  //ok
+-connection.commit() to commit changes
+-stream.forEach doesn't change the elements of the orginal list unlike map
+-path.getName(0) doesn't return root (c:/ or /) it returns the 2nd element of path
+-Bottom Up Approach for modularizing an application : 
+    -convert low lovel libs into modular jars before high level jars
+    -ex : an app main code in app.jar and uses datalayer.jar and mysql.jar   
+        low level libs are mysql.jar and then datalayer
+    -for topdown approach app.jar must be converted into named module (module-info.java)
+        requires datalayer and place datalayer on module path, mysql.jar on classpath 
+-jdeps --jdk-internals : uses static analysis to analyzes all classes of the given jar file 
+    for class level dependence on jdk's internal API. 
+    If any such dependence is found, it is printed with a suggestion for replacement.
+-ls.stream().max(Comparator.comparing(a->a)).get(); max takes a comparator arg
