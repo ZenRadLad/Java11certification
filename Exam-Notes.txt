@@ -19,10 +19,13 @@
         -Cannot specify length when using an initializer block : new String[3]{ "a", "b", "c"} 
         -Cannot specify the size on left hand side : int i[4] = { 1, 2, 3, 4 } ;
         -int i[ ][ ] = { { 1, 2 }, new int[ 2 ] } ; //is Valid
+        -var i = { { 1, 2 }, new int[ 2 ] } ; // not valid : int[][] is required on the right side.
     -Division by Zero in Java: Integral division by zero throws ArithmeticException, while floating-point division results in POSITIVE_INFINITY or NEGATIVE_INFINITY.
     -if(x % 3 == 0) : checks multiples of x (divisible without a reminder)
     - && checks if lefthand operand is false, || checks if lefthand operand is true. Both will not check the right operand
-    
+    -var[] is invalid 
+    -pay attention when an object has or has not time zone informations when formatting or casting
+
     
     OOP :
 
@@ -154,6 +157,11 @@
         However, modifications to the original list are reflected in this view.
     -Collectors.joining(delim, prefix, suffix) returns a Collector that joins all the Strings in the given Stream separated by comma and then prefixes and suffixes the resulting String
     -average() method actually returns an OptionalDouble (and not Double).
+    -HashMap.merge(k, v, biFunction remappingFunction) takes a BiFunction not a Function
+    -reduce takes either :
+        -binaryOperator
+        -identity, binaryOperator
+        -indentity, biFunction accumulator, binaryOperator combiner
     
 ### Functional/Lambda
 
@@ -184,6 +192,7 @@
         Optional.of(): Throws NullPointerException if the argument is null.
         Optional.ofNullable(): Returns an empty Optional for null arguments.
         optional.orElse() and optional.orElseGet(): Provide fallback mechanisms.
+    -DateTimeException extends RuntimeException, so it need not be caught or declared in the throws clause.
     -Errors are usually thrown due to resource constrains encountered by the JVM. They do not necessarily indicate a programming bug.
     -RuntimeExceptions should be identified during testing and eliminated by fixing the code, while Errors should be eliminated by fixing the environment.
     -Constructor must declare all the checked exceptions declared in the base constructor (or the super classes of the checked exceptions). 
@@ -297,6 +306,7 @@
         -A modular jar can still be used like a regular jar. So, any non-modular application can use a modularized jar by putting that jar in the classpath just like any other jar.
         --cp, -classpath, and --class-path are equivalent options and the nonmodular jars should be put on classpath instead of module-path.
     -Module Operations and Tools
+        If you want to compile a module, then --module-source-path and -d options are required.
         Running Modules: Use --module-path and --module (e.g., java --module-path course.jar --module com.course.Main).
         Jmod Tool Options: Includes create, extract, list, describe, hash.
         Jdeps Tool: Analyzes dependencies of class files or JARs, specifying dependencies via --module-path, --class-path, or -cp.
@@ -307,6 +317,7 @@
             run a class that is present in the jar : java -classpath a.jar com.example.a.Main
 
     -Module Accessibility and Interactions
+        -any non-modular application can simply add the modular jar on the classpath like any other non-modular jar.
         -Unnamed vs. Named Modules: Classes in unnamed modules can't be accessed by named modules.
         -Automatic Modules: They can access classes from all other modules.
         -Java modules do allow a service consumer to find a service implementation, however, it is not done using dependecy injection. 
@@ -327,6 +338,10 @@
 
     Connection Management
         -JDBC URL Format: The standard format is jdbc:<subprotocol>:<subname>. This format helps in establishing a connection to the database.
+            valid urls :
+                -jdbc:oracle:thin:@localhost:1521:mydb
+                -jdbc:mysql://192.168.1.10:3306/sample
+                -jdbc:derby:1106:sample
         -AutoCommit Behavior: Using connection.setAutoCommit(true) commits the current transaction automatically.
         -Driver Registration (JDBC 4.0 and later): If the JDBC driver's JAR file is in the classpath, the driver is automatically registered.
             This simplifies the connection process, typically done via DriverManager.getConnection(url, userid, pwd).
@@ -348,6 +363,7 @@
 
     -In JDBC 4.0 : the drivers are loaded automatically based on the information provided by the driver's META-INF/services/java.sql.Driver file.
          No java code in necessary to load the driver classes.
+
 
 ### Enums ###
 
@@ -436,3 +452,70 @@ sparating error handling code from app main logic
     for class level dependence on jdk's internal API. 
     If any such dependence is found, it is printed with a suggestion for replacement.
 -ls.stream().max(Comparator.comparing(a->a)).get(); max takes a comparator arg
+
+
+
+2nd test :
+-left operand of instanceof must be an object not a primitives
+-anonymous classes are implicitly final and never statis
+-you cannot override a final method
+-append() method does not exist in String class
+-The exception parameter in a multi-catch clause is implicitly final 
+    catch (IOException | IndexOutOfBoundsException e)  'e' cannot be reassigned
+-All the instance or static variables are given a default values 
+    if they are not explicitly initialized.
+-local variables must be initialized explicitly
+-Locale locale = Locale.getDefault();
+-DateFormat df = DateFormat.getDateInstance(); // doesn't take locale
+-Correct streams :
+    stream().parallel
+    arrayList.parallelStream()
+-you can compare unequal primitives double == Short, int == Long
+    ype Promotion: Java automatically promotes smaller primitive types (like byte, short, char) to int or higher types as needed in comparisons.
+Explicit Casting: When comparing an int to a long, explicit casting is required.
+Wrapper Classes: Comparisons involving wrapper classes and primitives are valid as Java performs unboxing automatically.
+No Implicit Promotion to long: Comparing int and long directly is invalid without explicit casting.
+    -the wrapper object is first unboxed to its corresponding primitive type. 
+    -Then, if necessary, type promotion occurs to match the types before the comparison.
+- ? wildcard is valid on the right while instanciating but not on the left :
+    HashMap<?, List<String>> box = new HashMap<String, List<String>>();
+
+
+3rd test :
+-TreeMap keys must be comparable, cannot add String and Double as keys in a generic TreeMap
+-localDate.plus(Period.of(0, 1, 1)) // adds 1 month and 1 day, 
+    Period.of(int year,int months, int days)
+    localDate.plus(Period.ofMonths(1).ofDays(1)) will add only 1 day
+-A thread can aquire a lock on the class
+    -happens when a static synchronized method is invoked:
+        since a static method is associated with a class 
+        or acquire the lock on any class using a regular synchronized block
+    -The intrinsic lock remains acquired throughout the duration of the synchronized method. 
+-Instances of the File class are immutable. Once created, 
+    the abstract pathname represented by a File object will never change.
+-Exceptions thrown by autocloseable's close() are added to the original exception as suppressed exception
+-stream().mapToDouble returns a DoubleStream instead of Stream<Double>
+    use a DoubleBinaryOperator instead of BinaryOperator<Double> for reduction.
+-You cannot have duplicate statments in module-info.java :
+     exports com.amazing.movies; //1
+     exports com.amazing.movies to com.amazing.rentals;// invalid conflict with //1
+- / and * has the same precedence, expressions are evaluated from left to right 
+    100/10*2 is 100 / 10 then * 2 (left to right)
+-stream().sorted() require implementation of Comparable or Comparator otherwise ClassCastException is thrown
+- module providing multiple implementations of an interface : 
+    when a method of the interface is called 
+-providing two implementations on an interface will lead to compiler error :
+    use instead : provides iface with impl1, impl2
+-service provider implementation must have a no args constructor
+-binarySearch requires natural order sorted list to work 
+     Collections.reverse(letters); will lead to unpredicatble return value/ undefined value
+-ConcurrentHashMap putIfAbsent is atomic while map.containsKey() is not
+-if and else do not cascade. They are like opening and closing braces. 
+-Catch block cannot follow a finally block!
+-When you split a Spliterator, the first half goes to the resulting 
+    (new) Spliterator while the remaining half remains with the origininal one.
+-Predicate must be typed or the param must be casted
+-private interface methods can be static
+-Static interface methods can be only called called using the interface name directly.
+-Immutability of a record doesn't extend to the content of an Object of 
+    record Student(int id,  Person person)  id and Person are immutable but the content of Person is not
