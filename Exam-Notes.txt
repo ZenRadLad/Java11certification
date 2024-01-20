@@ -519,3 +519,50 @@ No Implicit Promotion to long: Comparing int and long directly is invalid withou
 -Static interface methods can be only called called using the interface name directly.
 -Immutability of a record doesn't extend to the content of an Object of 
     record Student(int id,  Person person)  id and Person are immutable but the content of Person is not
+
+
+
+
+another test:
+-java type promotion hierarchy byte > short or chart > int > long > float > double > Object
+    int is promoted to float not double
+-null reference can be used to access a static variable withtout exception
+-FileReader.read() throws FileNotFoundException if the file is not found
+-path.subpath(from0Index, endExclusiveIndex)
+-path.subpath(-1, 2) and  path.subpath(1, 1) and path.subpath(2, 3)throws IllegalArgumentException
+-String.replace('str','str') returns a new string object but returns the same object if no change
+    "String".replace('g','g') // no change same as "String"
+    "hello".concat(" world").trim().equals("hello world") is true 
+        trim() is useless, no space at the beginning or end of the string.
+-instance methods can access both static and non static methods
+-If finally block throws an exception the try exception is lost, it's not added to suppressed exception
+-Strings from different packages represent the same object
+-String s = this.toString(); is valid
+-It is possible to deserialize the older objects into the update class objects even if the 
+    original class did not explicitly define the serialVersionUID field.
+-a module cannot access non-modular classes from the classpath. 
+    You must convert non-modular third-party jar to an automatic module by putting that jar on module-path. 
+-System.console() returns null if it's not available (code run in the background)
+    so console.anyMethod() throws NPE
+-pay attention to missing commas when initializing a 2D array
+    int[][] array2D = new int[][] { { 0, 1, 2, 4} {5, 6}};
+-valid array initialization :
+    int[] arr = {1, 2};
+    int[][] arr2 = {arr, {1, 2}, arr};
+    int[][][] arr3 = {arr2};
+-DecimalFormat has no constructor that takes a Locale
+    use NumberFormat.getCurrencyInstance(locale)
+    or DecimalFormat.getCurrencyInstance(locale)
+-pay attention to FunctionalInterfaces input type String, Integer and if applyable on a List<Type>
+-pay attention to predicate condition on takeWhile and dropWhile the stream may contain 0 element
+-Files.readAllLines(path) returns a List<String> while Files.lines(path) returns a Stream<String>
+-If a service provider has public static provider() method, 
+    then it is not required for the service provider to be a subtype of the service type. 
+    Only the provider method should return a subtype of the service type.
+    ex :
+        public static InterfaceToBeImplemented provider(){
+            return new InterfaceToBeImplemented(){
+                public List<String> filter(List<String> l) { return l; }
+        };
+   }
+-If there is no provider method in the service provider class, then it must have a public no-args constructor.
