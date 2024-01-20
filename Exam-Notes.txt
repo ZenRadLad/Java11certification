@@ -18,14 +18,23 @@
     -Array Initializer Block: 
         -Cannot specify length when using an initializer block : new String[3]{ "a", "b", "c"} 
         -Cannot specify the size on left hand side : int i[4] = { 1, 2, 3, 4 } ;
-        -int i[ ][ ] = { { 1, 2 }, new int[ 2 ] } ; //is Valid
         -var i = { { 1, 2 }, new int[ 2 ] } ; // not valid : int[][] is required on the right side.
+            -Pay attention to missing commas when initializing a 2D array.
+        -Valid array initialization:
+            int[] arr = {1, 2};
+            int[][] arr2 = {arr, {1, 2}, arr};
+            int[][][] arr3 = {arr2};
+            int i[ ][ ] = { { 1, 2 }, new int[ 2 ] } ;
+
     -Division by Zero in Java: Integral division by zero throws ArithmeticException, while floating-point division results in POSITIVE_INFINITY or NEGATIVE_INFINITY.
     -if(x % 3 == 0) : checks multiples of x (divisible without a reminder)
     - && checks if lefthand operand is false, || checks if lefthand operand is true. Both will not check the right operand
     -var[] is invalid 
     -pay attention when an object has or has not time zone informations when formatting or casting
-
+    -Optional.orElseGet() and orElse() don't throw an exception.
+    -Optional.of() throws a NullPointerException if the passed value is null.
+    -Left operand of instanceof must be an object, not primitives.
+    -You can compare unequal primitives double == Short, int == Long.
     
     OOP :
 
@@ -60,6 +69,12 @@
         -instanceof :
              A pattern variable is not allowed to shadow a local variable: A a = null; if(c instanceof A a ) // failure to compile
              null instanceof Object a = false
+        -Anonymous classes are implicitly final and never static.    
+        -You cannot override a final method.
+        -Instance methods can access both static and non-static methods.
+        -DecimalFormat has no constructor that takes a Locale :
+             Use NumberFormat.getCurrencyInstance(locale) 
+             or DecimalFormat.getCurrencyInstance(locale)
         -Locale and Resource Bundles: If a matching key is not found in the specified bundle, the default locale bundle is used.
     GC : 
         1. An object can be made eligible for garbage collection by making sure there are no references pointing to that object.
@@ -74,16 +89,18 @@
         -Type Bounds in Generics: "? super Number" means "a super-type of Number" (e.g., Object and Number).
         -Must use a type without bounds while instantiating : new ArrayList<? super Number>() is invalid, new ArrayList() is OK ( all type information are removed : type erasure)
         -Wildcards (?) are used for declaring variables, parameters, and return types, but they are not used in actual object creation (instantiation).
-
+        -? wildcard is valid on the right while instantiating but not on the left:
+            HashMap<?, List<String>> box = new HashMap<String, List<String>>(); // invalid
     String : 
         -String str = null; String newStr = "a " + str; => "a null"
         methods() :  
              -String substring(int beginInclusiveIndexFrom0) = "Hello World".substring(6); from W = "World"
              -String substring(int beginInclusiveIndexFrom0, int endExclusiveIndex) : "Hello World".substring(0, 5) = "Hello" 01234  
              -int indexOf(int ch, int fromIndex) = Returns the index of the first occurrence of the specified character, starting the search at the specified index. 
-              -StringBuilder append(CharSequence s, int start, int end)
-              -StringBuilder insert(int dstOffset, CharSequence s, int start, int end)
-              -StringBuilder replace(int start, int end, String str)
+             -String.append() doesn't exist
+             -StringBuilder append(CharSequence s, int start, int end)
+             -StringBuilder insert(int dstOffset, CharSequence s, int start, int end)
+             -StringBuilder replace(int start, int end, String str)
 
     Serialization : 
         Constructor and Initializers During Deserialization:
@@ -107,6 +124,7 @@
     -Timezones : Substracting hours from  -GMT timezone is equivalent to adding them (at 9:00 -6GMT = 9 + 6hours = 15:00 GMT)
     -Period affects only the date component and doesn't alter time, whereas Duration can impact the time component, 
         particularly around Daylight Saving Time (DST) transitions.    
+    -LocalDate.plus(Period.of(0, 1, 1)) adds 1 month and 1 day. Period.of(int year, int months, int days). LocalDate.plus(Period.ofMonths(1).ofDays(1)) will add only 1 day.
     -Duration (PT) does not convert hours into days (25 hours will remain as 25 hours instead of 1 day and 1 hour) PT25H (Duation : HoursMinutesSeconds)
     -Duration of 0 is printed as 0S and a Period of 0 is printed as 0D.
     -DateTimeFormatter.ofPattern("eeee"); eeee is day of week (Monday)
@@ -162,7 +180,11 @@
         -binaryOperator
         -identity, binaryOperator
         -indentity, biFunction accumulator, binaryOperator combiner
-    
+    -Collection.sort modifies the original list that it's called on.
+    -TreeMap keys must be comparable; cannot add String and Double as keys in a generic TreeMap.
+
+
+
 ### Functional/Lambda
 
     -Local variables referenced from a lambda expression must be final or effectively final
@@ -172,17 +194,23 @@
     -a lambda expression does not create a new scope for variables validateEmployee(e, e->e.age<10000) must be validateEmployee(e, x -> x.age <10000) (e still in scope)
     -Stream can be sorted with stream().sorted()    
     -stream.count() returns a long
-
+    -Pay attention to FunctionalInterfaces input type String, Integer, and if applicable on a List<Type>.
+    -Pay attention to predicate condition on takeWhile and dropWhile the stream may contain 0 elements.
+    -Stream().mapToDouble returns a DoubleStream instead of Stream<Double>. 
+        Use a DoubleBinaryOperator instead of BinaryOperator<Double> for reduction.
 ### Exception Handling ### 
 
     -Try-Catch-Finally Behavior: If finally throws an exception, other exceptions thrown in catch clauses will be ignored.
     -Try-with-Resources Statement: A resource must be marked final or be effectively final.
     -Catch Block Exceptions: Exceptions thrown by a catch cannot be caught by subsequent catch blocks in the same method.
+    -Exceptions don't enhance security by reporting errors; they improve code by clearly separating error handling code from the app's main logic.
+    -The exception parameter in a multi-catch clause is implicitly final.
     -An overriding method can only throw either the checked exceptions (and their subclasses) listed in the throws clause of the overridden method or decide not to throw any exception at all. 
     -IException is a subclass of Exception. You cannot include classes that are related by inheritance in the same multi-catch block.
     -Catch and finally blocks are executed after the resource opened in try-with-resources is closed.
     -Pay attention to unreachable code in try-catch-finally 
     -No need to catch RuntimeExceptions (like IndexOutOfBoundsException)
+    -Exceptions thrown by AutoCloseable's close() are added to the original exception as suppressed exceptions.
     -if finally throws an exception (always last) it will be the one thrown by the code block or method
     -Exception thrown by a catch cannot be caught by the following catch blocks at the same level.
     -Unchecked vs. Checked Exceptions:
@@ -207,6 +235,7 @@
     Location & Nature:
         -Can be top-level, nested (implicitly static), or local (within a method).
         -Cannot be abstract, sealed, or non-sealed. It is always final.
+        -can implement a method that has a getter like the interface abstract method.
         -cannot extend Record
         -can implement interfaces
         -Serialization uses canonical constructor.
@@ -215,6 +244,8 @@
         -Static fields and initializers are allowed
         -No instance fields or instance initializers
         -No abstract or native methods.
+        -Immutability of a record doesn't extend to the content of an Object of 
+            record Student(int id, Person person). id and Person are immutable, but the content of Person is not.
 
     Constructors & Methods:
         -No setters (records are immutable)
@@ -264,9 +295,12 @@
     -A Reader such as a FileReader provides only low level operations such as reading a single character or array of characters.
     	BufferedReader "decorates" Reader to provide higher level method readLine() by buffering characters.
     	It is an efficient way of reading characters, character arrays, and lines. The same relationship exists between FileWriter and BufferedWriter but for writing.
+    
     System.Console : 
     -methods : format(), printf(), reader(), writer(), readPassword, readLine()
     -Call to System.console() doesn't throw any exception. It just returns null if Console is not available.
+    -System.console() returns null if it's not available (code run in the background), so console.anyMethod() throws NPE.
+    
     -path1.resolveSibling(path2) : replaces the filename portion of the first path with the entire second path to create a new path
     -file.mkdirs() will create also non existing parent directories
     -NoSuchFileException is thrown when Files.delete(path); is executed and the file it is attempting to delete is non existing
@@ -287,7 +321,13 @@
             2. Root (i.e. c:\) is not considered as the beginning.
             3. name at beginIndex is included but name at endIndex is not.
             4. paths do not start or end with \.
-
+    -There is no toPath method; Path is an interface it cannot be instantiated.
+    -Paths.get("/", "file.txt") joins strings into a path.
+    -Path.subpath(from0Index, endExclusiveIndex).
+    -Path.subpath(-1, 2), and path.subpath(1, 1), and path.subpath(2, 3) throw IllegalArgumentException.
+    -Files.readAllLines(path) returns List<String>
+    -Files.lines(path) returns Stream<String>
+    -Instances of the File class are immutable. Once created, the abstract pathname represented by a File object will never change.
 
 ### JPMS ### 
 
@@ -305,16 +345,25 @@
             (which contains multiple module jars) on the module path.
         -A modular jar can still be used like a regular jar. So, any non-modular application can use a modularized jar by putting that jar in the classpath just like any other jar.
         --cp, -classpath, and --class-path are equivalent options and the nonmodular jars should be put on classpath instead of module-path.
-    -Module Operations and Tools
-        If you want to compile a module, then --module-source-path and -d options are required.
-        Running Modules: Use --module-path and --module (e.g., java --module-path course.jar --module com.course.Main).
-        Jmod Tool Options: Includes create, extract, list, describe, hash.
-        Jdeps Tool: Analyzes dependencies of class files or JARs, specifying dependencies via --module-path, --class-path, or -cp.
-            list all the modules on which moduleA depends, it will show an error if moduleA requires any other application module.
-        -p is the short form for --module-path
-        -m is the short form for --module 
-        Structure of a module jar file is same as the regular jar file. It's possible to treat the jar file of a module as a regular jar file containing classes and 
-            run a class that is present in the jar : java -classpath a.jar com.example.a.Main
+        -Bottom Up Approach for modularizing an application:
+            Convert low-level libs into modular jars before high-level jars.
+            Ex: an app main code in app.jar and uses datalayer.jar and mysql.jar. Low level libs are mysql.jar and then datalayer.
+            For top-down approach, app.jar must be converted into a named module (module-info.java) requires datalayer and place datalayer on module path, mysql.jar on classpath.
+        -You cannot have duplicate statements in module-info.java:
+            exports com.amazing.movies; //1
+            exports com.amazing.movies to com.amazing.rentals;// invalid conflict with //1
+        -A module cannot access non-modular classes from the classpath. Convert non-modular third-party jar to an automatic module by putting that jar on module-path.
+        
+        -Module Operations and Tools
+            If you want to compile a module, then --module-source-path and -d options are required.
+            Running Modules: Use --module-path and --module (e.g., java --module-path course.jar --module com.course.Main).
+            Jmod Tool Options: Includes create, extract, list, describe, hash.
+            Jdeps Tool: Analyzes dependencies of class files or JARs, specifying dependencies via --module-path, --class-path, or -cp.
+                list all the modules on which moduleA depends, it will show an error if moduleA requires any other application module.
+            -p is the short form for --module-path
+            -m is the short form for --module 
+            Structure of a module jar file is same as the regular jar file. It's possible to treat the jar file of a module as a regular jar file containing classes and 
+                run a class that is present in the jar : java -classpath a.jar com.example.a.Main
 
     -Module Accessibility and Interactions
         -any non-modular application can simply add the modular jar on the classpath like any other non-modular jar.
@@ -392,6 +441,8 @@
         ConcurrentHashMap for concurrent hash maps, and CountDownLatch, CyclicBarrier, Semaphore for synchronization aids.
     -wait() vs sleep(): wait() releases the monitor lock allowing other threads to synchronize on the locked resource, while sleep() keeps the monitor lock, pausing the current thread without releasing any locks.
     -ConcurrentHashMap doesn't support null values
+    -ConcurrentHashMap's putIfAbsent is atomic, while map.containsKey() is not.
+
     Multithreading issues : 
         -Deadlock: Occurs when two or more threads block forever, each waiting for the other to release a resource.
         -Livelock: A situation where threads are unable to make further progress, despite being active and not blocked, typically due to constantly responding to each other.
