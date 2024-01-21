@@ -35,7 +35,12 @@
     -Optional.of() throws a NullPointerException if the passed value is null.
     -Left operand of instanceof must be an object, not primitives.
     -You can compare unequal primitives double == Short, int == Long.
-    
+    -long, float, boolean, double CANNOT be used as switch variable
+    -pay attention to using string for 128 value, byte's range is -128 to 127.
+    -new Object[]{ "aaa", new Object(), new ArrayList(), {} }; // {} is not valid
+    -new Object[]{ "aaa", new Object(), new ArrayList(), new String[]{""} };  // is valid
+
+
     OOP :
 
         -Instance initialization order : class static fields, static intializers, instance fields, instance initializers, constructors
@@ -46,10 +51,9 @@
         -Static and Instance Initializers: Both can access static variables.
         -The compiler does not provide the default no-args constructor if the programmer provides any other constructor for the class.
         -An overriding method cannot throw an exception that is a super class of the exception thrown by the overridden method.  But can not throw an exception at all.
-        -If a class extends and abstract class and implements an Interface and both of them has a static class with the same name = there is no conflict 
-            static nested classes are associated with their outer class or interface, and they must be accessed using their fully qualified names, which include the name of the outer class or interface.
+        -If a class extends an abstract class and implements an interface, each with a static nested class of the same name, there is no conflict. 
+            These nested classes are distinguished by their outer class or interface names. Access is to the abstract class's nested class, not the interface's.
         -Accessing a static field of a superclass doesn't trigger initialization of it's child class or it's constructor
-            the abstract class is the one that can be used not the interface one
         -Static methods are never overriden (but hidden) because they are not inherited like instance methods, they belong to their classes
         -Immutable Classes: Must be non-extendable outside the class declaration, and their data cannot be modified by the caller.
         -Sealed Classes/Interfaces: 
@@ -57,6 +61,7 @@
                 -All subclasses of a sealed class must belong to the same module (or to the same package if the sealed class is not a part of a named module).
                     even if a sealed class is visible outside a module, it cannot be extended by classes of other modules.
                 -sealed and non-sealed keywords can comme before or after public/private ..
+                -non sealed classes MUST extend sealed permitting class
         -an Inherited classes' Constructor cannot be private (constructor of super class has to be called via super())
         -A class implements Comparable interface when it wants to let an object of that class to be compared with another object of that class. A Comparable = "natural" ordering of objects of that class.
             When a class implements Comparable, you can sort a collection (or array) of objects of that class using Collections.sort (or Arrays.sort) without requiring a separate Comparator object.
@@ -71,6 +76,11 @@
              null instanceof Object a = false
         -Anonymous classes are implicitly final and never static.    
         -You cannot override a final method.
+        -this.staticField is valid
+        -State vs Type : 
+            -Interfaces, classes, enum = types (mutliple inheritance of type allowed)
+            -Instance fields = state (only one inheritance of state)
+    --possible to instanciate a nested static class using new OuterClass.StaticNested()
         -Instance methods can access both static and non-static methods.
         -DecimalFormat has no constructor that takes a Locale :
              Use NumberFormat.getCurrencyInstance(locale) 
@@ -81,6 +91,7 @@
         2. You cannot directly invoke GC. You can suggest the JVM to perform garbage collection by calling System.gc(); no guarantee for execution
         3. Objects pointed to by static variables of a class are not collected even when all objects of that class are collected because they belong 
             to the class (and not to the instance of the class). They are GCed only when the class itself is unloaded by the class loader.
+        -obj = null will make it eligible to GC, obj.name = null is not needed in this case
 
     Generics : 
         -Generic Wildcards: Cannot occur on the right side of assignments. 
@@ -101,6 +112,7 @@
              -StringBuilder append(CharSequence s, int start, int end)
              -StringBuilder insert(int dstOffset, CharSequence s, int start, int end)
              -StringBuilder replace(int start, int end, String str)
+             -StringBuilder has sb.ensureCapacity(capacityInt) to at least have capacityInt chars
 
     Serialization : 
         Constructor and Initializers During Deserialization:
@@ -131,7 +143,11 @@
         less than 4 pattern letters will use the short form. Exactly 4 pattern letters will use the full form. Exactly 5 pattern letters will use the narrow form. more than 5 times it will thrown an exception. 
     -Instant's truncatedTo() can take only ChronoUnit Days and lower (half days, hours, seconds..)
         : Instant.ofEpochSecond(1945820820).truncatedTo(ChronoUnit.DAYS) truncates to the start of the day in UTC & zeroes out the hours minutes seconds : 2031-08-30T00:00:00Z
-
+    -'Z' suffix in datetime is Zulu time = UTC timezone
+    -All the three printlns will produce 2022-02-05 (yyyy-MM-dd)
+        LocalDate d1 = LocalDate.parse("2022-02-05", DateTimeFormatter.ISO_DATE);
+        LocalDate d2 = LocalDate.of(2022, 2, 5);
+        LocalDate d3 = LocalDate.now();
 
 ###  Interfaces ### 
         -Any field in an interface is implicitly public, static, and final, whether these keywords are specified or not.
@@ -140,6 +156,7 @@
         -Inheriting ambiguous fields or methods doesn't cause issues unless referred to ambiguously, which leads to compile-time errors.
         -Interfaces can extend other interfaces.
         -An interface can extend from any number of interfaces: interface A extends B, C, D.
+        -pay attention to interface "implement" X: invalid only extends that's valid
     Method Specifications:
         -Only methods of an interface can be private. Private/protected fields are not allowed.
         -Static Interface Methods cannot call default, abstract, or non-static private interface methods.
@@ -175,6 +192,7 @@
         However, modifications to the original list are reflected in this view.
     -Collectors.joining(delim, prefix, suffix) returns a Collector that joins all the Strings in the given Stream separated by comma and then prefixes and suffixes the resulting String
     -average() method actually returns an OptionalDouble (and not Double).
+    -Arrays.compare(a, b) dictionnary order = 0 if equal, 1 if a > b, -1  
     -HashMap.merge(k, v, biFunction remappingFunction) takes a BiFunction not a Function
     -reduce takes either :
         -binaryOperator
@@ -197,7 +215,9 @@
     -Pay attention to FunctionalInterfaces input type String, Integer, and if applicable on a List<Type>.
     -Pay attention to predicate condition on takeWhile and dropWhile the stream may contain 0 elements.
     -Stream().mapToDouble returns a DoubleStream instead of Stream<Double>. 
-        Use a DoubleBinaryOperator instead of BinaryOperator<Double> for reduction.
+        Use a DoubleBinaryOperator instead of BinaryOperator<Double> for reduction
+
+
 ### Exception Handling ### 
 
     -Try-Catch-Finally Behavior: If finally throws an exception, other exceptions thrown in catch clauses will be ignored.
@@ -242,6 +262,7 @@
 
     Structure Restrictions:
         -Static fields and initializers are allowed
+        -Record fields can be set only once by the canonical constructor
         -No instance fields or instance initializers
         -No abstract or native methods.
         -Immutability of a record doesn't extend to the content of an Object of 
@@ -294,13 +315,13 @@
     -Files.move/copy are static utility methods that do not return a resource that needs to be closed. They cannot be used with try-with-resources
     -A Reader such as a FileReader provides only low level operations such as reading a single character or array of characters.
     	BufferedReader "decorates" Reader to provide higher level method readLine() by buffering characters.
-    	It is an efficient way of reading characters, character arrays, and lines. The same relationship exists between FileWriter and BufferedWriter but for writing.
+    	It is an efficient way of reading characters, character arrays, and lines. The same relationship exists between FileWriter and BufferedWriter but for writing.   
     
     System.Console : 
-    -methods : format(), printf(), reader(), writer(), readPassword, readLine()
-    -Call to System.console() doesn't throw any exception. It just returns null if Console is not available.
-    -System.console() returns null if it's not available (code run in the background), so console.anyMethod() throws NPE.
-    
+        -methods : format(), printf(), reader(), writer(), readPassword, readLine()
+        -Call to System.console() doesn't throw any exception. It just returns null if Console is not available.
+        -System.console() returns null if it's not available (code run in the background), so console.anyMethod() throws NPE.
+
     -path1.resolveSibling(path2) : replaces the filename portion of the first path with the entire second path to create a new path
     -file.mkdirs() will create also non existing parent directories
     -NoSuchFileException is thrown when Files.delete(path); is executed and the file it is attempting to delete is non existing
@@ -311,9 +332,11 @@
         try (DirectoryStream<Path> ds = Files.newDirectoryStream(dir, "*.{gif,jpeg}")) // "*.{gif,jpeg}" : gif & jpeg files   
         try (DirectoryStream<Path> ds = Files.newDirectoryStream(dir, "?.txt"))  // "?" Matches exactly one character : matches a.txt, but not ab.txt
     -RandomAccessFile if a file doesn't exist it will attempt to create it
-    -write and print methods of PrintWriter return void
+    -RandomAccessFile has raf.seek(length not length-1 for last position) and raf.writeChars 
+            valid modes are : new RandomAccessFile("file.txt", "rw"); r, rw, rws rwd    
+    -if RandomAccessFile is expecting to read UTF use readUTF() and write using writeUTF()  -write and print methods of PrintWriter return void
     -none of the PrintWriter's methods throw any I/O exceptions because they supress the errors in writing and set an internal flag for error status instead.
-    The checkError method returns true if there has been a problem in writing.
+        The checkError method returns true if there has been a problem in writing.
     -Path resolveSibling(Path other) :
         Resolves the given path against this path's parent path. This is useful where a file name needs to be replaced with another file name.
             Path.subpath(int beginIndex, int endIndex)
@@ -325,6 +348,7 @@
     -Paths.get("/", "file.txt") joins strings into a path.
     -Path.subpath(from0Index, endExclusiveIndex).
     -Path.subpath(-1, 2), and path.subpath(1, 1), and path.subpath(2, 3) throw IllegalArgumentException.
+    -subpath and getName dont include backslash
     -Files.readAllLines(path) returns List<String>
     -Files.lines(path) returns Stream<String>
     -Instances of the File class are immutable. Once created, the abstract pathname represented by a File object will never change.
@@ -353,6 +377,8 @@
             exports com.amazing.movies; //1
             exports com.amazing.movies to com.amazing.rentals;// invalid conflict with //1
         -A module cannot access non-modular classes from the classpath. Convert non-modular third-party jar to an automatic module by putting that jar on module-path.
+        -A module does not depend or belong to any package. Packages belong to a module.
+        -module-info.java must not be empty.
         
         -Module Operations and Tools
             If you want to compile a module, then --module-source-path and -d options are required.
@@ -442,6 +468,7 @@
     -wait() vs sleep(): wait() releases the monitor lock allowing other threads to synchronize on the locked resource, while sleep() keeps the monitor lock, pausing the current thread without releasing any locks.
     -ConcurrentHashMap doesn't support null values
     -ConcurrentHashMap's putIfAbsent is atomic, while map.containsKey() is not.
+    -AtomicIntegerer increment : ai.incrementAndGet() & ai.addAndGet(int);
 
     Multithreading issues : 
         -Deadlock: Occurs when two or more threads block forever, each waiting for the other to release a resource.
@@ -617,3 +644,5 @@ another test:
         };
    }
 -If there is no provider method in the service provider class, then it must have a public no-args constructor.
+
+
