@@ -99,9 +99,8 @@
         -List<?> is same as List<? extends Object> : A List containing instances of some class that extends Object class.
         -Type Bounds in Generics: "? super Number" means "a super-type of Number" (e.g., Object and Number).
         -Must use a type without bounds while instantiating : new ArrayList<? super Number>() is invalid, new ArrayList() is OK ( all type information are removed : type erasure)
-        -Wildcards (?) are used for declaring variables, parameters, and return types, but they are not used in actual object creation (instantiation).
-        -? wildcard is valid on the right while instantiating but not on the left:
-            HashMap<?, List<String>> box = new HashMap<String, List<String>>(); // invalid
+        -? wildcard can be used on the left-hand side (LHS) of an assignment (for declaring a reference type) but not on the right-hand side (RHS) while instantiating the object.
+
     String : 
         -String str = null; String newStr = "a " + str; => "a null"
         methods() :  
@@ -469,6 +468,8 @@
     -ConcurrentHashMap doesn't support null values
     -ConcurrentHashMap's putIfAbsent is atomic, while map.containsKey() is not.
     -AtomicIntegerer increment : ai.incrementAndGet() & ai.addAndGet(int);
+    -void lock() : if the lock is not available (i.e., another thread already holds the lock), the current thread gets blocked (waits) until the lock becomes available.
+    -boolean trylock() : attempts to acquire the lock without waiting. If the lock is not available at the moment of the call, it immediately returns false instead of waiting.
 
     Multithreading issues : 
         -Deadlock: Occurs when two or more threads block forever, each waiting for the other to release a resource.
